@@ -1,0 +1,55 @@
+const chantCounter = {
+  title: '持诵计数器',
+  subtitle:
+    '记录念佛、持咒、礼佛、木鱼、呼吸与108颗念珠圈数。',
+  homeSubtitle:
+    '按目标计数，并保存每日修习记录。',
+  choosePractice: '选择修习项目',
+  chooseTarget: '选择目标',
+  targetLabel: '目标 {{target}}',
+  tapToCount: '点击计数',
+  completed: '已达目标',
+  completedRounds: '已完成108颗圈数',
+  currentBead: '当前念珠',
+  soundFeedback: '声音',
+  soundFeedbackDescription:
+    '木鱼计数时播放木鱼声，达成目标时播放钟声。',
+  hapticFeedback: '震动反馈',
+  hapticFeedbackDescription:
+    '每次点击及达成目标时轻微震动。',
+  reset: '重置',
+  resetTitle: '重置计数器',
+  resetMessage: '将当前计数归零吗？',
+  cancel: '取消',
+  delete: '删除',
+  deleteTitle: '删除记录',
+  deleteMessage: '确定删除这次修习记录吗？',
+  saveSession: '完成并保存',
+  saving: '正在保存……',
+  autoSave: '当前计数会自动保存在本设备上。',
+  emptyTitle: '暂无计数',
+  emptyMessage: '请至少计数一次后再保存。',
+  savedTitle: '已保存',
+  savedMessage: '本次修习已加入今天的记录。',
+  saveErrorTitle: '无法保存',
+  saveErrorMessage: '保存持诵记录时发生错误。',
+  todaySummary: '今日汇总',
+  totalCount: '总数',
+  totalSessions: '保存次数',
+  targetsReached: '达成目标',
+  history: '每日记录',
+  emptyHistory: '尚无已保存的修习记录。',
+  historyTarget: '{{count}}次 · 目标{{target}}',
+  historyRounds:
+    '{{rounds}}圈108颗 · 剩余{{remainder}}颗',
+  types: {
+    buddhaName: '念佛',
+    mantra: '持咒',
+    prostration: '礼佛',
+    woodenFish: '木鱼',
+    breath: '呼吸',
+    mala108: '108颗念珠',
+  },
+};
+
+export default chantCounter;

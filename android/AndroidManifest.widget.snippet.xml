@@ -1,0 +1,13 @@
+<!-- Add inside <application> in android/app/src/main/AndroidManifest.xml -->
+
+<receiver
+  android:name="com.easterndestiny.widget.DailyBriefWidgetProvider"
+  android:exported="true">
+  <intent-filter>
+    <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+  </intent-filter>
+
+  <meta-data
+    android:name="android.appwidget.provider"
+    android:resource="@xml/eastern_destiny_widget_info"/>
+</receiver>

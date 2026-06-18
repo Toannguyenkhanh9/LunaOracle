@@ -1,0 +1,4 @@
+<!-- Add inside res/values/strings.xml -->
+<string name="eastern_destiny_widget_description">
+  Eastern Destiny Daily Brief
+</string>

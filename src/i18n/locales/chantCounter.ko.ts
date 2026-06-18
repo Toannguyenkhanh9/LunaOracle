@@ -1,0 +1,55 @@
+const chantCounter = {
+  title: '염불 수행 카운터',
+  subtitle:
+    '염불, 진언, 절, 목탁, 호흡과 108염주 회차를 기록합니다.',
+  homeSubtitle:
+    '목표 횟수를 세고 매일의 수행 기록을 저장합니다.',
+  choosePractice: '수행 선택',
+  chooseTarget: '목표 선택',
+  targetLabel: '목표 {{target}}',
+  tapToCount: '눌러서 세기',
+  completed: '목표 달성',
+  completedRounds: '완료한 108염주 회차',
+  currentBead: '현재 염주',
+  soundFeedback: '소리',
+  soundFeedbackDescription:
+    '목탁 수행은 목탁 소리를 내고 목표 달성 시 종소리를 냅니다.',
+  hapticFeedback: '진동 피드백',
+  hapticFeedbackDescription:
+    '누를 때와 목표 달성 시 가볍게 진동합니다.',
+  reset: '초기화',
+  resetTitle: '카운터 초기화',
+  resetMessage: '현재 숫자를 0으로 초기화할까요?',
+  cancel: '취소',
+  delete: '삭제',
+  deleteTitle: '기록 삭제',
+  deleteMessage: '이 수행 기록을 삭제할까요?',
+  saveSession: '완료하고 저장',
+  saving: '저장 중...',
+  autoSave: '현재 숫자는 이 기기에 자동 저장됩니다.',
+  emptyTitle: '저장할 숫자가 없음',
+  emptyMessage: '저장하기 전에 한 번 이상 세어 주세요.',
+  savedTitle: '저장 완료',
+  savedMessage: '오늘의 수행 기록에 추가되었습니다.',
+  saveErrorTitle: '저장할 수 없음',
+  saveErrorMessage: '염불 수행 기록 저장 중 오류가 발생했습니다.',
+  todaySummary: '오늘의 요약',
+  totalCount: '총 횟수',
+  totalSessions: '저장 횟수',
+  targetsReached: '달성 목표',
+  history: '날짜별 기록',
+  emptyHistory: '저장된 수행 기록이 없습니다.',
+  historyTarget: '{{count}}회 · 목표 {{target}}',
+  historyRounds:
+    '108염주 {{rounds}}회 · 남은 염주 {{remainder}}개',
+  types: {
+    buddhaName: '염불',
+    mantra: '진언',
+    prostration: '절',
+    woodenFish: '목탁',
+    breath: '호흡',
+    mala108: '108염주',
+  },
+};
+
+export default chantCounter;

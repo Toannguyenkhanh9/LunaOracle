@@ -1,0 +1,8 @@
+{
+  "name": "PagodaOnline",
+  "displayName": "PagodaOnline",
+    "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-1234567890123456~1234567890",
+    "ios_app_id": "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"
+  }
+}

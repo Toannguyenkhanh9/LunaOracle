@@ -1,0 +1,55 @@
+const chantCounter = {
+  title: '唱念カウンター',
+  subtitle:
+    '念仏、真言、礼拝、木魚、呼吸、108珠の数珠の周回を記録します。',
+  homeSubtitle:
+    '目標回数を数え、毎日の修習履歴を保存します。',
+  choosePractice: '修習を選ぶ',
+  chooseTarget: '目標を選ぶ',
+  targetLabel: '目標 {{target}}',
+  tapToCount: 'タップして数える',
+  completed: '目標達成',
+  completedRounds: '完了した108珠の周回',
+  currentBead: '現在の珠',
+  soundFeedback: '音',
+  soundFeedbackDescription:
+    '木魚では木魚音を再生し、目標達成時に鐘を鳴らします。',
+  hapticFeedback: '振動フィードバック',
+  hapticFeedbackDescription:
+    'タップ時と目標達成時に軽く振動します。',
+  reset: 'リセット',
+  resetTitle: 'カウンターをリセット',
+  resetMessage: '現在の回数を0に戻しますか？',
+  cancel: 'キャンセル',
+  delete: '削除',
+  deleteTitle: '履歴を削除',
+  deleteMessage: 'この修習記録を削除しますか？',
+  saveSession: '完了して保存',
+  saving: '保存中...',
+  autoSave: '現在の回数は端末に自動保存されます。',
+  emptyTitle: '保存する回数がありません',
+  emptyMessage: '保存する前に1回以上数えてください。',
+  savedTitle: '保存しました',
+  savedMessage: '今日の履歴に追加しました。',
+  saveErrorTitle: '保存できません',
+  saveErrorMessage: '唱念履歴の保存中にエラーが発生しました。',
+  todaySummary: '今日のまとめ',
+  totalCount: '合計回数',
+  totalSessions: '保存回数',
+  targetsReached: '達成目標',
+  history: '日別履歴',
+  emptyHistory: '保存された修習記録はありません。',
+  historyTarget: '{{count}}回 · 目標{{target}}',
+  historyRounds:
+    '108珠を{{rounds}}周 · 残り{{remainder}}珠',
+  types: {
+    buddhaName: '念仏',
+    mantra: '真言',
+    prostration: '礼拝',
+    woodenFish: '木魚',
+    breath: '呼吸',
+    mala108: '108珠の数珠',
+  },
+};
+
+export default chantCounter;

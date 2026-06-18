@@ -1,0 +1,1 @@
+export {analyzeLifeDomains} from './lifeDomains';
