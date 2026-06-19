@@ -1,0 +1,38 @@
+const lunaBirthChart = {
+  lunaBirthChart: {
+    eyebrow: "출생 차트",
+    title: "태양, 달 & 상승궁",
+    subtitle: "출생 시간과 장소를 입력해 달 별자리, 상승궁, 하우스, 주요 각을 추정합니다.",
+    inputsTitle: "출생 정보",
+    year: "연도",
+    month: "월",
+    day: "일",
+    hour: "시",
+    minute: "분",
+    timezone: "UTC",
+    latitude: "위도",
+    longitude: "경도",
+    bigThree: "빅 쓰리",
+    houses: "이퀄 하우스",
+    house: "{{number}} 하우스",
+    aspects: "주요 각",
+    noAspects: "선택한 오브 안에 주요 각이 없습니다.",
+    orb: "오브 {{value}}°",
+    approximateNotice: "이 차트는 오프라인 근사 계산을 사용합니다. 전문 점성술에는 정확한 출생지와 공인 천체력을 사용하세요.",
+    points: {
+      sun: "태양",
+      moon: "달",
+      ascendant: "상승궁",
+      midheaven: "중천",
+    },
+    aspectNames: {
+      conjunction: "합",
+      sextile: "육각",
+      square: "사각",
+      trine: "삼각",
+      opposition: "충",
+    },
+  },
+} as const;
+
+export default lunaBirthChart;

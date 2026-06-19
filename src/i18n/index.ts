@@ -1,6 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage
+  from '@react-native-async-storage/async-storage';
 
-import i18n from 'i18next';
+import i18n
+  from 'i18next';
 
 import {
   initReactI18next,
@@ -12,25 +14,85 @@ import {
 
 import vi from './locales/vi';
 import en from './locales/en';
+import es from './locales/es';
+import pt from './locales/pt';
+import fr from './locales/fr';
+import it from './locales/it';
+import de from './locales/de';
+import nl from './locales/nl';
+import hi from './locales/hi';
+import id from './locales/id';
+import ms from './locales/ms';
+import fil from './locales/fil';
+import ar from './locales/ar';
 import zh from './locales/zh';
 import ja from './locales/ja';
 import ko from './locales/ko';
+import ru from './locales/ru';
+import th from './locales/th';
 
 import {
-  AppLanguage,
+  type AppLanguage,
   SUPPORTED_LANGUAGE_CODES,
 } from './languages';
 
 const LANGUAGE_STORAGE_KEY =
-  '@pagoda_online_language';
+  '@luna_oracle_language';
+
+const FALLBACK_LANGUAGE: AppLanguage =
+  'en';
 
 const resources = {
+  en: {
+    translation: en,
+  },
+
   vi: {
     translation: vi,
   },
 
-  en: {
-    translation: en,
+  es: {
+    translation: es,
+  },
+
+  pt: {
+    translation: pt,
+  },
+
+  fr: {
+    translation: fr,
+  },
+
+  it: {
+    translation: it,
+  },
+
+  de: {
+    translation: de,
+  },
+
+  nl: {
+    translation: nl,
+  },
+
+  hi: {
+    translation: hi,
+  },
+
+  id: {
+    translation: id,
+  },
+
+  ms: {
+    translation: ms,
+  },
+
+  fil: {
+    translation: fil,
+  },
+
+  ar: {
+    translation: ar,
   },
 
   zh: {
@@ -44,25 +106,79 @@ const resources = {
   ko: {
     translation: ko,
   },
-};
+
+  ru: {
+    translation: ru,
+  },
+
+  th: {
+    translation: th,
+  },
+} as const;
+
+function isSupportedLanguage(
+  language: string,
+): language is AppLanguage {
+  return SUPPORTED_LANGUAGE_CODES.includes(
+    language as AppLanguage,
+  );
+}
 
 function normalizeLanguage(
-  languageCode?: string,
+  languageCode?: string | null,
 ): AppLanguage {
-  const normalized =
-    languageCode?.toLowerCase();
-
-  if (
-    normalized &&
-    SUPPORTED_LANGUAGE_CODES.includes(
-      normalized as AppLanguage,
-    )
-  ) {
-    return normalized as AppLanguage;
+  if (!languageCode) {
+    return FALLBACK_LANGUAGE;
   }
 
-  // Ngôn ngữ không hỗ trợ sẽ dùng English.
-  return 'en';
+  const normalized =
+    languageCode
+      .trim()
+      .toLowerCase()
+      .replace('_', '-');
+
+  if (
+    isSupportedLanguage(normalized)
+  ) {
+    return normalized;
+  }
+
+  const baseLanguage =
+    normalized.split('-')[0];
+
+  if (
+    isSupportedLanguage(
+      baseLanguage,
+    )
+  ) {
+    return baseLanguage;
+  }
+
+  if (
+    normalized.startsWith('zh')
+  ) {
+    return 'zh';
+  }
+
+  if (
+    normalized === 'in'
+  ) {
+    return 'id';
+  }
+
+  if (
+    normalized === 'iw'
+  ) {
+    return FALLBACK_LANGUAGE;
+  }
+
+  if (
+    normalized === 'tl'
+  ) {
+    return 'fil';
+  }
+
+  return FALLBACK_LANGUAGE;
 }
 
 async function getInitialLanguage():
@@ -73,25 +189,44 @@ Promise<AppLanguage> {
         LANGUAGE_STORAGE_KEY,
       );
 
+    const normalizedSavedLanguage =
+      normalizeLanguage(savedLanguage);
+
     if (
       savedLanguage &&
-      SUPPORTED_LANGUAGE_CODES.includes(
-        savedLanguage as AppLanguage,
+      isSupportedLanguage(
+        normalizedSavedLanguage,
       )
     ) {
-      return savedLanguage as AppLanguage;
+      return normalizedSavedLanguage;
     }
   } catch (error) {
     console.warn(
-      'Không thể đọc ngôn ngữ đã lưu:',
+      'Unable to read saved language:',
       error,
     );
   }
 
-  const deviceLanguage =
-    getLocales()[0]?.languageCode;
+  const deviceLocales =
+    getLocales();
 
-  return normalizeLanguage(deviceLanguage);
+  for (
+    const locale of deviceLocales
+  ) {
+    const language =
+      normalizeLanguage(
+        locale.languageTag ??
+          locale.languageCode,
+      );
+
+    if (
+      isSupportedLanguage(language)
+    ) {
+      return language;
+    }
+  }
+
+  return FALLBACK_LANGUAGE;
 }
 
 export async function initializeI18n():
@@ -110,7 +245,14 @@ Promise<void> {
 
       lng: initialLanguage,
 
-      fallbackLng: 'en',
+      fallbackLng:
+        FALLBACK_LANGUAGE,
+
+      supportedLngs:
+        SUPPORTED_LANGUAGE_CODES,
+
+      compatibilityJSON:
+        'v3',
 
       interpolation: {
         escapeValue: false,
@@ -123,24 +265,29 @@ Promise<void> {
 export async function changeAppLanguage(
   language: AppLanguage,
 ): Promise<void> {
+  const normalizedLanguage =
+    normalizeLanguage(language);
+
   if (
-    !SUPPORTED_LANGUAGE_CODES.includes(
-      language,
+    !isSupportedLanguage(
+      normalizedLanguage,
     )
   ) {
     return;
   }
 
-  await i18n.changeLanguage(language);
+  await i18n.changeLanguage(
+    normalizedLanguage,
+  );
 
   try {
     await AsyncStorage.setItem(
       LANGUAGE_STORAGE_KEY,
-      language,
+      normalizedLanguage,
     );
   } catch (error) {
     console.warn(
-      'Không thể lưu ngôn ngữ:',
+      'Unable to save language:',
       error,
     );
   }
@@ -152,6 +299,11 @@ AppLanguage {
     i18n.resolvedLanguage ??
       i18n.language,
   );
+}
+
+export function getLanguageStorageKey():
+string {
+  return LANGUAGE_STORAGE_KEY;
 }
 
 export default i18n;

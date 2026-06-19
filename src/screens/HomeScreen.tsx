@@ -51,6 +51,7 @@ type Props = BottomTabScreenProps<
 
 type HomeRoute =
   | 'Today'
+  | 'DailyInsight'
   | 'LunarCalendar'
   | 'BuddhistCalendar'
   | 'FortuneStick'
@@ -485,6 +486,19 @@ export default function HomeScreen({
 
   const dailyCards: HomeCard[] = [
     {
+      route: 'DailyInsight',
+      icon: '☉',
+      title: tr(
+        'lunaDailyInsight.title',
+        'Daily Personalized Insight',
+      ),
+      subtitle: tr(
+        'lunaDailyInsight.homeSubtitle',
+        'Personal daily guidance from your active birth chart, today’s Moon, and transit touchpoints.',
+      ),
+      accent: '#F0D18B',
+    },
+    {
       route: 'Today',
       icon: '☀',
       title: tr(
@@ -498,7 +512,7 @@ export default function HomeScreen({
       accent: '#F3DBA2',
     },
     {
-      route: 'DailyBrief',
+      route: 'DailyInsight',
       icon: '☾',
       title: tr(
         'dailyBrief.title',
@@ -901,8 +915,8 @@ export default function HomeScreen({
 
               <Text style={styles.panelTitle}>
                 {tr(
-                  'dailyBrief.title',
-                  'Daily Brief',
+                  'lunaDailyInsight.title',
+                  'Daily Personalized Insight',
                 )}
               </Text>
             </View>
@@ -933,12 +947,40 @@ export default function HomeScreen({
 
           <Text style={styles.panelText}>
             {tr(
-              'astrologyHome.insightText',
-              'Use today as a quiet reference point. Read the rhythm, then choose one grounded action.',
+              'lunaDailyInsight.homeSubtitle',
+              'Personal daily guidance from your active birth chart, today’s Moon, and transit touchpoints.',
             )}
           </Text>
 
           <View style={styles.quickRow}>
+            <Pressable
+              style={({pressed}) => [
+                styles.quickChip,
+                pressed &&
+                  styles.pressed,
+              ]}
+              onPress={() =>
+                navigateTo(
+                  'DailyInsight',
+                )
+              }>
+              <Text
+                style={
+                  styles.quickChipIcon
+                }>
+                ☉
+              </Text>
+              <Text
+                style={
+                  styles.quickChipText
+                }>
+                {tr(
+                  'lunaDailyInsight.eyebrow',
+                  'Today',
+                )}
+              </Text>
+            </Pressable>
+
             <Pressable
               style={({pressed}) => [
                 styles.quickChip,
