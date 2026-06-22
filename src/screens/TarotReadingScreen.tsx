@@ -38,6 +38,8 @@ import {
   translateTarotCardMeaning,
   translateTarotCardName,
 } from '../utils/lunaContentLocalization';
+import TarotCardImage
+  from '../components/TarotCardImage';
 
 type Spread =
   | 1

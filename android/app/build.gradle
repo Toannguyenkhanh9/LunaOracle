@@ -79,7 +79,7 @@ android {
 
     namespace "com.pagodaonline"
     defaultConfig {
-        applicationId "com.nexus.lunaoracle"
+        applicationId "com.nexus.lunaoracle1"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
