@@ -16,6 +16,14 @@ import lunaBirthProfiles
   from './lunaBirthProfiles.ja';
     import lunaDailyInsight
   from './lunaDailyInsight.ja';
+  import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.ja';
+  import lunaDailyRitual
+  from './lunaDailyRitual.ja';
+  import lunaAchievements
+  from './lunaAchievements.ja';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.ja';
 const ja = {
   common: {
     cancel: "キャンセル",
@@ -58,4 +66,8 @@ export default {
            ...lunaBirthChartStage4,
 ...lunaBirthProfiles,
   ...lunaDailyInsight,
+  ...lunaAdvancedFeatures,
+    ...lunaDailyRitual,
+      ...lunaAchievements,
+        ...lunaJournalLoveOnboarding,
 } as const;

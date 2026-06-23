@@ -12,7 +12,14 @@ import lunaDynamic
   from './lunaBirthProfiles.ru';
     import lunaDailyInsight
   from './lunaDailyInsight.ru';
-
+import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.ru';
+  import lunaDailyRitual
+  from './lunaDailyRitual.ru';
+  import lunaAchievements
+  from './lunaAchievements.ru';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.ru';
 const ru = {
   common: {
     cancel: "Отмена",
@@ -53,4 +60,8 @@ export default {
         ...lunaBirthChart,
         ...lunaBirthProfiles,
           ...lunaDailyInsight,
+          ...lunaAdvancedFeatures,
+            ...lunaDailyRitual,
+              ...lunaAchievements,
+                ...lunaJournalLoveOnboarding,
 } as const;

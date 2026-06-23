@@ -16,6 +16,14 @@ import lunaDynamic
   from './lunaBirthProfiles.ms';
     import lunaDailyInsight
   from './lunaDailyInsight.ms';
+  import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.ms';
+  import lunaDailyRitual
+  from './lunaDailyRitual.ms';
+  import lunaAchievements
+  from './lunaAchievements.ms';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.ms';
 const ms = {
   common: {
     cancel: "Cancel",
@@ -58,4 +66,8 @@ export default {
            ...lunaBirthChartStage4,
 ...lunaBirthProfiles,
   ...lunaDailyInsight,
+  ...lunaAdvancedFeatures,
+    ...lunaDailyRitual,
+      ...lunaAchievements,
+        ...lunaJournalLoveOnboarding,
 } as const;

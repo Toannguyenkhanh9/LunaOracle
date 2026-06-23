@@ -16,6 +16,14 @@ import lunaDynamic
   from './lunaBirthProfiles.id';
     import lunaDailyInsight
   from './lunaDailyInsight.id';
+  import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.id';
+  import lunaDailyRitual
+  from './lunaDailyRitual.id';
+  import lunaAchievements
+  from './lunaAchievements.id';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.id';
 const idLocale = {
   common: {
     cancel: "Cancel",
@@ -58,4 +66,8 @@ export default {
            ...lunaBirthChartStage4,
 ...lunaBirthProfiles,
   ...lunaDailyInsight,
+  ...lunaAdvancedFeatures,
+    ...lunaDailyRitual,
+      ...lunaAchievements,
+        ...lunaJournalLoveOnboarding,
 } as const;

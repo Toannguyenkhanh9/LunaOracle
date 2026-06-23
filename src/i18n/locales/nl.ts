@@ -16,6 +16,14 @@ import lunaDynamic
   from './lunaBirthProfiles.nl';
     import lunaDailyInsight
   from './lunaDailyInsight.nl';
+  import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.nl';
+  import lunaDailyRitual
+  from './lunaDailyRitual.nl';
+  import lunaAchievements
+  from './lunaAchievements.nl';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.nl';
 const nl = {
   common: {
     cancel: "Cancel",
@@ -58,4 +66,8 @@ export default {
            ...lunaBirthChartStage4,
 ...lunaBirthProfiles,
   ...lunaDailyInsight,
+  ...lunaAdvancedFeatures,
+    ...lunaDailyRitual,
+      ...lunaAchievements,
+        ...lunaJournalLoveOnboarding,
 } as const;

@@ -1,610 +1,1032 @@
 import React, {
   useCallback,
-  useMemo,
   useState,
 } from 'react';
+
 import {
   Alert,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 
-import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {useFocusEffect} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
-
-import type {RootTabParamList} from '../navigation/RootNavigator';
 import {
-  getPracticeStats,
-  getTodayPractice,
-  resetTodayPractice,
-  setPracticeActivity,
-  type DailyPracticeRecord,
-  type PracticeActivityId,
-  type PracticeStats,
-} from '../services/practice';
-import {colors} from '../theme/colors';
+  SafeAreaView,
+} from 'react-native-safe-area-context';
 
-type Props = BottomTabScreenProps<
-  RootTabParamList,
-  'DailyRitual'
->;
+import {
+  useFocusEffect,
+  useNavigation,
+} from '@react-navigation/native';
 
-type RitualStep = {
-  id: PracticeActivityId;
-  icon: string;
-  route:
-    | 'Temple'
-    | 'Meditation'
-    | 'SpiritualAudio'
-    | 'Prayer';
+import {
+  useTranslation,
+} from 'react-i18next';
+
+import TarotCardImage
+  from '../components/TarotCardImage';
+
+import {
+  getDailyRitualSession,
+  getDailyRitualStreak,
+  saveDailyRitualEntry,
+  toggleDailyRitualStep,
+  type DailyRitualEntry,
+  type DailyRitualMood,
+  type DailyRitualStep,
+} from '../services/dailyRitual';
+
+import {
+  getZodiacSymbol,
+} from '../services/astroBirthChart';
+
+type NavigationLike = {
+  navigate: (
+    routeName: string,
+    params?: Record<string, unknown>,
+  ) => void;
 };
 
-const STEPS: RitualStep[] = [
-  {
-    id: 'incense',
-    icon: '🪔',
-    route: 'Temple',
-  },
-  {
-    id: 'listening',
-    icon: '📿',
-    route: 'SpiritualAudio',
-  },
-  {
-    id: 'meditation',
-    icon: '🧘',
-    route: 'Meditation',
-  },
-  {
-    id: 'gratitude',
-    icon: '🙏',
-    route: 'Prayer',
-  },
-];
+const MOODS:
+  DailyRitualMood[] = [
+    'calm',
+    'hopeful',
+    'focused',
+    'tired',
+    'anxious',
+    'grateful',
+  ];
 
-const EMPTY_STATS: PracticeStats = {
-  currentStreak: 0,
-  longestStreak: 0,
-  totalPracticeDays: 0,
-  totalCompletedRituals: 0,
-  totalMeditationMinutes: 0,
-};
+const STEPS:
+  DailyRitualStep[] = [
+    'breathe',
+    'readInsight',
+    'drawCard',
+    'writeNote',
+  ];
 
-export default function DailyRitualScreen({
-  navigation,
-}: Props) {
-  const {t} = useTranslation();
+export default function DailyRitualScreen() {
+  const {t} =
+    useTranslation();
 
-  const [today, setToday] =
-    useState<DailyPracticeRecord | null>(null);
-  const [stats, setStats] =
-    useState<PracticeStats>(EMPTY_STATS);
-  const [isUpdating, setIsUpdating] = useState(false);
+  const navigation =
+    useNavigation<NavigationLike>();
 
-  const refresh = useCallback(async () => {
-    const [todayRecord, currentStats] =
-      await Promise.all([
-        getTodayPractice(),
-        getPracticeStats(),
-      ]);
+  const [
+    entry,
+    setEntry,
+  ] =
+    useState<DailyRitualEntry | undefined>();
 
-    setToday(todayRecord);
-    setStats(currentStats);
-  }, []);
+  const [
+    moonSign,
+    setMoonSign,
+  ] =
+    useState('');
+
+  const [
+    profileName,
+    setProfileName,
+  ] =
+    useState('');
+
+  const [
+    streak,
+    setStreak,
+  ] =
+    useState(0);
+
+  const [isSaving, setSaving] =
+    useState(false);
+
+  const load = useCallback(
+    async () => {
+      const session =
+        await getDailyRitualSession();
+
+      setEntry(session.entry);
+      setProfileName(
+        session.profile.name,
+      );
+      setMoonSign(
+        session.insight.transitChart.points.moon.sign,
+      );
+      setStreak(
+        await getDailyRitualStreak(),
+      );
+    },
+    [],
+  );
 
   useFocusEffect(
-    useCallback(() => {
-      refresh();
-    }, [refresh]),
+    useCallback(
+      () => {
+        void load();
+      },
+      [load],
+    ),
   );
 
-  const completedCount = useMemo(
-    () =>
-      today
-        ? Object.values(today.activities).filter(Boolean)
-            .length
-        : 0,
-    [today],
-  );
-
-  const progress = completedCount / STEPS.length;
-
-  const toggleStep = async (
-    activity: PracticeActivityId,
+  const save = async (
+    nextEntry = entry,
+    showAlert = true,
   ) => {
-    if (!today || isUpdating) {
+    if (!nextEntry) {
       return;
     }
 
-    setIsUpdating(true);
+    setSaving(true);
 
     try {
-      const updated = await setPracticeActivity(
-        activity,
-        !today.activities[activity],
+      const saved =
+        await saveDailyRitualEntry(
+          nextEntry,
+        );
+
+      setEntry(saved);
+      setStreak(
+        await getDailyRitualStreak(),
       );
 
-      setToday(updated);
-      setStats(await getPracticeStats());
+      if (showAlert) {
+        Alert.alert(
+          t(
+            'lunaDailyRitual.savedTitle',
+            {
+              defaultValue:
+                'Saved',
+            },
+          ),
+          t(
+            'lunaDailyRitual.savedMessage',
+            {
+              defaultValue:
+                'Your daily ritual was saved.',
+            },
+          ),
+        );
+      }
+    } catch (error) {
+      console.warn(
+        'Unable to save daily ritual:',
+        error,
+      );
+
+      Alert.alert(
+        t(
+          'lunaDailyRitual.saveErrorTitle',
+          {
+            defaultValue:
+              'Unable to save',
+          },
+        ),
+        t(
+          'lunaDailyRitual.saveErrorMessage',
+          {
+            defaultValue:
+              'Please try again.',
+          },
+        ),
+      );
     } finally {
-      setIsUpdating(false);
+      setSaving(false);
     }
   };
 
-  const handleReset = () => {
-    Alert.alert(
-      t('practice.resetTitle'),
-      t('practice.resetMessage'),
-      [
-        {
-          text: t('common.cancel'),
-          style: 'cancel',
-        },
-        {
-          text: t('common.reset'),
-          style: 'destructive',
-          onPress: async () => {
-            await resetTodayPractice();
-            await refresh();
-          },
-        },
-      ],
-    );
+  const updateMood = (
+    mood: DailyRitualMood,
+  ) => {
+    if (!entry) {
+      return;
+    }
+
+    const next = {
+      ...entry,
+      mood,
+    };
+
+    setEntry(next);
+    void save(next, false);
   };
+
+  const updateStep = (
+    step: DailyRitualStep,
+  ) => {
+    if (!entry) {
+      return;
+    }
+
+    const next =
+      toggleDailyRitualStep(
+        entry,
+        step,
+      );
+
+    setEntry(next);
+    void save(next, false);
+  };
+
+  const updateNote = (
+    note: string,
+  ) => {
+    if (!entry) {
+      return;
+    }
+
+    setEntry({
+      ...entry,
+      note,
+    });
+  };
+
+  if (!entry) {
+    return (
+      <SafeAreaView style={styles.screen}>
+        <View style={styles.loadingBox}>
+          <Text style={styles.loadingText}>
+            {t(
+              'common.loading',
+              {
+                defaultValue:
+                  'Loading...',
+              },
+            )}
+          </Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  const completedCount =
+    entry.completedSteps.length;
+
+  const progress =
+    Math.round(
+      (
+        completedCount /
+        STEPS.length
+      ) *
+        100,
+    );
+
+  const tarotMeaning =
+    entry.tarotDraw.orientation ===
+    'reversed'
+      ? entry.tarotDraw.card.reversed
+      : entry.tarotDraw.card.upright;
 
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
-        <View style={styles.hero}>
-          <Text style={styles.heroIcon}>🪷</Text>
-          <Text style={styles.title}>
-            {t('practice.title')}
-          </Text>
-          <Text style={styles.subtitle}>
-            {t('practice.subtitle')}
+        <Text style={styles.eyebrow}>
+          {t(
+            'lunaDailyRitual.eyebrow',
+            {
+              defaultValue:
+                'Daily Ritual',
+            },
+          )}
+        </Text>
+
+        <View style={styles.titleRow}>
+          <View style={styles.titleCopy}>
+            <Text style={styles.title}>
+              {t(
+                'lunaDailyRitual.title',
+                {
+                  defaultValue:
+                    'Today’s Check-in',
+                },
+              )}
+            </Text>
+
+            <Text style={styles.subtitle}>
+              {t(
+                'lunaDailyRitual.subtitleFor',
+                {
+                  name:
+                    profileName,
+                  defaultValue:
+                    `For ${profileName}`,
+                },
+              )}
+            </Text>
+          </View>
+
+          <Pressable
+            style={styles.profileButton}
+            onPress={() =>
+              navigation.navigate(
+                'BirthProfiles',
+              )
+            }>
+            <Text style={styles.profileText}>
+              {t(
+                'lunaDailyRitual.profile',
+                {
+                  defaultValue:
+                    'Profile',
+                },
+              )}
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.heroCard}>
+          <View style={styles.heroTop}>
+            <View>
+              <Text style={styles.heroLabel}>
+                {t(
+                  'lunaDailyRitual.todayEnergy',
+                  {
+                    defaultValue:
+                      'Today energy',
+                  },
+                )}
+              </Text>
+
+              <Text style={styles.heroTitle}>
+                {entry.energyScore}
+              </Text>
+            </View>
+
+            <View style={styles.streakBox}>
+              <Text style={styles.streakNumber}>
+                {streak}
+              </Text>
+
+              <Text style={styles.streakLabel}>
+                {t(
+                  'lunaDailyRitual.streak',
+                  {
+                    defaultValue:
+                      'streak',
+                  },
+                )}
+              </Text>
+            </View>
+          </View>
+
+          <Text style={styles.heroText}>
+            {getZodiacSymbol(
+              moonSign as never,
+            )}{' '}
+            {t(
+              `western.signs.${moonSign}`,
+              {
+                defaultValue:
+                  moonSign,
+              },
+            )}
+            {' • '}
+            {t(
+              'lunaDailyRitual.houseFocus',
+              {
+                number:
+                  entry.moonHouse,
+                defaultValue:
+                  `Moon focus: House ${entry.moonHouse}`,
+              },
+            )}
           </Text>
 
-          <View style={styles.progressBackground}>
+          <View style={styles.progressTrack}>
             <View
               style={[
                 styles.progressFill,
-                {width: `${progress * 100}%`},
+                {
+                  width:
+                    `${progress}%`,
+                },
               ]}
             />
           </View>
 
           <Text style={styles.progressText}>
-            {t('practice.progress', {
-              completed: completedCount,
-              total: STEPS.length,
-            })}
+            {t(
+              'lunaDailyRitual.progress',
+              {
+                done:
+                  completedCount,
+                total:
+                  STEPS.length,
+                defaultValue:
+                  `${completedCount}/${STEPS.length} complete`,
+              },
+            )}
           </Text>
         </View>
 
-        <View style={styles.streakCard}>
-          <View style={styles.streakMain}>
-            <Text style={styles.streakIcon}>🔥</Text>
-            <View>
-              <Text style={styles.streakValue}>
-                {stats.currentStreak}
-              </Text>
-              <Text style={styles.streakLabel}>
-                {t('practice.currentStreak')}
-              </Text>
-            </View>
-          </View>
+        <View style={styles.sectionCard}>
+          <Text style={styles.sectionTitle}>
+            {t(
+              'lunaDailyRitual.moodTitle',
+              {
+                defaultValue:
+                  'How do you feel?',
+              },
+            )}
+          </Text>
 
-          <View style={styles.streakDivider} />
+          <View style={styles.moodGrid}>
+            {MOODS.map(mood => {
+              const active =
+                entry.mood === mood;
 
-          <View style={styles.streakSecondary}>
-            <Text style={styles.streakSecondaryValue}>
-              {stats.longestStreak}
-            </Text>
-            <Text style={styles.streakSecondaryLabel}>
-              {t('practice.longestStreak')}
-            </Text>
-          </View>
-
-          <View style={styles.streakSecondary}>
-            <Text style={styles.streakSecondaryValue}>
-              {stats.totalPracticeDays}
-            </Text>
-            <Text style={styles.streakSecondaryLabel}>
-              {t('practice.practiceDays')}
-            </Text>
-          </View>
-        </View>
-
-        <Text style={styles.sectionTitle}>
-          {t('practice.todayRitual')}
-        </Text>
-
-        {STEPS.map((step, index) => {
-          const completed =
-            today?.activities[step.id] ?? false;
-
-          return (
-            <View
-              key={step.id}
-              style={[
-                styles.stepCard,
-                completed && styles.stepCardCompleted,
-              ]}>
-              <View
-                style={[
-                  styles.stepNumber,
-                  completed &&
-                    styles.stepNumberCompleted,
-                ]}>
-                <Text style={styles.stepNumberText}>
-                  {completed ? '✓' : index + 1}
-                </Text>
-              </View>
-
-              <Text style={styles.stepIcon}>
-                {step.icon}
-              </Text>
-
-              <View style={styles.stepInfo}>
-                <Text style={styles.stepTitle}>
-                  {t(
-                    `practice.steps.${step.id}.title`,
-                  )}
-                </Text>
-                <Text style={styles.stepDescription}>
-                  {t(
-                    `practice.steps.${step.id}.description`,
-                  )}
-                </Text>
-              </View>
-
-              <View style={styles.stepActions}>
+              return (
                 <Pressable
-                  style={({pressed}) => [
-                    styles.openButton,
-                    pressed && styles.pressed,
+                  key={mood}
+                  style={[
+                    styles.moodChip,
+                    active &&
+                      styles.moodChipActive,
                   ]}
                   onPress={() =>
-                    navigation.navigate(step.route)
-                  }>
-                  <Text style={styles.openButtonText}>
-                    {t('practice.open')}
-                  </Text>
-                </Pressable>
-
-                <Pressable
-                  disabled={isUpdating}
-                  style={({pressed}) => [
-                    styles.doneButton,
-                    completed &&
-                      styles.doneButtonCompleted,
-                    pressed && styles.pressed,
-                  ]}
-                  onPress={() =>
-                    toggleStep(step.id)
+                    updateMood(mood)
                   }>
                   <Text
                     style={[
-                      styles.doneButtonText,
-                      completed &&
-                        styles.doneButtonTextCompleted,
+                      styles.moodEmoji,
+                      active &&
+                        styles.moodTextActive,
                     ]}>
-                    {completed
-                      ? t('practice.done')
-                      : t('practice.markDone')}
+                    {t(
+                      `lunaDailyRitual.moods.${mood}.emoji`,
+                      {
+                        defaultValue:
+                          '✦',
+                      },
+                    )}
+                  </Text>
+
+                  <Text
+                    style={[
+                      styles.moodText,
+                      active &&
+                        styles.moodTextActive,
+                    ]}>
+                    {t(
+                      `lunaDailyRitual.moods.${mood}.label`,
+                      {
+                        defaultValue:
+                          mood,
+                      },
+                    )}
                   </Text>
                 </Pressable>
-              </View>
-            </View>
-          );
-        })}
-
-        {completedCount === STEPS.length && (
-          <View style={styles.completedCard}>
-            <Text style={styles.completedIcon}>✨</Text>
-            <Text style={styles.completedTitle}>
-              {t('practice.completedTitle')}
-            </Text>
-            <Text style={styles.completedMessage}>
-              {t('practice.completedMessage')}
-            </Text>
-          </View>
-        )}
-
-        <View style={styles.summaryCard}>
-          <Text style={styles.summaryTitle}>
-            {t('practice.summaryTitle')}
-          </Text>
-
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>
-              {t('practice.completedRituals')}
-            </Text>
-            <Text style={styles.summaryValue}>
-              {stats.totalCompletedRituals}
-            </Text>
-          </View>
-
-          <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>
-              {t('practice.meditationMinutes')}
-            </Text>
-            <Text style={styles.summaryValue}>
-              {stats.totalMeditationMinutes}
-            </Text>
+              );
+            })}
           </View>
         </View>
 
+        <View style={styles.sectionCard}>
+          <Text style={styles.sectionTitle}>
+            {t(
+              'lunaDailyRitual.stepsTitle',
+              {
+                defaultValue:
+                  'Ritual steps',
+              },
+            )}
+          </Text>
+
+          {STEPS.map(step => {
+            const done =
+              entry.completedSteps.includes(
+                step,
+              );
+
+            return (
+              <Pressable
+                key={step}
+                style={[
+                  styles.stepRow,
+                  done &&
+                    styles.stepRowDone,
+                ]}
+                onPress={() =>
+                  updateStep(step)
+                }>
+                <View
+                  style={[
+                    styles.checkCircle,
+                    done &&
+                      styles.checkCircleDone,
+                  ]}>
+                  <Text style={styles.checkText}>
+                    {done ? '✓' : ''}
+                  </Text>
+                </View>
+
+                <View style={styles.stepCopy}>
+                  <Text style={styles.stepTitle}>
+                    {t(
+                      `lunaDailyRitual.steps.${step}.title`,
+                      {
+                        defaultValue:
+                          step,
+                      },
+                    )}
+                  </Text>
+
+                  <Text style={styles.stepSubtitle}>
+                    {t(
+                      `lunaDailyRitual.steps.${step}.subtitle`,
+                      {
+                        defaultValue:
+                          'Complete this ritual step.',
+                      },
+                    )}
+                  </Text>
+                </View>
+              </Pressable>
+            );
+          })}
+        </View>
+
+        <View style={styles.sectionCard}>
+          <Text style={styles.sectionTitle}>
+            {t(
+              'lunaDailyRitual.cardTitle',
+              {
+                defaultValue:
+                  'Daily card',
+              },
+            )}
+          </Text>
+
+          <View style={styles.cardRow}>
+            <TarotCardImage
+              cardId={
+                entry.tarotDraw.card.id ??
+                entry.tarotDraw.card.name
+              }
+              title={
+                entry.tarotDraw.card.name
+              }
+              roman={
+                entry.tarotDraw.card.number
+              }
+              reversed={
+                entry.tarotDraw.orientation ===
+                'reversed'
+              }
+              width={96}
+              height={152}
+            />
+
+            <View style={styles.cardCopy}>
+              <Text style={styles.cardName}>
+                {entry.tarotDraw.card.name}
+              </Text>
+
+              <Text style={styles.orientation}>
+                {t(
+                  `western.tarot.orientations.${entry.tarotDraw.orientation}`,
+                  {
+                    defaultValue:
+                      entry.tarotDraw.orientation,
+                  },
+                )}
+              </Text>
+
+              <Text style={styles.meaning}>
+                {tarotMeaning}
+              </Text>
+
+              <Text style={styles.advice}>
+                {t(
+                  'western.tarot.advice',
+                  {
+                    defaultValue:
+                      'Advice',
+                  },
+                )}
+                :{' '}
+                {entry.tarotDraw.card.advice}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.promptCard}>
+          <Text style={styles.promptLabel}>
+            {t(
+              'lunaDailyRitual.actionTitle',
+              {
+                defaultValue:
+                  'Today action',
+              },
+            )}
+          </Text>
+
+          <Text style={styles.promptText}>
+            {t(
+              `lunaDailyInsight.actions.${entry.actionId}`,
+              {
+                defaultValue:
+                  'Take one small aligned action before the day gets busy.',
+              },
+            )}
+          </Text>
+
+          <View style={styles.promptDivider} />
+
+          <Text style={styles.promptLabel}>
+            {t(
+              'lunaDailyRitual.journalPromptTitle',
+              {
+                defaultValue:
+                  'Journal prompt',
+              },
+            )}
+          </Text>
+
+          <Text style={styles.promptText}>
+            {t(
+              `lunaDailyInsight.prompts.${entry.journalPromptId}`,
+              {
+                defaultValue:
+                  'What pattern am I ready to notice today?',
+              },
+            )}
+          </Text>
+        </View>
+
+        <TextInput
+          value={entry.note ?? ''}
+          onChangeText={updateNote}
+          placeholder={t(
+            'lunaDailyRitual.notePlaceholder',
+            {
+              defaultValue:
+                'Write a short reflection...',
+            },
+          )}
+          placeholderTextColor="#A99DAF"
+          multiline
+          style={styles.noteInput}
+        />
+
         <Pressable
-          style={({pressed}) => [
-            styles.resetButton,
-            pressed && styles.pressed,
-          ]}
-          onPress={handleReset}>
-          <Text style={styles.resetButtonText}>
-            {t('practice.resetToday')}
+          style={styles.saveButton}
+          disabled={isSaving}
+          onPress={() =>
+            save(entry, true)
+          }>
+          <Text style={styles.saveText}>
+            {isSaving
+              ? t(
+                  'lunaDailyRitual.saving',
+                  {
+                    defaultValue:
+                      'Saving...',
+                  },
+                )
+              : t(
+                  'lunaDailyRitual.save',
+                  {
+                    defaultValue:
+                      'Save Check-in',
+                  },
+                )}
           </Text>
         </Pressable>
+
+        <Text style={styles.notice}>
+          {t(
+            'lunaDailyRitual.notice',
+            {
+              defaultValue:
+                'Daily ritual is for reflection and self-awareness. It should not replace professional advice.',
+            },
+          )}
+        </Text>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const GOLD = '#D5A347';
-const BROWN = '#4A2918';
+const COLORS = {
+  cream: '#F7F2EA',
+  paper: '#FFFDF8',
+  border: '#E9DCC5',
+  night: '#1B1537',
+  purple: '#6E4DA8',
+  gold: '#D9B76E',
+  text: '#282236',
+  muted: '#756D7D',
+};
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: COLORS.cream,
+  },
+  loadingBox: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  loadingText: {
+    color: COLORS.muted,
+    fontWeight: '800',
   },
   content: {
     padding: 18,
-    paddingBottom: 120,
+    paddingBottom: 110,
   },
-  hero: {
+  eyebrow: {
+    color: '#9A7939',
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+  },
+  titleRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F0DFC4',
-    borderRadius: 26,
-    padding: 22,
+    marginTop: 5,
   },
-  heroIcon: {
-    fontSize: 48,
+  titleCopy: {
+    flex: 1,
   },
   title: {
-    color: BROWN,
-    fontSize: 27,
-    fontWeight: '800',
-    textAlign: 'center',
-    marginTop: 8,
+    color: COLORS.text,
+    fontSize: 30,
+    fontWeight: '900',
   },
   subtitle: {
-    color: '#765B46',
-    fontSize: 14,
-    lineHeight: 21,
-    textAlign: 'center',
-    marginTop: 8,
-  },
-  progressBackground: {
-    width: '100%',
-    height: 9,
-    backgroundColor: 'rgba(74,41,24,0.13)',
-    borderRadius: 5,
-    overflow: 'hidden',
-    marginTop: 18,
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: GOLD,
-  },
-  progressText: {
-    color: '#765B46',
+    color: COLORS.muted,
     fontSize: 12,
-    fontWeight: '700',
-    marginTop: 8,
+    marginTop: 5,
   },
-  streakCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFF9EF',
-    borderWidth: 1,
-    borderColor: '#E4D0AF',
-    borderRadius: 22,
-    padding: 16,
+  profileButton: {
+    backgroundColor: COLORS.night,
+    borderRadius: 14,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    marginLeft: 10,
+  },
+  profileText: {
+    color: '#F8EBCB',
+    fontSize: 11,
+    fontWeight: '900',
+  },
+  heroCard: {
+    backgroundColor: COLORS.night,
+    borderRadius: 28,
+    padding: 18,
     marginTop: 16,
   },
-  streakMain: {
+  heroTop: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  heroLabel: {
+    color: COLORS.gold,
+    fontSize: 10,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  heroTitle: {
+    color: '#FFF8EA',
+    fontSize: 54,
+    fontWeight: '900',
+    marginTop: 4,
+  },
+  streakBox: {
     alignItems: 'center',
+    justifyContent: 'center',
+    width: 78,
+    height: 78,
+    backgroundColor: 'rgba(217,183,110,0.14)',
+    borderWidth: 1,
+    borderColor: COLORS.gold,
+    borderRadius: 39,
   },
-  streakIcon: {
-    fontSize: 33,
-    marginRight: 9,
-  },
-  streakValue: {
-    color: BROWN,
+  streakNumber: {
+    color: '#F8EBCB',
     fontSize: 25,
     fontWeight: '900',
   },
   streakLabel: {
-    color: '#8C725B',
+    color: '#BEB3DD',
+    fontSize: 9,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+  },
+  heroText: {
+    color: '#E9E4F5',
+    fontSize: 13,
+    lineHeight: 20,
+    marginTop: 12,
+    textTransform: 'capitalize',
+  },
+  progressTrack: {
+    height: 8,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 99,
+    overflow: 'hidden',
+    marginTop: 14,
+  },
+  progressFill: {
+    height: 8,
+    backgroundColor: COLORS.gold,
+    borderRadius: 99,
+  },
+  progressText: {
+    color: '#DCD2F3',
     fontSize: 11,
-  },
-  streakDivider: {
-    width: 1,
-    height: 45,
-    backgroundColor: '#E4D0AF',
-    marginHorizontal: 14,
-  },
-  streakSecondary: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  streakSecondaryValue: {
-    color: BROWN,
-    fontSize: 20,
     fontWeight: '800',
+    marginTop: 7,
   },
-  streakSecondaryLabel: {
-    color: '#8C725B',
-    fontSize: 10,
-    textAlign: 'center',
+  sectionCard: {
+    backgroundColor: COLORS.paper,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 24,
+    padding: 15,
+    marginTop: 14,
   },
   sectionTitle: {
-    color: BROWN,
-    fontSize: 21,
-    fontWeight: '800',
-    marginTop: 24,
-    marginBottom: 12,
+    color: COLORS.purple,
+    fontSize: 16,
+    fontWeight: '900',
+    marginBottom: 10,
   },
-  stepCard: {
+  moodGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginHorizontal: -4,
+  },
+  moodChip: {
+    width: '33.333%',
+    paddingHorizontal: 4,
+    marginBottom: 8,
+  },
+  moodChipActive: {},
+  moodEmoji: {
+    color: COLORS.purple,
+    fontSize: 22,
+    fontWeight: '900',
+    textAlign: 'center',
+    backgroundColor: '#EEE6F4',
+    borderRadius: 16,
+    paddingTop: 11,
+    minHeight: 54,
+  },
+  moodText: {
+    color: COLORS.muted,
+    fontSize: 10,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginTop: 5,
+    textTransform: 'capitalize',
+  },
+  moodTextActive: {
+    color: COLORS.gold,
+  },
+  stepRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFDF8',
-    borderWidth: 1,
-    borderColor: '#E7D8BE',
-    borderRadius: 18,
-    padding: 13,
-    marginBottom: 11,
+    backgroundColor: '#F7F2EA',
+    borderRadius: 16,
+    padding: 12,
+    marginBottom: 9,
   },
-  stepCardCompleted: {
-    backgroundColor: '#FFF5D8',
-    borderColor: GOLD,
+  stepRowDone: {
+    backgroundColor: '#FFF6DD',
   },
-  stepNumber: {
-    width: 28,
-    height: 28,
+  checkCircle: {
+    width: 32,
+    height: 32,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#E9DCC9',
-    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 16,
+    marginRight: 11,
   },
-  stepNumberCompleted: {
-    backgroundColor: GOLD,
+  checkCircleDone: {
+    backgroundColor: COLORS.gold,
+    borderColor: COLORS.gold,
   },
-  stepNumberText: {
-    color: BROWN,
-    fontSize: 13,
-    fontWeight: '800',
+  checkText: {
+    color: COLORS.night,
+    fontSize: 16,
+    fontWeight: '900',
   },
-  stepIcon: {
-    fontSize: 29,
-    marginHorizontal: 10,
-  },
-  stepInfo: {
+  stepCopy: {
     flex: 1,
   },
   stepTitle: {
-    color: BROWN,
-    fontSize: 15,
-    fontWeight: '800',
+    color: COLORS.text,
+    fontSize: 13,
+    fontWeight: '900',
   },
-  stepDescription: {
-    color: '#846D58',
+  stepSubtitle: {
+    color: COLORS.muted,
     fontSize: 11,
     lineHeight: 16,
     marginTop: 3,
   },
-  stepActions: {
-    alignItems: 'flex-end',
-    marginLeft: 8,
-  },
-  openButton: {
-    paddingHorizontal: 9,
-    paddingVertical: 5,
-  },
-  openButtonText: {
-    color: '#9A651E',
-    fontSize: 11,
-    fontWeight: '700',
-  },
-  doneButton: {
-    backgroundColor: '#EDE1CE',
-    borderRadius: 10,
-    paddingHorizontal: 9,
-    paddingVertical: 6,
-    marginTop: 4,
-  },
-  doneButtonCompleted: {
-    backgroundColor: GOLD,
-  },
-  doneButtonText: {
-    color: BROWN,
-    fontSize: 10,
-    fontWeight: '800',
-  },
-  doneButtonTextCompleted: {
-    color: '#FFF8E8',
-  },
-  completedCard: {
+  cardRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: BROWN,
-    borderRadius: 20,
-    padding: 20,
-    marginTop: 8,
   },
-  completedIcon: {
-    fontSize: 33,
+  cardCopy: {
+    flex: 1,
+    marginLeft: 14,
   },
-  completedTitle: {
-    color: '#FFE4A3',
-    fontSize: 18,
-    fontWeight: '800',
-    textAlign: 'center',
+  cardName: {
+    color: COLORS.text,
+    fontSize: 19,
+    fontWeight: '900',
+  },
+  orientation: {
+    color: COLORS.purple,
+    fontSize: 11,
+    fontWeight: '900',
+    marginTop: 4,
+    textTransform: 'capitalize',
+  },
+  meaning: {
+    color: COLORS.muted,
+    fontSize: 12,
+    lineHeight: 18,
     marginTop: 7,
   },
-  completedMessage: {
-    color: '#EBD5B5',
-    fontSize: 13,
-    lineHeight: 19,
-    textAlign: 'center',
+  advice: {
+    color: '#4D405E',
+    fontSize: 12,
+    lineHeight: 18,
+    fontWeight: '800',
+    marginTop: 7,
+  },
+  promptCard: {
+    backgroundColor: COLORS.paper,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 24,
+    padding: 16,
+    marginTop: 14,
+  },
+  promptLabel: {
+    color: '#9A7939',
+    fontSize: 10,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  promptText: {
+    color: COLORS.text,
+    fontSize: 14,
+    lineHeight: 22,
+    fontWeight: '800',
     marginTop: 6,
   },
-  summaryCard: {
-    backgroundColor: '#FFF9EF',
-    borderRadius: 18,
-    padding: 17,
-    marginTop: 16,
+  promptDivider: {
+    height: 1,
+    backgroundColor: COLORS.border,
+    marginVertical: 13,
   },
-  summaryTitle: {
-    color: BROWN,
-    fontSize: 17,
-    fontWeight: '800',
-    marginBottom: 8,
-  },
-  summaryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 7,
-  },
-  summaryLabel: {
-    color: '#806852',
+  noteInput: {
+    minHeight: 92,
+    backgroundColor: COLORS.paper,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 20,
+    color: COLORS.text,
     fontSize: 13,
+    textAlignVertical: 'top',
+    padding: 14,
+    marginTop: 14,
   },
-  summaryValue: {
-    color: BROWN,
-    fontSize: 14,
-    fontWeight: '800',
-  },
-  resetButton: {
+  saveButton: {
     alignItems: 'center',
-    padding: 15,
-    marginTop: 8,
+    justifyContent: 'center',
+    minHeight: 54,
+    backgroundColor: COLORS.night,
+    borderRadius: 18,
+    marginTop: 14,
   },
-  resetButtonText: {
-    color: '#9A7455',
-    fontSize: 13,
-    fontWeight: '700',
+  saveText: {
+    color: '#F8EBCB',
+    fontSize: 14,
+    fontWeight: '900',
   },
-  pressed: {
-    opacity: 0.65,
-    transform: [{scale: 0.98}],
+  notice: {
+    color: COLORS.muted,
+    fontSize: 11,
+    lineHeight: 18,
+    textAlign: 'center',
+    marginTop: 15,
   },
 });

@@ -16,6 +16,14 @@ import lunaDynamic
   from './lunaBirthProfiles.zh';
     import lunaDailyInsight
   from './lunaDailyInsight.zh';
+  import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.zh';
+  import lunaDailyRitual
+  from './lunaDailyRitual.zh';
+  import lunaAchievements
+  from './lunaAchievements.zh';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.zh';
 const zh = {
   common: {
     cancel: "取消",
@@ -58,5 +66,8 @@ export default {
            ...lunaBirthChartStage4,
 ...lunaBirthProfiles,
   ...lunaDailyInsight,
-
+...lunaAdvancedFeatures,
+  ...lunaDailyRitual,
+    ...lunaAchievements,
+      ...lunaJournalLoveOnboarding,
 } as const;

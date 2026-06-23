@@ -70,7 +70,11 @@ type HomeRoute =
   | 'Glossary'
   | 'BaziStage4'
   | 'ZiweiChart'
-  | 'Settings';
+  | 'Settings'
+  | 'TransitToday'
+  | 'ProfileCompatibility'
+  | 'AdvancedTarotSpread'
+  | 'BirthChartWheel';
 
 type HomeCard = {
   route: HomeRoute;
@@ -512,7 +516,7 @@ export default function HomeScreen({
       accent: '#F3DBA2',
     },
     {
-      route: 'DailyInsight',
+      route: 'DailyBrief',
       icon: '☾',
       title: tr(
         'dailyBrief.title',
@@ -549,6 +553,74 @@ export default function HomeScreen({
         'View common observance days and cultural reference dates.',
       ),
       accent: '#E6D8BA',
+    },
+  ];
+
+  const lunaOracleCards: HomeCard[] = [
+    {
+      route: 'DailyInsight',
+      icon: '☉',
+      title: tr(
+        'lunaDailyInsight.title',
+        'Daily Personalized Insight',
+      ),
+      subtitle: tr(
+        'lunaDailyInsight.homeSubtitle',
+        'Personal daily guidance from your active birth chart, today’s Moon, and transit touchpoints.',
+      ),
+      accent: '#F0D18B',
+    },
+    {
+      route: 'TransitToday',
+      icon: '☿',
+      title: tr(
+        'lunaAdvanced.home.transitToday',
+        'Transit Today',
+      ),
+      subtitle: tr(
+        'lunaAdvanced.home.transitSubtitle',
+        'See how today’s sky touches your active birth chart.',
+      ),
+      accent: '#BFD7FF',
+    },
+    {
+      route: 'ProfileCompatibility',
+      icon: '♡',
+      title: tr(
+        'lunaAdvanced.home.profileCompatibility',
+        'Profile Compatibility',
+      ),
+      subtitle: tr(
+        'lunaAdvanced.home.profileCompatibilitySubtitle',
+        'Compare two saved birth profiles with synastry scores.',
+      ),
+      accent: '#F1C4D8',
+    },
+    {
+      route: 'AdvancedTarotSpread',
+      icon: '✦',
+      title: tr(
+        'lunaAdvanced.home.advancedTarot',
+        'Advanced Tarot',
+      ),
+      subtitle: tr(
+        'lunaAdvanced.home.advancedTarotSubtitle',
+        'Try deeper tarot spreads for love, direction, and reflection.',
+      ),
+      accent: '#D8C6FF',
+    },
+    {
+      route: 'BirthChartWheel',
+      icon: '◎',
+      title: tr(
+        'lunaAdvanced.home.birthChartWheel',
+        'Birth Chart Wheel',
+      ),
+      subtitle: tr(
+        'lunaAdvanced.home.birthChartWheelSubtitle',
+        'View planets, houses, and aspects on a wheel.',
+      ),
+      accent: '#F0D18B',
     },
   ];
 
@@ -725,7 +797,6 @@ export default function HomeScreen({
           />
 
           <Image
-            pointerEvents="none"
             source={COMPASS_IMAGE}
             style={styles.heroCompass}
           />
@@ -930,7 +1001,7 @@ export default function HomeScreen({
               ]}
               onPress={() =>
                 navigateTo(
-                  'DailyBrief',
+                  'DailyInsight',
                 )
               }>
               <Text
@@ -1045,7 +1116,7 @@ export default function HomeScreen({
               ]}
               onPress={() =>
                 navigateTo(
-                  'AdvancedCompatibility',
+                  'ProfileCompatibility',
                 )
               }>
               <Text
@@ -1059,7 +1130,7 @@ export default function HomeScreen({
                   styles.quickChipText
                 }>
                 {tr(
-                  'insightFeatures.home.cards.compatibilityTitle',
+                  'lunaAdvanced.home.profileCompatibility',
                   'Compatibility',
                 )}
               </Text>
@@ -1139,6 +1210,23 @@ export default function HomeScreen({
             'Follow lunar dates, seasonal markers, observance days, and daily guidance.',
           )}
           cards={dailyCards}
+          onPress={navigateTo}
+        />
+
+        <HomeSection
+          eyebrow={tr(
+            'lunaAdvanced.home.eyebrow',
+            'Luna Oracle',
+          )}
+          title={tr(
+            'lunaAdvanced.home.title',
+            'Advanced Astrology & Tarot',
+          )}
+          subtitle={tr(
+            'lunaAdvanced.home.subtitle',
+            'Explore personal insight, transits, synastry, deeper tarot spreads, and your birth chart wheel.',
+          )}
+          cards={lunaOracleCards}
           onPress={navigateTo}
         />
 
@@ -1678,7 +1766,7 @@ const styles = StyleSheet.create({
   },
 
   primaryShade: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor:
       'rgba(10,15,22,0.08)',
   },

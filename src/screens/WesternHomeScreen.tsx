@@ -28,6 +28,8 @@ type HomeRoute =
   | 'MoonCalendar'
   | 'AstroGlossary'
   | 'AstroJournal'
+  | 'AdvancedTarotJournal'
+  | 'LoveCenter'
   | 'Settings';
 
 type Props = {
@@ -290,6 +292,35 @@ export default function WesternHomeScreen({
     },
   ];
 
+  const lunaFeatureCards: CardItem[] = [
+    {
+      route: 'AdvancedTarotJournal',
+      icon: '✎',
+      title: tr(
+        'lunaTarotJournal.homeTitle',
+        'Advanced Tarot Journal',
+      ),
+      subtitle: tr(
+        'lunaTarotJournal.homeSubtitle',
+        'Search, favorite, tag, and review repeated tarot themes.',
+      ),
+      tone: 'purple',
+    },
+    {
+      route: 'LoveCenter',
+      icon: '♡',
+      title: tr(
+        'lunaLoveCenter.homeTitle',
+        'Love Center',
+      ),
+      subtitle: tr(
+        'lunaLoveCenter.homeSubtitle',
+        'Daily love insight, compatibility, relationship tarot, and Venus-Mars guidance.',
+      ),
+      tone: 'rose',
+    },
+  ];
+
   const extraCards: CardItem[] = [
     {
       route: 'MoonCalendar',
@@ -491,6 +522,19 @@ export default function WesternHomeScreen({
             'Astrology & Tarot',
           )}
           cards={mainCards}
+          onPress={navigateTo}
+        />
+
+        <Section
+          eyebrow={tr(
+            'lunaJournalLove.homeEyebrow',
+            'New Features',
+          )}
+          title={tr(
+            'lunaJournalLove.homeTitle',
+            'Journal, Love & Setup',
+          )}
+          cards={lunaFeatureCards}
           onPress={navigateTo}
         />
 

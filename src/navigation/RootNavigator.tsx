@@ -73,6 +73,31 @@ import BirthProfileEditorScreen
   from '../screens/BirthProfileEditorScreen';
   import DailyInsightScreen
   from '../screens/DailyInsightScreen';
+  import TransitTodayScreen
+  from '../screens/TransitTodayScreen';
+
+import ProfileCompatibilityScreen
+  from '../screens/ProfileCompatibilityScreen';
+
+import AdvancedTarotSpreadScreen
+  from '../screens/AdvancedTarotSpreadScreen';
+
+import BirthChartWheelScreen
+  from '../screens/BirthChartWheelScreen';
+  import DailyRitualScreen
+  from '../screens/DailyRitualScreen';
+  import StreakAchievementsScreen
+  from '../screens/StreakAchievementsScreen';
+  import AdvancedTarotJournalScreen
+  from '../screens/AdvancedTarotJournalScreen';
+
+import LoveCenterScreen
+  from '../screens/LoveCenterScreen';
+
+import LunaOnboardingScreen
+  from '../screens/LunaOnboardingScreen';
+  import OnboardingGateScreen
+  from '../screens/OnboardingGateScreen';
 
 export type RootTabParamList = {
   Home: undefined;
@@ -102,6 +127,18 @@ export type RootTabParamList = {
       }
     | undefined;
       DailyInsight: undefined;
+        TransitToday: undefined;
+  ProfileCompatibility: undefined;
+  AdvancedTarotSpread: undefined;
+  BirthChartWheel: undefined;
+  DailyRitual :undefined;
+  StreakAchievements:undefined;
+  AdvancedTarotJournal: {
+  tag?: string;
+} | undefined;
+LoveCenter: undefined;
+LunaOnboarding: undefined;
+  OnboardingGate: undefined;
 };
 
 const Tab =
@@ -371,7 +408,7 @@ export default function RootNavigator() {
       }}>
       <View style={styles.root}>
         <Tab.Navigator
-          initialRouteName="Home"
+          initialRouteName="OnboardingGate"
           tabBar={props => (
             <View style={styles.bottomArea}>
               {showAdsBanner && (
@@ -678,6 +715,119 @@ export default function RootNavigator() {
     }),
         tabBarButton: () => null,
     tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="TransitToday"
+  component={TransitTodayScreen}
+  options={{
+    title: t('lunaAdvanced.transit.title', {
+      defaultValue: 'Transit Today',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="ProfileCompatibility"
+  component={ProfileCompatibilityScreen}
+  options={{
+    title: t('lunaAdvanced.compat.title', {
+      defaultValue: 'Profile Compatibility',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="AdvancedTarotSpread"
+  component={AdvancedTarotSpreadScreen}
+  options={{
+    title: t('lunaAdvanced.tarot.title', {
+      defaultValue: 'Deep Tarot Spreads',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="BirthChartWheel"
+  component={BirthChartWheelScreen}
+  options={{
+    title: t('lunaAdvanced.wheel.title', {
+      defaultValue: 'Chart Wheel',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="DailyRitual"
+  component={DailyRitualScreen}
+  options={{
+    title: t('lunaDailyRitual.homeTitle', {
+      defaultValue: 'Daily Ritual',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="StreakAchievements"
+  component={StreakAchievementsScreen}
+  options={{
+    title: t('lunaAchievements.homeTitle', {
+      defaultValue: 'Streak & Achievements',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="AdvancedTarotJournal"
+  component={AdvancedTarotJournalScreen}
+  options={{
+    title: t('lunaTarotJournal.homeTitle', {
+      defaultValue: 'Advanced Tarot Journal',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="LoveCenter"
+  component={LoveCenterScreen}
+  options={{
+    title: t('lunaLoveCenter.homeTitle', {
+      defaultValue: 'Love Center',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="LunaOnboarding"
+  component={LunaOnboardingScreen}
+  options={{
+    title: t('lunaOnboarding.homeTitle', {
+      defaultValue: 'Beautiful Onboarding',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="OnboardingGate"
+  component={OnboardingGateScreen}
+  options={{
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+    headerShown: false,
   }}
 />
 

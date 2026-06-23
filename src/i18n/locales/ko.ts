@@ -16,6 +16,14 @@ import lunaDynamic
   from './lunaBirthProfiles.ko';
     import lunaDailyInsight
   from './lunaDailyInsight.ko';
+  import lunaAdvancedFeatures
+  from './lunaAdvancedFeatures.ko';
+  import lunaDailyRitual
+  from './lunaDailyRitual.ko';
+  import lunaAchievements
+  from './lunaAchievements.ko';
+  import lunaJournalLoveOnboarding
+  from './lunaJournalLoveOnboarding.ko';
 const ko = {
   common: {
     cancel: "취소",
@@ -58,4 +66,8 @@ export default {
            ...lunaBirthChartStage4,
 ...lunaBirthProfiles,
   ...lunaDailyInsight,
+  ...lunaAdvancedFeatures,
+    ...lunaDailyRitual,
+      ...lunaAchievements,
+        ...lunaJournalLoveOnboarding,
 } as const;
