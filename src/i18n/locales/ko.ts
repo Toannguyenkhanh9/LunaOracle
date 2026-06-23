@@ -24,6 +24,8 @@ import lunaDynamic
   from './lunaAchievements.ko';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.ko';
+  import lunaForecast
+  from './lunaForecast.ko';
 const ko = {
   common: {
     cancel: "취소",
@@ -70,4 +72,5 @@ export default {
     ...lunaDailyRitual,
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
+          ...lunaForecast,
 } as const;

@@ -30,6 +30,7 @@ type HomeRoute =
   | 'AstroJournal'
   | 'AdvancedTarotJournal'
   | 'LoveCenter'
+  | 'YearMonthlyForecast'
   | 'Settings';
 
 type Props = {
@@ -293,6 +294,19 @@ export default function WesternHomeScreen({
   ];
 
   const lunaFeatureCards: CardItem[] = [
+    {
+      route: 'YearMonthlyForecast',
+      icon: '♃',
+      title: tr(
+        'lunaForecast.homeTitle',
+        'Year / Monthly Forecast',
+      ),
+      subtitle: tr(
+        'lunaForecast.homeSubtitle',
+        'See your yearly rhythm, monthly scores, opportunities, challenges, and action prompts.',
+      ),
+      tone: 'moon',
+    },
     {
       route: 'AdvancedTarotJournal',
       icon: '✎',

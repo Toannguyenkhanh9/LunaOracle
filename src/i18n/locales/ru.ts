@@ -20,6 +20,8 @@ import lunaAdvancedFeatures
   from './lunaAchievements.ru';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.ru';
+  import lunaForecast
+  from './lunaForecast.ru';
 const ru = {
   common: {
     cancel: "Отмена",
@@ -64,4 +66,5 @@ export default {
             ...lunaDailyRitual,
               ...lunaAchievements,
                 ...lunaJournalLoveOnboarding,
+                  ...lunaForecast,
 } as const;

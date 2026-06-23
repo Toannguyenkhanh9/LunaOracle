@@ -24,6 +24,8 @@ import lunaDynamic
   from './lunaAchievements.id';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.id';
+  import lunaForecast
+  from './lunaForecast.id';
 const idLocale = {
   common: {
     cancel: "Cancel",
@@ -70,4 +72,5 @@ export default {
     ...lunaDailyRitual,
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
+          ...lunaForecast,
 } as const;

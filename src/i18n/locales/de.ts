@@ -24,6 +24,8 @@ import lunaDynamic
   from './lunaAchievements.de';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.de';
+  import lunaForecast
+  from './lunaForecast.de';
 const de = {
   common: {
     cancel: "Abbrechen",
@@ -70,4 +72,5 @@ export default {
     ...lunaDailyRitual,
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
+          ...lunaForecast,
 } as const;

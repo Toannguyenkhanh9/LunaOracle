@@ -24,6 +24,8 @@ import lunaBirthChart
   from './lunaAchievements.ar';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.ar';
+  import lunaForecast
+  from './lunaForecast.ar';
 const ar = {
   common: {
     cancel: "إلغاء",
@@ -70,4 +72,5 @@ export default {
     ...lunaDailyRitual,
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
+          ...lunaForecast,
 } as const;

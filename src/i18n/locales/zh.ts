@@ -24,6 +24,8 @@ import lunaDynamic
   from './lunaAchievements.zh';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.zh';
+  import lunaForecast
+  from './lunaForecast.zh';
 const zh = {
   common: {
     cancel: "取消",
@@ -70,4 +72,5 @@ export default {
   ...lunaDailyRitual,
     ...lunaAchievements,
       ...lunaJournalLoveOnboarding,
+        ...lunaForecast,
 } as const;

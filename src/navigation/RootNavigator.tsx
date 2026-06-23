@@ -98,6 +98,8 @@ import LunaOnboardingScreen
   from '../screens/LunaOnboardingScreen';
   import OnboardingGateScreen
   from '../screens/OnboardingGateScreen';
+  import YearMonthlyForecastScreen
+  from '../screens/YearMonthlyForecastScreen';
 
 export type RootTabParamList = {
   Home: undefined;
@@ -830,7 +832,17 @@ export default function RootNavigator() {
     headerShown: false,
   }}
 />
-
+<Tab.Screen
+  name="YearMonthlyForecast"
+  component={YearMonthlyForecastScreen}
+  options={{
+    title: t('lunaForecast.homeTitle', {
+      defaultValue: 'Year / Monthly Forecast',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
         </Tab.Navigator>
       </View>
     </NavigationContainer>

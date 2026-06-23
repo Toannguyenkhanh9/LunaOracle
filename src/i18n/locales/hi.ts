@@ -24,6 +24,8 @@ import lunaDynamic
   from './lunaAchievements.hi';
   import lunaJournalLoveOnboarding
   from './lunaJournalLoveOnboarding.hi';
+  import lunaForecast
+  from './lunaForecast.hi';
 const hi = {
   common: {
     cancel: "Cancel",
@@ -70,4 +72,5 @@ export default {
     ...lunaDailyRitual,
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
+          ...lunaForecast,
 } as const;
