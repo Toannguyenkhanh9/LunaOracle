@@ -141,6 +141,7 @@ export type RootTabParamList = {
 LoveCenter: undefined;
 LunaOnboarding: undefined;
   OnboardingGate: undefined;
+  YearMonthlyForecast: undefined;
 };
 
 const Tab =
