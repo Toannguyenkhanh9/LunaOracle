@@ -378,15 +378,25 @@ function TarotCardView({
 
   return (
     <View style={styles.card}>
-      <View style={styles.cardFace}>
-        <Text style={styles.cardNumber}>
-          {draw.card.number}
-        </Text>
-
-        <Text style={styles.cardStar}>
-          ✦
-        </Text>
-      </View>
+      <TarotCardImage
+        cardId={
+          draw.card.id ??
+          draw.card.name
+        }
+        title={
+          translateTarotCardName(
+            t,
+            draw.card,
+          )
+        }
+        roman={draw.card.number}
+        reversed={
+          draw.orientation ===
+          'Reversed'
+        }
+        width={92}
+        height={146}
+      />
 
       <View style={styles.cardCopy}>
         <Text style={styles.position}>
