@@ -454,6 +454,159 @@ function FilterChip({
   );
 }
 
+
+function normalizeStoredTitle(
+  value?: string,
+): string {
+  return String(value ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ');
+}
+
+function getJournalSpreadLabel(
+  t: ReturnType<typeof useTranslation>['t'],
+  entry: AdvancedTarotJournalEntry,
+): string {
+  const rawSpread =
+    String(entry.spread ?? '')
+      .trim();
+
+  const rawTitle =
+    normalizeStoredTitle(
+      entry.title,
+    );
+
+  const cardCount =
+    entry.cards?.length ?? 0;
+
+  if (
+    rawSpread === 'oneCard' ||
+    rawSpread === 'OneCard' ||
+    rawTitle === '1 lá' ||
+    rawTitle === '1 la' ||
+    rawTitle === '1 card' ||
+    cardCount === 1
+  ) {
+    return t(
+      'western.tarot.oneCard',
+      {
+        defaultValue:
+          '1 Card',
+      },
+    );
+  }
+
+  if (
+    rawSpread === 'threeCard' ||
+    rawSpread === 'ThreeCard' ||
+    rawTitle === '3 lá' ||
+    rawTitle === '3 la' ||
+    rawTitle === '3 cards' ||
+    cardCount === 3
+  ) {
+    return t(
+      'western.tarot.threeCards',
+      {
+        defaultValue:
+          '3 Cards',
+      },
+    );
+  }
+
+  if (
+    rawSpread === 'advanced'
+  ) {
+    return t(
+      'lunaTarotJournal.advancedSpread',
+      {
+        defaultValue:
+          'Advanced Spread',
+      },
+    );
+  }
+
+  return rawSpread || t(
+    'lunaTarotJournal.reading',
+    {
+      defaultValue:
+        'Reading',
+    },
+  );
+}
+
+function getJournalTitle(
+  t: ReturnType<typeof useTranslation>['t'],
+  entry: AdvancedTarotJournalEntry,
+): string {
+  const raw =
+    normalizeStoredTitle(
+      entry.title,
+    );
+
+  if (
+    raw === '1 lá' ||
+    raw === '1 la' ||
+    raw === '1 card' ||
+    raw === 'one card'
+  ) {
+    return t(
+      'western.tarot.oneCard',
+      {
+        defaultValue:
+          '1 Card',
+      },
+    );
+  }
+
+  if (
+    raw === '3 lá' ||
+    raw === '3 la' ||
+    raw === '3 cards' ||
+    raw === 'three cards'
+  ) {
+    return t(
+      'western.tarot.threeCards',
+      {
+        defaultValue:
+          '3 Cards',
+      },
+    );
+  }
+
+  if (
+    raw === 'trải bài' ||
+    raw === 'trai bai'
+  ) {
+    return t(
+      'lunaTarotJournal.advancedSpread',
+      {
+        defaultValue:
+          'Advanced Spread',
+      },
+    );
+  }
+
+  return entry.title ||
+    getJournalSpreadLabel(
+      t,
+      entry,
+    );
+}
+
+function getJournalTagLabel(
+  t: ReturnType<typeof useTranslation>['t'],
+  tag: TarotJournalTag,
+): string {
+  return t(
+    `lunaTarotJournal.tags.${tag}`,
+    {
+      defaultValue:
+        tag,
+    },
+  );
+}
+
 function JournalCard({
   entry,
   onToggleFavorite,
@@ -479,11 +632,17 @@ function JournalCard({
       <View style={styles.entryHeader}>
         <View style={styles.entryTitleWrap}>
           <Text style={styles.entryTitle}>
-            {entry.title}
+            {getJournalTitle(
+              t,
+              entry,
+            )}
           </Text>
 
           <Text style={styles.entryMeta}>
-            {date} • {entry.spread}
+            {date} • {getJournalSpreadLabel(
+              t,
+              entry,
+            )}
           </Text>
         </View>
 
@@ -562,7 +721,10 @@ function JournalCard({
               key={tag}
               style={styles.tag}>
               <Text style={styles.tagText}>
-                {tag}
+                {getJournalTagLabel(
+                  t,
+                  tag,
+                )}
               </Text>
             </View>
           ))}
