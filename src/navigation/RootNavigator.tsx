@@ -100,6 +100,20 @@ import LunaOnboardingScreen
   from '../screens/OnboardingGateScreen';
   import YearMonthlyForecastScreen
   from '../screens/YearMonthlyForecastScreen';
+  import type {
+  LunaShareImageParams,
+} from '../types/lunaShare';
+
+import ShareImageScreen
+  from '../screens/ShareImageScreen';
+  import TarotLibraryScreen
+  from '../screens/TarotLibraryScreen';
+
+import SmartNotificationSettingsScreen
+  from '../screens/SmartNotificationSettingsScreen';
+
+import LoveModeAdvancedScreen
+  from '../screens/LoveModeAdvancedScreen';
 
 export type RootTabParamList = {
   Home: undefined;
@@ -142,6 +156,10 @@ LoveCenter: undefined;
 LunaOnboarding: undefined;
   OnboardingGate: undefined;
   YearMonthlyForecast: undefined;
+TarotLibrary: undefined;
+SmartNotificationSettings: undefined;
+LoveModeAdvanced: undefined;
+ShareImage: Record<string, unknown> | undefined;
 };
 
 const Tab =
@@ -839,6 +857,52 @@ export default function RootNavigator() {
   options={{
     title: t('lunaForecast.homeTitle', {
       defaultValue: 'Year / Monthly Forecast',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="ShareImage"
+  component={ShareImageScreen}
+  options={{
+    title: t('lunaShare.title', {
+      defaultValue: 'Create Share Image',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+<Tab.Screen
+  name="TarotLibrary"
+  component={TarotLibraryScreen}
+  options={{
+    title: t('tarotLibrary.title', {
+      defaultValue: 'Tarot Library',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="SmartNotificationSettings"
+  component={SmartNotificationSettingsScreen}
+  options={{
+    title: t('smartNotifications.title', {
+      defaultValue: 'Smart Push Notifications',
+    }),
+    tabBarButton: () => null,
+    tabBarItemStyle: styles.hiddenTab,
+  }}
+/>
+
+<Tab.Screen
+  name="LoveModeAdvanced"
+  component={LoveModeAdvancedScreen}
+  options={{
+    title: t('loveMode.title', {
+      defaultValue: 'Advanced Love Center',
     }),
     tabBarButton: () => null,
     tabBarItemStyle: styles.hiddenTab,

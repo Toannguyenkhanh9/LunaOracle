@@ -26,6 +26,12 @@ import lunaDynamic
   from './lunaJournalLoveOnboarding.id';
   import lunaForecast
   from './lunaForecast.id';
+  import lunaTarotAnimation
+  from './lunaTarotAnimation.id';
+  import lunaShare
+  from './lunaShare.id';
+  import engagementPack
+  from './engagementPack.id';
 const idLocale = {
   common: {
     cancel: "Cancel",
@@ -73,4 +79,7 @@ export default {
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
           ...lunaForecast,
+            ...lunaTarotAnimation,
+              ...lunaShare,
+                ...engagementPack,
 } as const;

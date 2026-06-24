@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useCallback,
   useState,
 } from 'react';
@@ -26,8 +27,11 @@ import {
   useTranslation,
 } from 'react-i18next';
 
-import TarotCardImage
-  from '../components/TarotCardImage';
+import LunaShareButton
+  from '../components/LunaShareButton';
+
+import AnimatedTarotCard
+  from '../components/AnimatedTarotCard';
 
 import {
   getDailyRitualSession,
@@ -38,6 +42,10 @@ import {
   type DailyRitualMood,
   type DailyRitualStep,
 } from '../services/dailyRitual';
+
+import {
+  recordTarotDraws,
+} from '../services/tarotCollection';
 
 import {
   getZodiacSymbol,
@@ -101,6 +109,23 @@ export default function DailyRitualScreen() {
 
   const [isSaving, setSaving] =
     useState(false);
+
+
+  useEffect(
+    () => {
+      if (entry?.tarotDraw) {
+        recordTarotDraws([
+          entry.tarotDraw,
+        ]).catch(error => {
+          console.warn(
+            'Unable to record tarot collection:',
+            error,
+          );
+        });
+      }
+    },
+    [entry?.id, entry?.tarotDraw],
+  );
 
   const load = useCallback(
     async () => {
@@ -561,23 +586,12 @@ export default function DailyRitualScreen() {
           </Text>
 
           <View style={styles.cardRow}>
-            <TarotCardImage
-              cardId={
-                entry.tarotDraw.card.id ??
-                entry.tarotDraw.card.name
-              }
-              title={
-                entry.tarotDraw.card.name
-              }
-              roman={
-                entry.tarotDraw.card.number
-              }
-              reversed={
-                entry.tarotDraw.orientation ===
-                'reversed'
-              }
+            <AnimatedTarotCard
+              draw={entry.tarotDraw}
               width={96}
               height={152}
+              autoReveal
+              resetKey={entry.id}
             />
 
             <View style={styles.cardCopy}>
@@ -697,6 +711,54 @@ export default function DailyRitualScreen() {
                 )}
           </Text>
         </Pressable>
+
+        <LunaShareButton
+          data={{
+            variant: 'dailyInsight',
+            title:
+              t(
+                'lunaDailyRitual.title',
+                {
+                  defaultValue:
+                    'Today’s Check-in',
+                },
+              ),
+            subtitle:
+              t(
+                'lunaDailyRitual.houseFocus',
+                {
+                  number:
+                    entry.moonHouse,
+                  defaultValue:
+                    `Moon focus: House ${entry.moonHouse}`,
+                },
+              ),
+            message:
+              t(
+                `lunaDailyInsight.actions.${entry.actionId}`,
+                {
+                  defaultValue:
+                    'Take one small aligned action before the day gets busy.',
+                },
+              ),
+            score:
+              entry.energyScore,
+            cardId:
+              entry.tarotDraw.card.id ??
+              entry.tarotDraw.card.name,
+            cardName:
+              entry.tarotDraw.card.name,
+            reversed:
+              entry.tarotDraw.orientation ===
+              'reversed',
+            badge: 'RITUAL',
+            tags: [
+              'ritual',
+              'tarot',
+              'luna',
+            ],
+          }}
+        />
 
         <Text style={styles.notice}>
           {t(

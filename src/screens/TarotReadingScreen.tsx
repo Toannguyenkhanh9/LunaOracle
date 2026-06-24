@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -21,10 +22,17 @@ import {
   useTranslation,
 } from 'react-i18next';
 
+import LunaShareButton
+  from '../components/LunaShareButton';
+
 import {
   drawTarotCards,
   type TarotDraw,
 } from '../services/tarot';
+
+import {
+  recordTarotDraws,
+} from '../services/tarotCollection';
 
 import {
   saveTarotJournalEntry,
@@ -33,13 +41,14 @@ import {
 import TarotPremiumGate
   from '../components/TarotPremiumGate';
 
+import AnimatedTarotDraw
+  from '../components/AnimatedTarotDraw';
+
 import {
   translateTarotCardAdvice,
   translateTarotCardMeaning,
   translateTarotCardName,
 } from '../utils/lunaContentLocalization';
-import TarotCardImage
-  from '../components/TarotCardImage';
 
 type Spread =
   | 1
@@ -72,6 +81,14 @@ export default function TarotReadingScreen() {
         ),
       [spread, seed],
     );
+
+
+  useEffect(
+    () => {
+      void recordTarotDraws(cards);
+    },
+    [cards],
+  );
 
   const drawAgain = () => {
     setSeed(`${Date.now()}`);
@@ -156,12 +173,24 @@ export default function TarotReadingScreen() {
 
   const readingContent = (
     <View>
-      {cards.map(draw => (
-        <TarotCardView
-          key={`${draw.position}-${draw.card.id}`}
-          draw={draw}
-        />
-      ))}
+      <AnimatedTarotDraw
+        draws={cards}
+        resetKey={seed}
+        cardWidth={96}
+        cardHeight={152}
+        drawButtonLabel={t(
+          'lunaTarotAnimation.draw',
+          {
+            defaultValue:
+              'Draw Cards',
+          },
+        )}
+        renderDetails={draw => (
+          <TarotCardDetails
+            draw={draw}
+          />
+        )}
+      />
 
       <TextInput
         value={note}
@@ -209,6 +238,67 @@ export default function TarotReadingScreen() {
           </Text>
         </Pressable>
       </View>
+
+      <LunaShareButton
+        data={{
+          variant: 'tarot',
+          title:
+            cards[0]?.card.name ??
+            t(
+              'western.tarot.title',
+              {
+                defaultValue:
+                  'Tarot Reading',
+              },
+            ),
+          subtitle:
+            spread === 1
+              ? t(
+                  'western.tarot.oneCard',
+                  {
+                    defaultValue:
+                      '1 Card',
+                  },
+                )
+              : t(
+                  'western.tarot.threeCards',
+                  {
+                    defaultValue:
+                      '3 Cards',
+                  },
+                ),
+          message:
+            cards[0]
+              ? translateTarotCardMeaning(
+                  t,
+                  cards[0].card,
+                  cards[0].orientation,
+                )
+              : t(
+                  'western.tarot.subtitle',
+                  {
+                    defaultValue:
+                      'A reflective tarot reading from Luna Oracle.',
+                  },
+                ),
+          cardId:
+            cards[0]?.card.id ??
+            cards[0]?.card.name,
+          cardName:
+            cards[0]?.card.name,
+          reversed:
+            cards[0]?.orientation ===
+            'reversed',
+          badge: 'TAROT',
+          tags: [
+            'tarot',
+            'luna',
+            spread === 1
+              ? 'daily'
+              : 'spread',
+          ],
+        }}
+      />
     </View>
   );
 
@@ -352,7 +442,7 @@ export default function TarotReadingScreen() {
   );
 }
 
-function TarotCardView({
+function TarotCardDetails({
   draw,
 }: {
   draw: TarotDraw;
@@ -377,67 +467,45 @@ function TarotCardView({
           : 'dailyGuidance';
 
   return (
-    <View style={styles.card}>
-      <TarotCardImage
-        cardId={
-          draw.card.id ??
-          draw.card.name
-        }
-        title={
-          translateTarotCardName(
-            t,
-            draw.card,
-          )
-        }
-        roman={draw.card.number}
-        reversed={
-          draw.orientation ===
-          'Reversed'
-        }
-        width={92}
-        height={146}
-      />
+    <View style={styles.detailsCard}>
+      <Text style={styles.position}>
+        {t(
+          `western.tarot.positions.${positionKey}`,
+          {
+            defaultValue:
+              draw.position,
+          },
+        )}
+      </Text>
 
-      <View style={styles.cardCopy}>
-        <Text style={styles.position}>
-          {t(
-            `western.tarot.positions.${positionKey}`,
-            {
-              defaultValue:
-                draw.position,
-            },
-          )}
-        </Text>
+      <Text style={styles.cardName}>
+        {translateTarotCardName(t, draw.card)}
+      </Text>
 
-        <Text style={styles.cardName}>
-          {translateTarotCardName(t, draw.card)}
-        </Text>
+      <Text style={styles.orientation}>
+        {t(
+          `western.tarot.orientations.${draw.orientation}`,
+          {
+            defaultValue:
+              draw.orientation,
+          },
+        )}
+      </Text>
 
-        <Text style={styles.orientation}>
-          {t(
-            `western.tarot.orientations.${draw.orientation}`,
-            {
-              defaultValue:
-                draw.orientation,
-            },
-          )}
-        </Text>
+      <Text style={styles.meaning}>
+        {meaning}
+      </Text>
 
-        <Text style={styles.meaning}>
-          {meaning}
-        </Text>
-
-        <Text style={styles.advice}>
-          {t(
-            'western.tarot.advice',
-            {
-              defaultValue:
-                'Advice',
-            },
-          )}
-          : {translateTarotCardAdvice(t, draw.card)}
-        </Text>
-      </View>
+      <Text style={styles.advice}>
+        {t(
+          'western.tarot.advice',
+          {
+            defaultValue:
+              'Advice',
+          },
+        )}
+        : {translateTarotCardAdvice(t, draw.card)}
+      </Text>
     </View>
   );
 }
@@ -458,10 +526,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.cream,
   },
+
   content: {
     padding: 18,
     paddingBottom: 110,
   },
+
   eyebrow: {
     color: '#9A7939',
     fontSize: 10,
@@ -469,6 +539,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
     textTransform: 'uppercase',
   },
+
   title: {
     color: COLORS.text,
     fontSize: 28,
@@ -476,12 +547,14 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     marginTop: 5,
   },
+
   subtitle: {
     color: COLORS.muted,
     fontSize: 12,
     lineHeight: 19,
     marginTop: 8,
   },
+
   questionInput: {
     minHeight: 50,
     backgroundColor: COLORS.paper,
@@ -494,6 +567,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginTop: 16,
   },
+
   switchRow: {
     flexDirection: 'row',
     backgroundColor: '#EEE6F4',
@@ -501,92 +575,75 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: 14,
   },
+
   switchButton: {
     flex: 1,
     alignItems: 'center',
     borderRadius: 12,
     paddingVertical: 11,
   },
+
   switchActive: {
     backgroundColor: COLORS.night,
   },
+
   switchText: {
     color: COLORS.muted,
     fontSize: 11,
     fontWeight: '900',
   },
+
   switchTextActive: {
     color: '#F8EBCB',
   },
-  card: {
-    flexDirection: 'row',
-    backgroundColor: COLORS.paper,
+
+  detailsCard: {
+    width: 142,
+    backgroundColor: '#FFFDF8',
     borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: 24,
-    padding: 14,
-    marginTop: 14,
-  },
-  cardFace: {
-    width: 92,
-    minHeight: 146,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.night,
-    borderWidth: 1,
-    borderColor: COLORS.gold,
+    borderColor: '#E9DCC5',
     borderRadius: 18,
+    padding: 10,
   },
-  cardNumber: {
-    position: 'absolute',
-    top: 10,
-    left: 12,
-    color: COLORS.gold,
-    fontSize: 11,
-    fontWeight: '900',
-  },
-  cardStar: {
-    color: '#F8EBCB',
-    fontSize: 34,
-    fontWeight: '900',
-  },
-  cardCopy: {
-    flex: 1,
-    marginLeft: 14,
-  },
+
   position: {
     color: '#9A7939',
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: '900',
     letterSpacing: 1,
     textTransform: 'uppercase',
   },
+
   cardName: {
     color: COLORS.text,
-    fontSize: 18,
+    fontSize: 13,
     fontWeight: '900',
     marginTop: 5,
   },
+
   orientation: {
     color: COLORS.purple,
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '900',
-    marginTop: 4,
+    marginTop: 3,
     textTransform: 'capitalize',
   },
+
   meaning: {
     color: COLORS.muted,
-    fontSize: 12,
-    lineHeight: 19,
-    marginTop: 8,
+    fontSize: 10.5,
+    lineHeight: 15,
+    marginTop: 6,
   },
+
   advice: {
     color: '#4D405E',
-    fontSize: 12,
-    lineHeight: 19,
+    fontSize: 10.5,
+    lineHeight: 15,
     fontWeight: '800',
-    marginTop: 8,
+    marginTop: 6,
   },
+
   noteInput: {
     minHeight: 86,
     backgroundColor: COLORS.paper,
@@ -599,10 +656,12 @@ const styles = StyleSheet.create({
     padding: 14,
     marginTop: 14,
   },
+
   actionRow: {
     flexDirection: 'row',
     marginTop: 14,
   },
+
   drawButton: {
     flex: 1,
     alignItems: 'center',
@@ -612,11 +671,13 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     marginRight: 8,
   },
+
   drawText: {
     color: COLORS.night,
     fontSize: 13,
     fontWeight: '900',
   },
+
   saveButton: {
     flex: 1,
     alignItems: 'center',
@@ -626,11 +687,13 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     marginLeft: 8,
   },
+
   saveText: {
     color: '#F8EBCB',
     fontSize: 13,
     fontWeight: '900',
   },
+
   notice: {
     color: COLORS.muted,
     fontSize: 11,

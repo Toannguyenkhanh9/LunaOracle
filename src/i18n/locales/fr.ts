@@ -26,6 +26,12 @@ import lunaDynamic
   from './lunaJournalLoveOnboarding.fr';
   import lunaForecast
   from './lunaForecast.fr';
+  import lunaTarotAnimation
+  from './lunaTarotAnimation.fr';
+  import lunaShare
+  from './lunaShare.fr';
+  import engagementPack
+  from './engagementPack.fr';
 const fr = {
   common: {
     cancel: "Annuler",
@@ -73,4 +79,7 @@ export default {
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
           ...lunaForecast,
+            ...lunaTarotAnimation,
+              ...lunaShare,
+                ...engagementPack,
 } as const;

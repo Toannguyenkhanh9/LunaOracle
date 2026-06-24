@@ -24,6 +24,9 @@ import {
   useTranslation,
 } from 'react-i18next';
 
+import LunaShareButton
+  from '../components/LunaShareButton';
+
 import AchievementBadge
   from '../components/AchievementBadge';
 
@@ -313,6 +316,48 @@ export default function StreakAchievementsScreen() {
             ),
           )}
         </View>
+
+        <LunaShareButton
+          data={{
+            variant: 'achievement',
+            title:
+              t(
+                'lunaAchievements.title',
+                {
+                  defaultValue:
+                    'Streak & Achievements',
+                },
+              ),
+            subtitle:
+              t(
+                'lunaAchievements.currentStreak',
+                {
+                  defaultValue:
+                    'Current streak',
+                },
+              ),
+            message:
+              t(
+                'lunaAchievements.shareMessage',
+                {
+                  streak:
+                    stats.currentStreak,
+                  unlocked:
+                    unlockedCount,
+                  defaultValue:
+                    `I’m on a ${stats.currentStreak}-day Luna Oracle ritual streak with ${unlockedCount} badges unlocked.`,
+                },
+              ),
+            score:
+              stats.currentStreak,
+            badge: 'STREAK',
+            tags: [
+              'streak',
+              'achievement',
+              'luna',
+            ],
+          }}
+        />
 
         <Text style={styles.notice}>
           {t(

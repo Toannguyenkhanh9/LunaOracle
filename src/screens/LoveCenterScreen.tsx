@@ -24,6 +24,9 @@ import {
   useTranslation,
 } from 'react-i18next';
 
+import LunaShareButton
+  from '../components/LunaShareButton';
+
 import {
   buildLoveCenter,
   formatLoveSignature,
@@ -392,6 +395,45 @@ export default function LoveCenterScreen() {
             )}
           />
         </View>
+
+        <LunaShareButton
+          data={{
+            variant: 'love',
+            title:
+              t(
+                'lunaLoveCenter.title',
+                {
+                  defaultValue:
+                    'Love Center',
+                },
+              ),
+            subtitle:
+              formatLoveSignature(result) ||
+              t(
+                'lunaLoveCenter.todayFocus',
+                {
+                  defaultValue:
+                    'Today’s love focus',
+                },
+              ),
+            message:
+              t(
+                `lunaLoveCenter.themes.${result.dailyThemeId}`,
+                {
+                  defaultValue:
+                    'Choose honesty, warmth, and self-respect today.',
+                },
+              ),
+            score:
+              result.loveScore,
+            badge: 'LOVE',
+            tags: [
+              'love',
+              'venus',
+              'luna',
+            ],
+          }}
+        />
 
         <Text style={styles.notice}>
           {t(

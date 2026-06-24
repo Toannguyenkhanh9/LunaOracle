@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -21,6 +22,9 @@ import {
   useTranslation,
 } from 'react-i18next';
 
+import LunaShareButton
+  from '../components/LunaShareButton';
+
 import {
   ADVANCED_TAROT_SPREADS,
   drawAdvancedTarotSpread,
@@ -32,13 +36,21 @@ import {
 } from '../services/tarotJournal';
 
 import {
+  type TarotDraw,
+} from '../services/tarot';
+
+import {
+  recordTarotDraws,
+} from '../services/tarotCollection';
+
+import AnimatedTarotDraw
+  from '../components/AnimatedTarotDraw';
+
+import {
   translateTarotCardAdvice,
   translateTarotCardMeaning,
   translateTarotCardName,
 } from '../utils/lunaContentLocalization';
-
-import TarotCardImage
-  from '../components/TarotCardImage';
 
 const SPREAD_IDS:
   AdvancedTarotSpreadId[] = [
@@ -80,6 +92,14 @@ export default function AdvancedTarotSpreadScreen() {
         seed,
       ],
     );
+
+
+  useEffect(
+    () => {
+      void recordTarotDraws(cards);
+    },
+    [cards],
+  );
 
   const drawAgain = () => {
     setSeed(`${Date.now()}`);
@@ -209,9 +229,10 @@ export default function AdvancedTarotSpreadScreen() {
                 spreadId === id &&
                   styles.spreadButtonActive,
               ]}
-              onPress={() =>
-                setSpreadId(id)
-              }>
+              onPress={() => {
+                setSpreadId(id);
+                setSeed(`${Date.now()}`);
+              }}>
               <Text
                 style={[
                   styles.spreadTitle,
@@ -249,79 +270,24 @@ export default function AdvancedTarotSpreadScreen() {
           ))}
         </View>
 
-        {cards.map(draw => (
-          <View
-            key={`${draw.position}-${draw.card.id}`}
-            style={styles.card}>
-            <TarotCardImage
-              cardId={
-                draw.card.id ??
-                draw.card.name
-              }
-              title={
-                translateTarotCardName(
-                  t,
-                  draw.card,
-                )
-              }
-              roman={draw.card.number}
-              reversed={
-                draw.orientation ===
-                'reversed'
-              }
-              width={96}
-              height={152}
+        <AnimatedTarotDraw
+          draws={cards}
+          resetKey={`${spreadId}-${seed}`}
+          cardWidth={94}
+          cardHeight={150}
+          drawButtonLabel={t(
+            'lunaTarotAnimation.drawSpread',
+            {
+              defaultValue:
+                'Reveal Spread',
+            },
+          )}
+          renderDetails={draw => (
+            <AdvancedCardDetails
+              draw={draw}
             />
-
-            <View style={styles.cardCopy}>
-              <Text style={styles.position}>
-                {t(
-                  `lunaAdvanced.tarot.positions.${draw.position}`,
-                  {
-                    defaultValue:
-                      draw.position,
-                  },
-                )}
-              </Text>
-
-              <Text style={styles.cardName}>
-                {translateTarotCardName(
-                  t,
-                  draw.card,
-                )}
-              </Text>
-
-              <Text style={styles.orientation}>
-                {t(
-                  `western.tarot.orientations.${draw.orientation}`,
-                  {
-                    defaultValue:
-                      draw.orientation,
-                  },
-                )}
-              </Text>
-
-              <Text style={styles.meaning}>
-                {translateTarotCardMeaning(
-                  t,
-                  draw.card,
-                  draw.orientation,
-                )}
-              </Text>
-
-              <Text style={styles.advice}>
-                {t('western.tarot.advice', {
-                  defaultValue: 'Advice',
-                })}
-                :{' '}
-                {translateTarotCardAdvice(
-                  t,
-                  draw.card,
-                )}
-              </Text>
-            </View>
-          </View>
-        ))}
+          )}
+        />
 
         <TextInput
           value={note}
@@ -360,6 +326,56 @@ export default function AdvancedTarotSpreadScreen() {
           </Pressable>
         </View>
 
+        <LunaShareButton
+          data={{
+            variant: 'tarot',
+            title:
+              t(
+                `lunaAdvanced.tarot.spreads.${spreadId}.title`,
+                {
+                  defaultValue:
+                    spreadId,
+                },
+              ),
+            subtitle:
+              t(
+                'lunaAdvanced.tarot.title',
+                {
+                  defaultValue:
+                    'Deep Tarot Spreads',
+                },
+              ),
+            message:
+              cards[0]
+                ? translateTarotCardMeaning(
+                    t,
+                    cards[0].card,
+                    cards[0].orientation,
+                  )
+                : t(
+                    'lunaAdvanced.tarot.subtitle',
+                    {
+                      defaultValue:
+                        'A deeper tarot spread from Luna Oracle.',
+                    },
+                  ),
+            cardId:
+              cards[0]?.card.id ??
+              cards[0]?.card.name,
+            cardName:
+              cards[0]?.card.name,
+            reversed:
+              cards[0]?.orientation ===
+              'reversed',
+            badge: 'SPREAD',
+            tags: [
+              'tarot',
+              'spread',
+              'luna',
+            ],
+          }}
+        />
+
         <Text style={styles.notice}>
           {t('western.tarot.notice', {
             defaultValue:
@@ -368,6 +384,65 @@ export default function AdvancedTarotSpreadScreen() {
         </Text>
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+function AdvancedCardDetails({
+  draw,
+}: {
+  draw: TarotDraw;
+}) {
+  const {t} =
+    useTranslation();
+
+  return (
+    <View style={styles.detailsCard}>
+      <Text style={styles.position}>
+        {t(
+          `lunaAdvanced.tarot.positions.${draw.position}`,
+          {
+            defaultValue:
+              draw.position,
+          },
+        )}
+      </Text>
+
+      <Text style={styles.cardName}>
+        {translateTarotCardName(
+          t,
+          draw.card,
+        )}
+      </Text>
+
+      <Text style={styles.orientation}>
+        {t(
+          `western.tarot.orientations.${draw.orientation}`,
+          {
+            defaultValue:
+              draw.orientation,
+          },
+        )}
+      </Text>
+
+      <Text style={styles.meaning}>
+        {translateTarotCardMeaning(
+          t,
+          draw.card,
+          draw.orientation,
+        )}
+      </Text>
+
+      <Text style={styles.advice}>
+        {t('western.tarot.advice', {
+          defaultValue: 'Advice',
+        })}
+        :{' '}
+        {translateTarotCardAdvice(
+          t,
+          draw.card,
+        )}
+      </Text>
+    </View>
   );
 }
 
@@ -451,52 +526,46 @@ const styles = StyleSheet.create({
   spreadSubtitleActive: {
     color: '#DCD2F3',
   },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  detailsCard: {
+    width: 142,
     backgroundColor: COLORS.paper,
     borderWidth: 1,
     borderColor: COLORS.border,
-    borderRadius: 24,
-    padding: 14,
-    marginTop: 14,
-  },
-  cardCopy: {
-    flex: 1,
-    marginLeft: 14,
+    borderRadius: 18,
+    padding: 10,
   },
   position: {
     color: '#9A7939',
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: '900',
     letterSpacing: 1,
     textTransform: 'uppercase',
   },
   cardName: {
     color: COLORS.text,
-    fontSize: 18,
+    fontSize: 13,
     fontWeight: '900',
     marginTop: 5,
   },
   orientation: {
     color: COLORS.purple,
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '900',
-    marginTop: 4,
+    marginTop: 3,
     textTransform: 'capitalize',
   },
   meaning: {
     color: COLORS.muted,
-    fontSize: 12,
-    lineHeight: 19,
-    marginTop: 8,
+    fontSize: 10.5,
+    lineHeight: 15,
+    marginTop: 6,
   },
   advice: {
     color: '#4D405E',
-    fontSize: 12,
-    lineHeight: 19,
+    fontSize: 10.5,
+    lineHeight: 15,
     fontWeight: '800',
-    marginTop: 8,
+    marginTop: 6,
   },
   noteInput: {
     minHeight: 86,

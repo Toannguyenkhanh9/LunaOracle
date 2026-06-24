@@ -26,6 +26,12 @@ import lunaBirthChart
   from './lunaJournalLoveOnboarding.ar';
   import lunaForecast
   from './lunaForecast.ar';
+  import lunaTarotAnimation
+  from './lunaTarotAnimation.ar';
+  import lunaShare
+  from './lunaShare.ar';
+  import engagementPack
+  from './engagementPack.ar';
 const ar = {
   common: {
     cancel: "إلغاء",
@@ -73,4 +79,7 @@ export default {
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
           ...lunaForecast,
+            ...lunaTarotAnimation,
+              ...lunaShare,
+                ...engagementPack,
 } as const;

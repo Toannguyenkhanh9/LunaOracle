@@ -26,6 +26,12 @@ import lunaDynamic
   from './lunaJournalLoveOnboarding.ko';
   import lunaForecast
   from './lunaForecast.ko';
+  import lunaTarotAnimation
+  from './lunaTarotAnimation.ko';
+  import lunaShare
+  from './lunaShare.ko';
+  import engagementPack
+  from './engagementPack.ko';
 const ko = {
   common: {
     cancel: "취소",
@@ -73,4 +79,7 @@ export default {
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
           ...lunaForecast,
+            ...lunaTarotAnimation,
+              ...lunaShare,
+                ...engagementPack,
 } as const;

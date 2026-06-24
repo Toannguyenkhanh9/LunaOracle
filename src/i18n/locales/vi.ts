@@ -26,6 +26,12 @@ import lunaDynamic
   from './lunaJournalLoveOnboarding.vi';
   import lunaForecast
   from './lunaForecast.vi';
+  import lunaTarotAnimation
+  from './lunaTarotAnimation.vi';
+  import lunaShare
+  from './lunaShare.vi';
+  import engagementPack
+  from './engagementPack.vi';
 const vi = {
   common: {
     cancel: "Hủy",
@@ -73,4 +79,7 @@ export default {
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
           ...lunaForecast,
+            ...lunaTarotAnimation,
+              ...lunaShare,
+                ...engagementPack,
 } as const;

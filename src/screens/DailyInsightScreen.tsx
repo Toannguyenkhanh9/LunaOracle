@@ -24,6 +24,9 @@ import {
   useTranslation,
 } from 'react-i18next';
 
+import LunaShareButton
+  from '../components/LunaShareButton';
+
 import {
   buildDailyPersonalizedInsight,
   getDailyTransitPointLabel,
@@ -420,6 +423,46 @@ export default function DailyInsightScreen() {
             )}
           </Text>
         </View>
+
+        <LunaShareButton
+          data={{
+            variant: 'dailyInsight',
+            title:
+              t(
+                'lunaDailyInsight.title',
+                {
+                  defaultValue:
+                    'Daily Personalized Insight',
+                },
+              ),
+            subtitle:
+              t(
+                'lunaDailyInsight.moonHouse',
+                {
+                  house:
+                    insight.moonHouse,
+                  defaultValue:
+                    `Moon focus · House ${insight.moonHouse}`,
+                },
+              ),
+            message:
+              t(
+                `lunaDailyInsight.actions.${insight.actionId}`,
+                {
+                  defaultValue:
+                    'Take one small aligned action before the day gets busy.',
+                },
+              ),
+            score:
+              insight.energyScore,
+            badge: 'TODAY',
+            tags: [
+              'daily',
+              'moon',
+              'oracle',
+            ],
+          }}
+        />
 
         <Text style={styles.notice}>
           {t(

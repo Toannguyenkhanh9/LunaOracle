@@ -26,6 +26,12 @@ import lunaDynamic
   from './lunaJournalLoveOnboarding.hi';
   import lunaForecast
   from './lunaForecast.hi';
+  import lunaTarotAnimation
+  from './lunaTarotAnimation.hi';
+  import lunaShare
+  from './lunaShare.hi';
+  import engagementPack
+  from './engagementPack.hi';
 const hi = {
   common: {
     cancel: "Cancel",
@@ -73,4 +79,7 @@ export default {
       ...lunaAchievements,
         ...lunaJournalLoveOnboarding,
           ...lunaForecast,
+            ...lunaTarotAnimation,
+              ...lunaShare,
+                ...engagementPack,
 } as const;

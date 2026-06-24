@@ -25,6 +25,9 @@ import {
   useTranslation,
 } from 'react-i18next';
 
+import LunaShareButton
+  from '../components/LunaShareButton';
+
 import {
   buildActiveYearForecast,
   type ForecastDomain,
@@ -605,6 +608,44 @@ export default function YearMonthlyForecastScreen() {
               </View>
             ))}
         </View>
+
+        <LunaShareButton
+          data={{
+            variant: 'forecast',
+            title:
+              `${monthFormatter.format(
+                new Date(
+                  year,
+                  selected.month - 1,
+                  1,
+                ),
+              )} Forecast`,
+            subtitle:
+              t(
+                'lunaForecast.title',
+                {
+                  defaultValue:
+                    'Year / Monthly Forecast',
+                },
+              ),
+            message:
+              t(
+                `lunaForecast.monthThemes.${selected.themeId}`,
+                {
+                  defaultValue:
+                    'A month for calm decisions and honest alignment.',
+                },
+              ),
+            score:
+              selected.overallScore,
+            badge: 'FORECAST',
+            tags: [
+              'forecast',
+              selectedDomain,
+              'luna',
+            ],
+          }}
+        />
 
         <Text style={styles.notice}>
           {t(

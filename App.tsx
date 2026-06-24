@@ -35,6 +35,13 @@ import {
 import {
   colors,
 } from './src/theme/colors';
+import {
+  initializeSmartLunaNotifications,
+} from './src/services/smartLunaNotifications';
+
+import {
+  releaseLunaSounds,
+} from './src/services/lunaSounds';
 
 export default function App() {
   const [
@@ -76,6 +83,7 @@ export default function App() {
           await Promise.allSettled([
             refreshLunarReminders(),
             refreshDailyPracticeReminder(),
+            initializeSmartLunaNotifications(),
           ]);
 
         reminderResults.forEach(
@@ -112,6 +120,7 @@ export default function App() {
 
     return () => {
       isMounted = false;
+      releaseLunaSounds();
     };
   }, []);
 

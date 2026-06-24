@@ -19,6 +19,8 @@ import {
 import {
   useTranslation,
 } from 'react-i18next';
+import MysticHomeFeed
+  from '../components/MysticHomeFeed';
 
 type HomeRoute =
   | 'DailyHoroscope'
@@ -31,6 +33,11 @@ type HomeRoute =
   | 'AdvancedTarotJournal'
   | 'LoveCenter'
   | 'YearMonthlyForecast'
+  | 'TarotLibrary'
+  | 'SmartNotificationSettings'
+  | 'LoveModeAdvanced'
+  | 'DailyRitual'
+  | 'StreakAchievements'
   | 'Settings';
 
 type Props = {
@@ -308,6 +315,71 @@ export default function WesternHomeScreen({
       tone: 'moon',
     },
     {
+      route: 'TarotLibrary',
+      icon: '▣',
+      title: tr(
+        'tarotLibrary.homeTitle',
+        'Tarot Library',
+      ),
+      subtitle: tr(
+        'tarotLibrary.homeSubtitle',
+        'Collect, favorite, and track every tarot card you discover.',
+      ),
+      tone: 'purple',
+    },
+    {
+      route: 'SmartNotificationSettings',
+      icon: '☽',
+      title: tr(
+        'smartNotifications.homeTitle',
+        'Smart Reminders',
+      ),
+      subtitle: tr(
+        'smartNotifications.homeSubtitle',
+        'Personalized reminders from your daily card, energy, and love signal.',
+      ),
+      tone: 'gold',
+    },
+    {
+      route: 'LoveModeAdvanced',
+      icon: '♡',
+      title: tr(
+        'loveMode.homeTitle',
+        'Advanced Love Mode',
+      ),
+      subtitle: tr(
+        'loveMode.homeSubtitle',
+        'Venus, Mars, Moon, tarot, prompts, and relationship signals.',
+      ),
+      tone: 'rose',
+    },
+    {
+      route: 'DailyRitual',
+      icon: '✦',
+      title: tr(
+        'lunaDailyRitual.homeTitle',
+        'Daily Ritual',
+      ),
+      subtitle: tr(
+        'lunaDailyRitual.homeSubtitle',
+        'Check in, draw a card, breathe, journal, and keep your streak alive.',
+      ),
+      tone: 'moon',
+    },
+    {
+      route: 'StreakAchievements',
+      icon: '🏆',
+      title: tr(
+        'lunaAchievements.homeTitle',
+        'Streak & Achievements',
+      ),
+      subtitle: tr(
+        'lunaAchievements.homeSubtitle',
+        'Track your practice streak and unlock spiritual achievement badges.',
+      ),
+      tone: 'gold',
+    },
+    {
       route: 'AdvancedTarotJournal',
       icon: '✎',
       title: tr(
@@ -496,10 +568,10 @@ export default function WesternHomeScreen({
         <View style={styles.quickPanel}>
           <View style={styles.quickItem}>
             <Text style={styles.quickValue}>
-              12
+              78
             </Text>
             <Text style={styles.quickLabel}>
-              Zodiac Signs
+              Tarot Cards
             </Text>
           </View>
 
@@ -507,10 +579,10 @@ export default function WesternHomeScreen({
 
           <View style={styles.quickItem}>
             <Text style={styles.quickValue}>
-              3
+              ♡
             </Text>
             <Text style={styles.quickLabel}>
-              Card Spread
+              Love Mode
             </Text>
           </View>
 
@@ -518,12 +590,16 @@ export default function WesternHomeScreen({
 
           <View style={styles.quickItem}>
             <Text style={styles.quickValue}>
-              ☾
+              ☽
             </Text>
             <Text style={styles.quickLabel}>
-              Moon Ritual
+              Smart Reminders
             </Text>
           </View>
+        </View>
+
+        <View style={styles.mysticFeedWrap}>
+          <MysticHomeFeed />
         </View>
 
         <Section
@@ -774,6 +850,10 @@ const styles = StyleSheet.create({
     width: 1,
     height: 38,
     backgroundColor: '#E9DCC5',
+  },
+
+  mysticFeedWrap: {
+    paddingHorizontal: 18,
   },
 
   section: {
