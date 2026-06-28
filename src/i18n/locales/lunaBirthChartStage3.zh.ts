@@ -22,7 +22,7 @@ const lunaBirthChartStage3 = {
     aspects: "主要相位",
     noAspects: "所选容许度内没有主要相位。",
     orb: "容许度 {{value}}°",
-    approximateNotice: "This lightweight chart uses offline approximate calculations. For professional astrology, use a certified ephemeris and exact birthplace.",
+    approximateNotice: "此星盘使用离线近似计算，适合自我反思。专业占星请使用认证星历和准确出生地点。",
     points: {
       sun: "太阳",
       moon: "月亮",

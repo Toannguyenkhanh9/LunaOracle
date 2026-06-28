@@ -1,28 +1,28 @@
 const lunaCompatibility = {
   lunaCompatibility: {
-    summary: "{{firstSymbol}} {{firstSign}} and {{secondSymbol}} {{secondSign}} can build connection through awareness of element, modality, and communication style.",
+    summary: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstSymbol}} {{firstSign}} {{secondSymbol}} {{secondSign}}",
     elementFlow: {
-      same: "{{firstElement}} + {{secondElement}}: the emotional language is familiar and easy to recognize.",
-      friendly: "{{firstElement}} + {{secondElement}}: the elements can support each other when both people stay honest.",
-      different: "{{firstElement}} + {{secondElement}}: the rhythm is different, so patience and translation matter.",
+      same: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstElement}} {{secondElement}}",
+      friendly: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstElement}} {{secondElement}}",
+      different: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstElement}} {{secondElement}}",
     },
     modalityFlow: {
-      same: "{{firstModality}} + {{secondModality}}: both may approach timing in a similar way, but can also mirror each other’s habits.",
-      different: "{{firstModality}} + {{secondModality}}: the connection benefits from balancing initiative, stability, and flexibility.",
+      same: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstModality}} {{secondModality}}",
+      different: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstModality}} {{secondModality}}",
     },
     sections: {
       loveRhythm: {
         title: "प्रेम लय",
-        text: "{{firstLoveStyle}} {{secondLoveStyle}} The relationship works best when affection is shown in ways both people can understand.",
+        text: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है। {{firstLoveStyle}} {{secondLoveStyle}}",
       },
       communication: {
         title: "संचार",
-        sameElement: "The two signs often understand each other quickly, but they still need direct words instead of assumptions.",
-        differentElement: "Different elements can create attraction, but clear language helps prevent misunderstanding.",
+        sameElement: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है।",
+        differentElement: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है।",
       },
       growthLesson: {
         title: "विकास का पाठ",
-        text: "Use the score as a reflection tool, not a fixed verdict. Awareness, timing, honesty, and real actions matter more than sign matching.",
+        text: "यह ज्योतिषीय मार्गदर्शिका चिंतन, मनोरंजन और आत्म-जागरूकता के लिए है।",
       },
     },
   },

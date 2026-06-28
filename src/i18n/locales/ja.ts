@@ -32,9 +32,22 @@ import lunaBirthProfiles
   from './lunaShare.ja';
   import engagementPack
   from './engagementPack.ja';
+  import moonDust
+  from './moonDust.ja';
+  import features2_6
+  from './features2_6.ja';
+  import dailyQuestLevel
+  from './dailyQuestLevel.ja';
+  import retentionFeatures
+  from './retentionFeatures.ja';
+  import palmReading
+  from './palmReading.ja';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.ja';
 const ja = {
   common: {
     cancel: "キャンセル",
+    ok: "OK",
     delete: "削除",
     reset: "リセット",
     loading: "読み込み中...",
@@ -51,19 +64,19 @@ const ja = {
   },
   settings: {
     title: "設定",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "通知",
+    notificationsDescription: "毎日の星占いと月のリマインダーを管理します。",
     language: "言語",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "アプリで使用する言語を選択します。",
     chooseLanguage: "言語を選択",
     privacy: "プライバシー",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "ジャーナルとリーディングは、エクスポートまたは同期しない限り、このデバイスに保存されます。",
     information: "情報",
     version: "Luna Oracle バージョン 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...ja,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...palmReading,
+                        ...retentionFeatures,
+                          ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

@@ -32,9 +32,22 @@ import lunaBirthChart
   from './lunaShare.ar';
   import engagementPack
   from './engagementPack.ar';
+  import moonDust
+  from './moonDust.ar';
+  import features2_6
+  from './features2_6.ar';
+  import dailyQuestLevel
+  from './dailyQuestLevel.ar';
+  import retentionFeatures
+  from './retentionFeatures.ar';
+  import palmReading
+  from './palmReading.ar';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.ar';
 const ar = {
   common: {
     cancel: "إلغاء",
+    ok: "حسنًا",
     delete: "حذف",
     reset: "إعادة تعيين",
     loading: "جارٍ التحميل...",
@@ -51,19 +64,19 @@ const ar = {
   },
   settings: {
     title: "الإعدادات",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "الإشعارات",
+    notificationsDescription: "إدارة إشعارات الأبراج اليومية وتذكيرات القمر.",
     language: "اللغة",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "اختر اللغة المستخدمة في التطبيق.",
     chooseLanguage: "اختر اللغة",
     privacy: "الخصوصية",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "يتم تخزين يومياتك وقراءاتك على هذا الجهاز ما لم تقم بتصديرها أو مزامنتها.",
     information: "معلومات",
     version: "Luna Oracle الإصدار 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...ar,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

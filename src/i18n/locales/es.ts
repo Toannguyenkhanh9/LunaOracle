@@ -32,9 +32,22 @@ import lunaDynamic
   from './lunaShare.es';
   import engagementPack
   from './engagementPack.es';
+  import moonDust
+  from './moonDust.es';
+  import features2_6
+  from './features2_6.es';
+  import dailyQuestLevel
+  from './dailyQuestLevel.es';
+  import retentionFeatures
+  from './retentionFeatures.es';
+  import palmReading
+  from './palmReading.es';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.es';
 const es = {
   common: {
     cancel: "Cancelar",
+    ok: "Aceptar",
     delete: "Eliminar",
     reset: "Restablecer",
     loading: "Cargando...",
@@ -51,19 +64,19 @@ const es = {
   },
   settings: {
     title: "Ajustes",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "Notificaciones",
+    notificationsDescription: "Gestiona los recordatorios diarios del horóscopo y de la luna.",
     language: "Idioma",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "Elige el idioma usado por la app.",
     chooseLanguage: "Elegir idioma",
     privacy: "Privacidad",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "Tu diario y tus lecturas se guardan en este dispositivo, salvo que las exportes o sincronices.",
     information: "Información",
     version: "Luna Oracle versión 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...es,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

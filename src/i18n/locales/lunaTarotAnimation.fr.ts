@@ -4,8 +4,8 @@ const lunaTarotAnimation = {
     draw: "Tirer les cartes",
     drawSpread: "Révéler le tirage",
     revealed: "Cartes révélées",
-    homeTitle: "Tarot Draw Animation",
-    homeSubtitle: "Shuffle, draw, flip, glow, and reveal tarot cards with motion.",
+    homeTitle: "Déverrouillez, révisez et partagez votre expérience Luna Oracle à votre façon.",
+    homeSubtitle: "Déverrouillez, révisez et partagez votre expérience Luna Oracle à votre façon.",
   },
 } as const;
 

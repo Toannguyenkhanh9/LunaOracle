@@ -32,9 +32,22 @@ import lunaDynamic
   from './lunaShare.de';
   import engagementPack
   from './engagementPack.de';
+  import moonDust
+  from './moonDust.de';
+  import features2_6
+  from './features2_6.de';
+  import dailyQuestLevel
+  from './dailyQuestLevel.de';
+  import retentionFeatures
+  from './retentionFeatures.de';
+  import palmReading
+  from './palmReading.de';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.de';
 const de = {
   common: {
     cancel: "Abbrechen",
+    ok: "OK",
     delete: "Löschen",
     reset: "Zurücksetzen",
     loading: "Wird geladen...",
@@ -51,19 +64,19 @@ const de = {
   },
   settings: {
     title: "Einstellungen",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "Benachrichtigungen",
+    notificationsDescription: "Verwalte tägliche Horoskop- und Mond-Erinnerungen.",
     language: "Sprache",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "Wähle die Sprache, die in der App verwendet wird.",
     chooseLanguage: "Sprache wählen",
     privacy: "Datenschutz",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "Dein Journal und deine Deutungen werden auf diesem Gerät gespeichert, sofern du sie nicht exportierst oder synchronisierst.",
     information: "Informationen",
     version: "Luna Oracle Version 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...de,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

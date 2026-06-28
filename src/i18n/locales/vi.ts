@@ -32,9 +32,22 @@ import lunaDynamic
   from './lunaShare.vi';
   import engagementPack
   from './engagementPack.vi';
+  import moonDust
+  from './moonDust.vi';
+  import features2_6
+  from './features2_6.vi';
+  import dailyQuestLevel
+  from './dailyQuestLevel.vi';
+  import retentionFeatures
+  from './retentionFeatures.vi';
+  import palmReading
+  from './palmReading.vi';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.vi';
 const vi = {
   common: {
     cancel: "Hủy",
+    ok: "Đồng ý",
     delete: "Xóa",
     reset: "Đặt lại",
     loading: "Đang tải...",
@@ -51,19 +64,19 @@ const vi = {
   },
   settings: {
     title: "Cài đặt",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "Thông báo",
+    notificationsDescription: "Quản lý thông báo tử vi hằng ngày và nhắc nhở Mặt Trăng.",
     language: "Ngôn ngữ",
     languageDescription: "Chọn ngôn ngữ dùng trong ứng dụng.",
     chooseLanguage: "Chọn ngôn ngữ",
     privacy: "Quyền riêng tư",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "Nhật ký và các bài luận giải của bạn được lưu trên thiết bị này, trừ khi bạn xuất hoặc đồng bộ chúng.",
     information: "Thông tin",
     version: "Luna Oracle phiên bản 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...vi,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

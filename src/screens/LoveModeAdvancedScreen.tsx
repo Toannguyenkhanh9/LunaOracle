@@ -39,6 +39,10 @@ import {
   formatLoveSignature,
 } from '../services/loveCenter';
 
+import {
+  recordOracleActivity,
+} from '../services/oracleEngagement';
+
 type NavigationLike = {
   navigate: (
     routeName: string,
@@ -64,6 +68,13 @@ export default function LoveModeAdvancedScreen() {
       setResult(
         await buildLoveModeAdvanced(),
       );
+
+      recordOracleActivity('loveMode').catch(error => {
+        console.warn(
+          'Unable to record love mode activity:',
+          error,
+        );
+      });
     },
     [],
   );

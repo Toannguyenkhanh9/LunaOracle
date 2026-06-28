@@ -32,38 +32,51 @@ import lunaDynamic
   from './lunaShare.fil';
   import engagementPack
   from './engagementPack.fil';
+  import moonDust
+  from './moonDust.fil';
+  import features2_6
+  from './features2_6.fil';
+  import dailyQuestLevel
+  from './dailyQuestLevel.fil';
+  import retentionFeatures
+  from './retentionFeatures.fil';
+  import palmReading
+  from './palmReading.fil';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.fil';
 const fil = {
   common: {
-    cancel: "Cancel",
-    delete: "Delete",
-    reset: "Reset",
-    loading: "Loading...",
-    more: "More",
-    save: "Save",
-    close: "Close",
+    cancel: "Kanselahin",
+    ok: "OK",
+    delete: "Tanggalin",
+    reset: "I-reset",
+    loading: "Naglo-load...",
+    more: "Higit pa",
+    save: "I-save",
+    close: "Isara",
   },
   tabs: {
     home: "Home",
     horoscope: "Horoscope",
     tarot: "Tarot",
     profile: "Profile",
-    more: "More",
+    more: "Higit pa",
   },
   settings: {
-    title: "Settings",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
-    language: "Language",
-    languageDescription: "Choose the language used by the app.",
-    chooseLanguage: "Choose language",
+    title: "Mga Setting",
+    notifications: "Mga Notification",
+    notificationsDescription: "Pamahalaan ang araw-araw na horoscope at mga paalala sa buwan.",
+    language: "Wika",
+    languageDescription: "Piliin ang wikang gagamitin ng app.",
+    chooseLanguage: "Pumili ng wika",
     privacy: "Privacy",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
-    information: "Information",
-    version: "Luna Oracle version 1.0.0",
+    privacyDescription: "Naka-save sa device na ito ang iyong journal at mga reading maliban kung i-export o i-sync mo ang mga ito.",
+    information: "Impormasyon",
+    version: "Luna Oracle bersyon 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...fil,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

@@ -11,7 +11,7 @@ const lunaAchievements = {
     totalRituals: "Nghi thức",
     notes: "Ghi chú",
     statsTitle: "Nhịp thực hành của bạn",
-    uniqueMoods: "Mood",
+    uniqueMoods: "Tâm trạng",
     uniqueTarot: "Lá tarot",
     moonHouses: "Nhà Mặt Trăng",
     profiles: "Hồ sơ",
@@ -37,7 +37,7 @@ const lunaAchievements = {
         subtitle: "Duy trì thực hành trong 14 ngày.",
       },
       thirtyDayStreak: {
-        title: "Luna Keeper",
+        title: "Người giữ Luna",
         subtitle: "Xây dựng chuỗi nghi thức 30 ngày.",
       },
       sevenRituals: {
@@ -53,11 +53,11 @@ const lunaAchievements = {
         subtitle: "Check-in với 4 mood khác nhau.",
       },
       tarotSeeker: {
-        title: "Tarot Seeker",
+        title: "Người tìm kiếm Tarot",
         subtitle: "Nhận 10 lá tarot hằng ngày khác nhau.",
       },
       moonKeeper: {
-        title: "Moon Keeper",
+        title: "Người giữ Mặt Trăng",
         subtitle: "Trải nghiệm trọng tâm Mặt Trăng qua 6 nhà.",
       },
       profileCollector: {

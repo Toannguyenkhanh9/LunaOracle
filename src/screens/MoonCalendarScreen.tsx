@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -92,6 +93,18 @@ export default function MoonCalendarScreen() {
           1,
         ),
     );
+
+  useEffect(
+    () => {
+      recordOracleActivity('moonCalendar').catch(error => {
+        console.warn(
+          'Unable to record moon calendar activity:',
+          error,
+        );
+      });
+    },
+    [],
+  );
 
   const todayInfo =
     useMemo(
@@ -323,6 +336,10 @@ export default function MoonCalendarScreen() {
     </SafeAreaView>
   );
 }
+
+import {
+  recordOracleActivity,
+} from '../services/oracleEngagement';
 
 const COLORS = {
   cream: '#F7F2EA',

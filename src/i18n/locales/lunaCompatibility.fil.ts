@@ -1,28 +1,28 @@
 const lunaCompatibility = {
   lunaCompatibility: {
-    summary: "{{firstSymbol}} {{firstSign}} and {{secondSymbol}} {{secondSign}} can build connection through awareness of element, modality, and communication style.",
+    summary: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstSymbol}} {{firstSign}} {{secondSymbol}} {{secondSign}}.",
     elementFlow: {
-      same: "{{firstElement}} + {{secondElement}}: the emotional language is familiar and easy to recognize.",
-      friendly: "{{firstElement}} + {{secondElement}}: the elements can support each other when both people stay honest.",
-      different: "{{firstElement}} + {{secondElement}}: the rhythm is different, so patience and translation matter.",
+      same: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstElement}} {{secondElement}}.",
+      friendly: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstElement}} {{secondElement}}.",
+      different: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstElement}} {{secondElement}}.",
     },
     modalityFlow: {
-      same: "{{firstModality}} + {{secondModality}}: both may approach timing in a similar way, but can also mirror each other’s habits.",
-      different: "{{firstModality}} + {{secondModality}}: the connection benefits from balancing initiative, stability, and flexibility.",
+      same: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstModality}} {{secondModality}}.",
+      different: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstModality}} {{secondModality}}.",
     },
     sections: {
       loveRhythm: {
         title: "Ritmo ng pag-ibig",
-        text: "{{firstLoveStyle}} {{secondLoveStyle}} The relationship works best when affection is shown in ways both people can understand.",
+        text: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili {{firstLoveStyle}} {{secondLoveStyle}}.",
       },
       communication: {
         title: "Komunikasyon",
-        sameElement: "The two signs often understand each other quickly, but they still need direct words instead of assumptions.",
-        differentElement: "Different elements can create attraction, but clear language helps prevent misunderstanding.",
+        sameElement: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili.",
+        differentElement: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili.",
       },
       growthLesson: {
         title: "Aral sa paglago",
-        text: "Use the score as a reflection tool, not a fixed verdict. Awareness, timing, honesty, and real actions matter more than sign matching.",
+        text: "Ang gabay sa astrolohiya na ito ay para sa pagninilay, aliw, at pagkilala sa sarili.",
       },
     },
   },

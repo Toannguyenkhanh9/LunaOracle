@@ -10,7 +10,7 @@ const lunaShare = {
     badges: {
       tarot: "TAROT",
       today: "HÔM NAY",
-      love: "LOVE",
+      love: "TÌNH YÊU",
       forecast: "DỰ BÁO",
     },
     homeTitle: "Chia sẻ ảnh",

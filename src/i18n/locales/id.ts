@@ -32,38 +32,51 @@ import lunaDynamic
   from './lunaShare.id';
   import engagementPack
   from './engagementPack.id';
+  import moonDust
+  from './moonDust.id';
+  import features2_6
+  from './features2_6.id';
+  import dailyQuestLevel
+  from './dailyQuestLevel.id';
+  import retentionFeatures
+  from './retentionFeatures.id';
+  import palmReading
+  from './palmReading.id';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.id';
 const idLocale = {
   common: {
-    cancel: "Cancel",
-    delete: "Delete",
-    reset: "Reset",
-    loading: "Loading...",
-    more: "More",
-    save: "Save",
-    close: "Close",
+    cancel: "Batal",
+    ok: "OK",
+    delete: "Hapus",
+    reset: "Atur ulang",
+    loading: "Memuat...",
+    more: "Lainnya",
+    save: "Simpan",
+    close: "Tutup",
   },
   tabs: {
-    home: "Home",
-    horoscope: "Horoscope",
+    home: "Beranda",
+    horoscope: "Horoskop",
     tarot: "Tarot",
-    profile: "Profile",
-    more: "More",
+    profile: "Profil",
+    more: "Lainnya",
   },
   settings: {
-    title: "Settings",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
-    language: "Language",
-    languageDescription: "Choose the language used by the app.",
-    chooseLanguage: "Choose language",
-    privacy: "Privacy",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
-    information: "Information",
-    version: "Luna Oracle version 1.0.0",
+    title: "Pengaturan",
+    notifications: "Notifikasi",
+    notificationsDescription: "Kelola pengingat horoskop harian dan bulan.",
+    language: "Bahasa",
+    languageDescription: "Pilih bahasa yang digunakan aplikasi.",
+    chooseLanguage: "Pilih bahasa",
+    privacy: "Privasi",
+    privacyDescription: "Jurnal dan pembacaan Anda disimpan di perangkat ini kecuali Anda mengekspor atau menyinkronkannya.",
+    information: "Informasi",
+    version: "Luna Oracle versi 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...idLocale,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

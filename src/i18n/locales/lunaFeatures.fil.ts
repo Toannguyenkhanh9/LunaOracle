@@ -2,17 +2,17 @@ const lunaFeatures = {
   luna: {
     tarotJournal: {
       eyebrow: "Tarot",
-      title: "Tarot Journal",
-      subtitle: "Save meaningful card pulls and review your patterns over time.",
-      empty: "No saved readings yet",
-      emptyHint: "Open Tarot Reading, draw cards, and tap Save Reading.",
-      deleteTitle: "Delete reading?",
-      deleteMessage: "This saved tarot reading will be removed from your journal.",
-      delete: "Delete",
+      title: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+      subtitle: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+      empty: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+      emptyHint: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+      deleteTitle: "Piliin ang opsyong pinakaangkop sa iyo.",
+      deleteMessage: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+      delete: "Tanggalin",
     },
     premium: {
-      tarotAdvancedTitle: "Unlock advanced Tarot",
-      tarotAdvancedMessage: "Watch one rewarded ad to unlock this Tarot spread for 24 hours. Premium users can open it anytime.",
+      tarotAdvancedTitle: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+      tarotAdvancedMessage: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
     },
   },
 } as const;

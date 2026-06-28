@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Platform,
@@ -23,13 +20,9 @@ import {
   type BottomTabScreenProps,
 } from '@react-navigation/bottom-tabs';
 
-import {
-  useTranslation,
-} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-import {
-  recordRecentlyViewedRoute,
-} from '../services/recentlyViewed';
+import { recordRecentlyViewedRoute } from '../services/recentlyViewed';
 
 import {
   maybeShowInterstitialForRouteChange,
@@ -37,83 +30,99 @@ import {
   shouldShowBannerAds,
 } from '../services/adController';
 
-import SmallBannerAd
-  from '../components/SmallBannerAd';
+import SmallBannerAd from '../components/SmallBannerAd';
 
-import WesternHomeScreen
-  from '../screens/WesternHomeScreen';
+import WesternHomeScreen from '../screens/WesternHomeScreen';
 
-import DailyHoroscopeScreen
-  from '../screens/DailyHoroscopeScreen';
+import DailyHoroscopeScreen from '../screens/DailyHoroscopeScreen';
 
-import ZodiacProfileScreen
-  from '../screens/ZodiacProfileScreen';
+import ZodiacProfileScreen from '../screens/ZodiacProfileScreen';
 
-import TarotReadingScreen
-  from '../screens/TarotReadingScreen';
+import TarotReadingScreen from '../screens/TarotReadingScreen';
 
-import ZodiacCompatibilityScreen
-  from '../screens/ZodiacCompatibilityScreen';
+import ZodiacCompatibilityScreen from '../screens/ZodiacCompatibilityScreen';
 
-import MoonCalendarScreen
-  from '../screens/MoonCalendarScreen';
+import MoonCalendarScreen from '../screens/MoonCalendarScreen';
 
-import AstroGlossaryScreen
-  from '../screens/AstroGlossaryScreen';
+import AstroGlossaryScreen from '../screens/AstroGlossaryScreen';
 
-import TarotJournalScreen
-  from '../screens/TarotJournalScreen';
+import TarotJournalScreen from '../screens/TarotJournalScreen';
 
-import SettingsScreen
-  from '../screens/SettingsScreen';
-  import BirthProfilesScreen
-  from '../screens/BirthProfilesScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import BirthProfilesScreen from '../screens/BirthProfilesScreen';
 
-import BirthProfileEditorScreen
-  from '../screens/BirthProfileEditorScreen';
-  import DailyInsightScreen
-  from '../screens/DailyInsightScreen';
-  import TransitTodayScreen
-  from '../screens/TransitTodayScreen';
+import BirthProfileEditorScreen from '../screens/BirthProfileEditorScreen';
+import DailyInsightScreen from '../screens/DailyInsightScreen';
+import TransitTodayScreen from '../screens/TransitTodayScreen';
 
-import ProfileCompatibilityScreen
-  from '../screens/ProfileCompatibilityScreen';
+import ProfileCompatibilityScreen from '../screens/ProfileCompatibilityScreen';
 
-import AdvancedTarotSpreadScreen
-  from '../screens/AdvancedTarotSpreadScreen';
+import AdvancedTarotSpreadScreen from '../screens/AdvancedTarotSpreadScreen';
 
-import BirthChartWheelScreen
-  from '../screens/BirthChartWheelScreen';
-  import DailyRitualScreen
-  from '../screens/DailyRitualScreen';
-  import StreakAchievementsScreen
-  from '../screens/StreakAchievementsScreen';
-  import AdvancedTarotJournalScreen
-  from '../screens/AdvancedTarotJournalScreen';
+import BirthChartWheelScreen from '../screens/BirthChartWheelScreen';
+import DailyRitualScreen from '../screens/DailyRitualScreen';
+import StreakAchievementsScreen from '../screens/StreakAchievementsScreen';
+import AdvancedTarotJournalScreen from '../screens/AdvancedTarotJournalScreen';
 
-import LoveCenterScreen
-  from '../screens/LoveCenterScreen';
+import LoveCenterScreen from '../screens/LoveCenterScreen';
 
-import LunaOnboardingScreen
-  from '../screens/LunaOnboardingScreen';
-  import OnboardingGateScreen
-  from '../screens/OnboardingGateScreen';
-  import YearMonthlyForecastScreen
-  from '../screens/YearMonthlyForecastScreen';
-  import type {
-  LunaShareImageParams,
-} from '../types/lunaShare';
+import LunaOnboardingScreen from '../screens/LunaOnboardingScreen';
+import OnboardingGateScreen from '../screens/OnboardingGateScreen';
+import YearMonthlyForecastScreen from '../screens/YearMonthlyForecastScreen';
+//   import type {
+//   LunaShareImageParams,
+// } from '../types/lunaShare';
 
-import ShareImageScreen
-  from '../screens/ShareImageScreen';
-  import TarotLibraryScreen
-  from '../screens/TarotLibraryScreen';
+import ShareImageScreen from '../screens/ShareImageScreen';
+import TarotLibraryScreen from '../screens/TarotLibraryScreen';
 
-import SmartNotificationSettingsScreen
-  from '../screens/SmartNotificationSettingsScreen';
+import SmartNotificationSettingsScreen from '../screens/SmartNotificationSettingsScreen';
 
-import LoveModeAdvancedScreen
-  from '../screens/LoveModeAdvancedScreen';
+import LoveModeAdvancedScreen from '../screens/LoveModeAdvancedScreen';
+import MoonDustRewardsScreen from '../screens/MoonDustRewardsScreen';
+
+import ThemeShopScreen from '../screens/ThemeShopScreen';
+
+import AskOracleScreen from '../screens/AskOracleScreen';
+
+import WeeklyReportScreen from '../screens/WeeklyReportScreen';
+
+import SocialShareTemplatesScreen from '../screens/SocialShareTemplatesScreen';
+
+import PremiumDeepReadingScreen from '../screens/PremiumDeepReadingScreen';
+import DailyQuestScreen from '../screens/DailyQuestScreen';
+
+import OracleProgressScreen from '../screens/OracleProgressScreen';
+import UserProgressHubScreen from '../screens/UserProgressHubScreen';
+
+import OracleJourneyScreen from '../screens/OracleJourneyScreen';
+
+import MoodTrackerScreen from '../screens/MoodTrackerScreen';
+
+import MonthlyEnergyCalendarScreen from '../screens/MonthlyEnergyCalendarScreen';
+
+import OracleGuidesScreen from '../screens/OracleGuidesScreen';
+
+import DreamJournalScreen from '../screens/DreamJournalScreen';
+
+import RelationshipTimelineScreen from '../screens/RelationshipTimelineScreen';
+import PalmReadingIntroScreen from '../screens/PalmReadingIntroScreen';
+
+import PalmReadingCameraScreen from '../screens/PalmReadingCameraScreen';
+
+import PalmReadingResultScreen from '../screens/PalmReadingResultScreen';
+
+import PalmReadingHistoryScreen from '../screens/PalmReadingHistoryScreen';
+import type {
+  PalmDominantHand,
+  PalmHandSide,
+  PalmReadingFocus,
+  PalmReadingResult,
+} from '../services/palmReading';
+import PalmReadingLiteAnalysisScreen from '../screens/PalmReadingLiteAnalysisScreen';
+
+// Add to existing palmReading type imports:
+import type { PalmReadingObservation } from '../services/palmReading';
 
 export type RootTabParamList = {
   Home: undefined;
@@ -135,68 +144,91 @@ export type RootTabParamList = {
   TarotJournal: undefined;
 
   Settings: undefined;
-    ZodiacProfile: undefined;
+  ZodiacProfile: undefined;
   BirthProfiles: undefined;
   BirthProfileEditor:
     | {
         profileId?: string;
       }
     | undefined;
-      DailyInsight: undefined;
-        TransitToday: undefined;
+  DailyInsight: undefined;
+  TransitToday: undefined;
   ProfileCompatibility: undefined;
   AdvancedTarotSpread: undefined;
   BirthChartWheel: undefined;
-  DailyRitual :undefined;
-  StreakAchievements:undefined;
-  AdvancedTarotJournal: {
-  tag?: string;
-} | undefined;
-LoveCenter: undefined;
-LunaOnboarding: undefined;
+  DailyRitual: undefined;
+  StreakAchievements: undefined;
+  AdvancedTarotJournal:
+    | {
+        tag?: string;
+      }
+    | undefined;
+  LoveCenter: undefined;
+  LunaOnboarding: undefined;
   OnboardingGate: undefined;
   YearMonthlyForecast: undefined;
-TarotLibrary: undefined;
-SmartNotificationSettings: undefined;
-LoveModeAdvanced: undefined;
-ShareImage: Record<string, unknown> | undefined;
+  TarotLibrary: undefined;
+  SmartNotificationSettings: undefined;
+  LoveModeAdvanced: undefined;
+  ShareImage: Record<string, unknown> | undefined;
+  MoonDustRewards: undefined;
+  ThemeShop: undefined;
+  AskOracle: undefined;
+  WeeklyReport: undefined;
+  SocialShareTemplates: undefined;
+  PremiumDeepReading: undefined;
+  DailyQuest: undefined;
+  OracleProgress: undefined;
+  UserProgressHub: undefined;
+  OracleJourney: undefined;
+  MoodTracker: undefined;
+  MonthlyEnergyCalendar: undefined;
+  OracleGuides: undefined;
+  DreamJournal: undefined;
+  RelationshipTimeline: undefined;
+  PalmReadingIntro: undefined;
+
+  PalmReadingCamera: {
+    handSide: PalmHandSide;
+    dominantHand: PalmDominantHand;
+    focus: PalmReadingFocus;
+  };
+    PalmReadingLiteAnalysis: {
+    imageUri: string;
+    handSide: PalmHandSide;
+    dominantHand: PalmDominantHand;
+    focus: PalmReadingFocus;
+  };
+
+  PalmReadingResult:
+    | {
+        imageUri?: string;
+        handSide?: PalmHandSide;
+        dominantHand?: PalmDominantHand;
+        focus?: PalmReadingFocus;
+        observations?: PalmReadingObservation;
+        savedReading?: PalmReadingResult;
+      }
+    | undefined;
+
+  PalmReadingHistory: undefined;
 };
 
-const Tab =
-  createBottomTabNavigator<
-    RootTabParamList
-  >();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
-export const navigationRef =
-  createNavigationContainerRef<
-    RootTabParamList
-  >();
+export const navigationRef = createNavigationContainerRef<RootTabParamList>();
 
-let lastTrackedRouteName:
-  string | undefined;
+let lastTrackedRouteName: string | undefined;
 
 type TabIconProps = {
   icon: string;
   focused: boolean;
 };
 
-function TabIcon({
-  icon,
-  focused,
-}: TabIconProps) {
+function TabIcon({ icon, focused }: TabIconProps) {
   return (
-    <View
-      style={[
-        styles.tabIconWrap,
-        focused &&
-          styles.tabIconWrapActive,
-      ]}>
-      <Text
-        style={[
-          styles.tabIcon,
-          focused &&
-            styles.tabIconActive,
-        ]}>
+    <View style={[styles.tabIconWrap, focused && styles.tabIconWrapActive]}>
+      <Text style={[styles.tabIcon, focused && styles.tabIconActive]}>
         {icon}
       </Text>
     </View>
@@ -205,12 +237,8 @@ function TabIcon({
 
 function MoreScreen({
   navigation,
-}: BottomTabScreenProps<
-  RootTabParamList,
-  'More'
->) {
-  const {t} =
-    useTranslation();
+}: BottomTabScreenProps<RootTabParamList, 'More'>) {
+  const { t } = useTranslation();
 
   const items: Array<{
     route:
@@ -226,136 +254,79 @@ function MoreScreen({
     {
       route: 'ZodiacCompatibility',
       icon: '♡',
-      title: t(
-        'western.home.compatibility',
-        {
-          defaultValue:
-            'Compatibility',
-        },
-      ),
-      subtitle: t(
-        'western.home.compatibilitySubtitle',
-        {
-          defaultValue:
-            'Compare signs through element and modality.',
-        },
-      ),
+      title: t('western.home.compatibility', {
+        defaultValue: 'Compatibility',
+      }),
+      subtitle: t('western.home.compatibilitySubtitle', {
+        defaultValue: 'Compare signs through element and modality.',
+      }),
     },
     {
       route: 'MoonCalendar',
       icon: '☾',
-      title: t(
-        'western.home.moonCalendar',
-        {
-          defaultValue:
-            'Moon Calendar',
-        },
-      ),
-      subtitle: t(
-        'western.home.moonCalendarSubtitle',
-        {
-          defaultValue:
-            'New moon, full moon, intention, and release.',
-        },
-      ),
+      title: t('western.home.moonCalendar', {
+        defaultValue: 'Moon Calendar',
+      }),
+      subtitle: t('western.home.moonCalendarSubtitle', {
+        defaultValue: 'New moon, full moon, intention, and release.',
+      }),
     },
     {
       route: 'AstroGlossary',
       icon: 'A',
-      title: t(
-        'western.home.glossary',
-        {
-          defaultValue:
-            'Astro Glossary',
-        },
-      ),
-      subtitle: t(
-        'western.home.glossarySubtitle',
-        {
-          defaultValue:
-            'Learn signs, planets, houses, aspects, and tarot terms.',
-        },
-      ),
+      title: t('western.home.glossary', {
+        defaultValue: 'Astro Glossary',
+      }),
+      subtitle: t('western.home.glossarySubtitle', {
+        defaultValue: 'Learn signs, planets, houses, aspects, and tarot terms.',
+      }),
     },
     {
       route: 'AstroJournal',
       icon: '✎',
-      title: t(
-        'luna.tarotJournal.title',
-        {
-          defaultValue:
-            'Tarot Journal',
-        },
-      ),
-      subtitle: t(
-        'western.home.journalSubtitle',
-        {
-          defaultValue:
-            'Save tarot pulls, moods, dreams, and reflections.',
-        },
-      ),
+      title: t('luna.tarotJournal.title', {
+        defaultValue: 'Tarot Journal',
+      }),
+      subtitle: t('western.home.journalSubtitle', {
+        defaultValue: 'Save tarot pulls, moods, dreams, and reflections.',
+      }),
     },
     {
       route: 'Settings',
       icon: '⚙',
-      title: t(
-        'settings.title',
-        {
-          defaultValue:
-            'Settings',
-        },
-      ),
-      subtitle:
-        'Language, ads, premium, notifications, and privacy.',
+      title: t('settings.title', {
+        defaultValue: 'Settings',
+      }),
+      subtitle: 'Language, ads, premium, notifications, and privacy.',
     },
   ];
 
   return (
     <ScrollView
       style={styles.moreScreen}
-      contentContainerStyle={
-        styles.moreContent
-      }>
-      <Text style={styles.moreEyebrow}>
-        Luna Oracle
-      </Text>
+      contentContainerStyle={styles.moreContent}
+    >
+      <Text style={styles.moreEyebrow}>Luna Oracle</Text>
 
-      <Text style={styles.moreTitle}>
-        More
-      </Text>
+      <Text style={styles.moreTitle}>More</Text>
 
       {items.map(item => (
         <Pressable
           key={item.route}
-          style={({pressed}) => [
-            styles.moreItem,
-            pressed &&
-              styles.pressed,
-          ]}
-          onPress={() =>
-            navigation.navigate(
-              item.route,
-            )
-          }>
+          style={({ pressed }) => [styles.moreItem, pressed && styles.pressed]}
+          onPress={() => navigation.navigate(item.route)}
+        >
           <View style={styles.moreIconWrap}>
-            <Text style={styles.moreIcon}>
-              {item.icon}
-            </Text>
+            <Text style={styles.moreIcon}>{item.icon}</Text>
           </View>
 
           <View style={styles.moreCopy}>
-            <Text style={styles.moreItemTitle}>
-              {item.title}
-            </Text>
+            <Text style={styles.moreItemTitle}>{item.title}</Text>
 
-            <Text style={styles.moreItemSubtitle}>
-              {item.subtitle}
-            </Text>
+            <Text style={styles.moreItemSubtitle}>{item.subtitle}</Text>
           </View>
 
-          <Text style={styles.moreArrow}>
-            ›
-          </Text>
+          <Text style={styles.moreArrow}>›</Text>
         </Pressable>
       ))}
     </ScrollView>
@@ -363,13 +334,9 @@ function MoreScreen({
 }
 
 export default function RootNavigator() {
-  const {t} =
-    useTranslation();
+  const { t } = useTranslation();
 
-  const [
-    showAdsBanner,
-    setShowAdsBanner,
-  ] = useState(false);
+  const [showAdsBanner, setShowAdsBanner] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -397,51 +364,35 @@ export default function RootNavigator() {
     <NavigationContainer
       ref={navigationRef}
       onReady={() => {
-        lastTrackedRouteName =
-          navigationRef.getCurrentRoute()
-            ?.name;
+        lastTrackedRouteName = navigationRef.getCurrentRoute()?.name;
       }}
       onStateChange={state => {
-        const route =
-          state?.routes[
-            state.index
-          ];
+        const route = state?.routes[state.index];
 
         if (!route) {
           return;
         }
 
-        const nextRouteName =
-          route.name;
+        const nextRouteName = route.name;
 
         void maybeShowInterstitialForRouteChange(
           lastTrackedRouteName,
           nextRouteName,
         );
 
-        lastTrackedRouteName =
-          nextRouteName;
+        lastTrackedRouteName = nextRouteName;
 
-        void recordRecentlyViewedRoute(
-          nextRouteName,
-          route.params,
-        );
-      }}>
+        void recordRecentlyViewedRoute(nextRouteName, route.params);
+      }}
+    >
       <View style={styles.root}>
         <Tab.Navigator
           initialRouteName="OnboardingGate"
           tabBar={props => (
             <View style={styles.bottomArea}>
               {showAdsBanner && (
-                <View
-                  style={
-                    styles.bannerContainer
-                  }>
-                  <SmallBannerAd
-                    visible={
-                      showAdsBanner
-                    }
-                  />
+                <View style={styles.bannerContainer}>
+                  <SmallBannerAd visible={showAdsBanner} />
                 </View>
               )}
 
@@ -452,113 +403,65 @@ export default function RootNavigator() {
             headerShown: false,
             tabBarHideOnKeyboard: true,
 
-            tabBarActiveTintColor:
-              COLORS.gold,
+            tabBarActiveTintColor: COLORS.gold,
 
-            tabBarInactiveTintColor:
-              COLORS.tabInactive,
+            tabBarInactiveTintColor: COLORS.tabInactive,
 
-            tabBarStyle:
-              styles.tabBar,
+            tabBarStyle: styles.tabBar,
 
-            tabBarLabelStyle:
-              styles.tabBarLabel,
+            tabBarLabelStyle: styles.tabBarLabel,
 
-            tabBarItemStyle:
-              styles.tabBarItem,
-          }}>
+            tabBarItemStyle: styles.tabBarItem,
+          }}
+        >
           <Tab.Screen
             name="Home"
-            component={
-              WesternHomeScreen
-            }
+            component={WesternHomeScreen}
             options={{
-              title: t(
-                'tabs.home',
-                {
-                  defaultValue:
-                    'Home',
-                },
-              ),
-              tabBarIcon: ({
-                focused,
-              }) => (
-                <TabIcon
-                  icon="☾"
-                  focused={focused}
-                />
+              title: t('tabs.home', {
+                defaultValue: 'Home',
+              }),
+              tabBarIcon: ({ focused }) => (
+                <TabIcon icon="☾" focused={focused} />
               ),
             }}
           />
 
           <Tab.Screen
             name="DailyHoroscope"
-            component={
-              DailyHoroscopeScreen
-            }
+            component={DailyHoroscopeScreen}
             options={{
-              title: t(
-                'western.home.dailyHoroscope',
-                {
-                  defaultValue:
-                    'Horoscope',
-                },
-              ),
-              tabBarIcon: ({
-                focused,
-              }) => (
-                <TabIcon
-                  icon="☉"
-                  focused={focused}
-                />
+              title: t('western.home.dailyHoroscope', {
+                defaultValue: 'Horoscope',
+              }),
+              tabBarIcon: ({ focused }) => (
+                <TabIcon icon="☉" focused={focused} />
               ),
             }}
           />
 
           <Tab.Screen
             name="TarotReading"
-            component={
-              TarotReadingScreen
-            }
+            component={TarotReadingScreen}
             options={{
-              title: t(
-                'western.home.tarot',
-                {
-                  defaultValue:
-                    'Tarot',
-                },
-              ),
-              tabBarIcon: ({
-                focused,
-              }) => (
-                <TabIcon
-                  icon="✦"
-                  focused={focused}
-                />
+              title: t('western.home.tarot', {
+                defaultValue: 'Tarot',
+              }),
+              tabBarIcon: ({ focused }) => (
+                <TabIcon icon="✦" focused={focused} />
               ),
             }}
           />
 
           <Tab.Screen
             name="ZodiacProfile"
-            component={
-              ZodiacProfileScreen
-            }
+            component={ZodiacProfileScreen}
             options={{
-              title: t(
-                'western.home.zodiacProfile',
-                {
-                  defaultValue:
-                    'Profile',
-                },
-              ),
-              tabBarIcon: ({
-                focused,
-              }) => (
-                <TabIcon
-                  icon="♈"
-                  focused={focused}
-                />
+              title: t('western.home.zodiacProfile', {
+                defaultValue: 'Profile',
+              }),
+              tabBarIcon: ({ focused }) => (
+                <TabIcon icon="♈" focused={focused} />
               ),
             }}
           />
@@ -567,347 +470,526 @@ export default function RootNavigator() {
             name="More"
             component={MoreScreen}
             options={{
-              title: t(
-                'common.more',
-                {
-                  defaultValue:
-                    'More',
-                },
-              ),
-              tabBarIcon: ({
-                focused,
-              }) => (
-                <TabIcon
-                  icon="⋯"
-                  focused={focused}
-                />
+              title: t('common.more', {
+                defaultValue: 'More',
+              }),
+              tabBarIcon: ({ focused }) => (
+                <TabIcon icon="⋯" focused={focused} />
               ),
             }}
           />
 
           <Tab.Screen
             name="ZodiacCompatibility"
-            component={
-              ZodiacCompatibilityScreen
-            }
+            component={ZodiacCompatibilityScreen}
             options={{
-              title: t(
-                'western.home.compatibility',
-                {
-                  defaultValue:
-                    'Compatibility',
-                },
-              ),
-              tabBarButton:
-                () => null,
-              tabBarItemStyle:
-                styles.hiddenTab,
+              title: t('western.home.compatibility', {
+                defaultValue: 'Compatibility',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
             }}
           />
 
           <Tab.Screen
             name="MoonCalendar"
-            component={
-              MoonCalendarScreen
-            }
+            component={MoonCalendarScreen}
             options={{
-              title: t(
-                'western.home.moonCalendar',
-                {
-                  defaultValue:
-                    'Moon Calendar',
-                },
-              ),
-              tabBarButton:
-                () => null,
-              tabBarItemStyle:
-                styles.hiddenTab,
+              title: t('western.home.moonCalendar', {
+                defaultValue: 'Moon Calendar',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
             }}
           />
 
           <Tab.Screen
             name="AstroGlossary"
-            component={
-              AstroGlossaryScreen
-            }
+            component={AstroGlossaryScreen}
             options={{
-              title: t(
-                'western.home.glossary',
-                {
-                  defaultValue:
-                    'Astro Glossary',
-                },
-              ),
-              tabBarButton:
-                () => null,
-              tabBarItemStyle:
-                styles.hiddenTab,
+              title: t('western.home.glossary', {
+                defaultValue: 'Astro Glossary',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
             }}
           />
 
           <Tab.Screen
             name="AstroJournal"
-            component={
-              TarotJournalScreen
-            }
+            component={TarotJournalScreen}
             options={{
-              title: t(
-                'luna.tarotJournal.title',
-                {
-                  defaultValue:
-                    'Tarot Journal',
-                },
-              ),
-              tabBarButton:
-                () => null,
-              tabBarItemStyle:
-                styles.hiddenTab,
+              title: t('luna.tarotJournal.title', {
+                defaultValue: 'Tarot Journal',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
             }}
           />
 
           <Tab.Screen
             name="TarotJournal"
-            component={
-              TarotJournalScreen
-            }
+            component={TarotJournalScreen}
             options={{
-              title: t(
-                'luna.tarotJournal.title',
-                {
-                  defaultValue:
-                    'Tarot Journal',
-                },
-              ),
-              tabBarButton:
-                () => null,
-              tabBarItemStyle:
-                styles.hiddenTab,
+              title: t('luna.tarotJournal.title', {
+                defaultValue: 'Tarot Journal',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
             }}
           />
 
           <Tab.Screen
             name="Settings"
-            component={
-              SettingsScreen
-            }
+            component={SettingsScreen}
             options={{
-              title: t(
-                'settings.title',
-                {
-                  defaultValue:
-                    'Settings',
-                },
-              ),
-              tabBarButton:
-                () => null,
-              tabBarItemStyle:
-                styles.hiddenTab,
+              title: t('settings.title', {
+                defaultValue: 'Settings',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
             }}
           />
           <Tab.Screen
-  name="BirthProfiles"
-  component={BirthProfilesScreen}
-  options={{
-    title: t('lunaBirthProfiles.title', {
-      defaultValue: 'Birth Profiles',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+            name="BirthProfiles"
+            component={BirthProfilesScreen}
+            options={{
+              title: t('lunaBirthProfiles.title', {
+                defaultValue: 'Birth Profiles',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="BirthProfileEditor"
-  component={BirthProfileEditorScreen}
-  options={{
-    title: t('lunaBirthProfiles.editorEyebrow', {
-      defaultValue: 'Birth Profile',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="DailyInsight"
-  component={DailyInsightScreen}
-  options={{
-    title: t('lunaDailyInsight.eyebrow', {
-      defaultValue: 'Today',
-    }),
-        tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="TransitToday"
-  component={TransitTodayScreen}
-  options={{
-    title: t('lunaAdvanced.transit.title', {
-      defaultValue: 'Transit Today',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="BirthProfileEditor"
+            component={BirthProfileEditorScreen}
+            options={{
+              title: t('lunaBirthProfiles.editorEyebrow', {
+                defaultValue: 'Birth Profile',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="DailyInsight"
+            component={DailyInsightScreen}
+            options={{
+              title: t('lunaDailyInsight.eyebrow', {
+                defaultValue: 'Today',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="TransitToday"
+            component={TransitTodayScreen}
+            options={{
+              title: t('lunaAdvanced.transit.title', {
+                defaultValue: 'Transit Today',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="ProfileCompatibility"
-  component={ProfileCompatibilityScreen}
-  options={{
-    title: t('lunaAdvanced.compat.title', {
-      defaultValue: 'Profile Compatibility',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="ProfileCompatibility"
+            component={ProfileCompatibilityScreen}
+            options={{
+              title: t('lunaAdvanced.compat.title', {
+                defaultValue: 'Profile Compatibility',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="AdvancedTarotSpread"
-  component={AdvancedTarotSpreadScreen}
-  options={{
-    title: t('lunaAdvanced.tarot.title', {
-      defaultValue: 'Deep Tarot Spreads',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="AdvancedTarotSpread"
+            component={AdvancedTarotSpreadScreen}
+            options={{
+              title: t('lunaAdvanced.tarot.title', {
+                defaultValue: 'Deep Tarot Spreads',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="BirthChartWheel"
-  component={BirthChartWheelScreen}
-  options={{
-    title: t('lunaAdvanced.wheel.title', {
-      defaultValue: 'Chart Wheel',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="DailyRitual"
-  component={DailyRitualScreen}
-  options={{
-    title: t('lunaDailyRitual.homeTitle', {
-      defaultValue: 'Daily Ritual',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="StreakAchievements"
-  component={StreakAchievementsScreen}
-  options={{
-    title: t('lunaAchievements.homeTitle', {
-      defaultValue: 'Streak & Achievements',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="AdvancedTarotJournal"
-  component={AdvancedTarotJournalScreen}
-  options={{
-    title: t('lunaTarotJournal.homeTitle', {
-      defaultValue: 'Advanced Tarot Journal',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="BirthChartWheel"
+            component={BirthChartWheelScreen}
+            options={{
+              title: t('lunaAdvanced.wheel.title', {
+                defaultValue: 'Chart Wheel',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="DailyRitual"
+            component={DailyRitualScreen}
+            options={{
+              title: t('lunaDailyRitual.homeTitle', {
+                defaultValue: 'Daily Ritual',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="StreakAchievements"
+            component={StreakAchievementsScreen}
+            options={{
+              title: t('lunaAchievements.homeTitle', {
+                defaultValue: 'Streak & Achievements',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="AdvancedTarotJournal"
+            component={AdvancedTarotJournalScreen}
+            options={{
+              title: t('lunaTarotJournal.homeTitle', {
+                defaultValue: 'Advanced Tarot Journal',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="LoveCenter"
-  component={LoveCenterScreen}
-  options={{
-    title: t('lunaLoveCenter.homeTitle', {
-      defaultValue: 'Love Center',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="LoveCenter"
+            component={LoveCenterScreen}
+            options={{
+              title: t('lunaLoveCenter.homeTitle', {
+                defaultValue: 'Love Center',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="LunaOnboarding"
-  component={LunaOnboardingScreen}
-  options={{
-    title: t('lunaOnboarding.homeTitle', {
-      defaultValue: 'Beautiful Onboarding',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="OnboardingGate"
-  component={OnboardingGateScreen}
-  options={{
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-    headerShown: false,
-  }}
-/>
-<Tab.Screen
-  name="YearMonthlyForecast"
-  component={YearMonthlyForecastScreen}
-  options={{
-    title: t('lunaForecast.homeTitle', {
-      defaultValue: 'Year / Monthly Forecast',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="ShareImage"
-  component={ShareImageScreen}
-  options={{
-    title: t('lunaShare.title', {
-      defaultValue: 'Create Share Image',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
-<Tab.Screen
-  name="TarotLibrary"
-  component={TarotLibraryScreen}
-  options={{
-    title: t('tarotLibrary.title', {
-      defaultValue: 'Tarot Library',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="LunaOnboarding"
+            component={LunaOnboardingScreen}
+            options={{
+              title: t('lunaOnboarding.homeTitle', {
+                defaultValue: 'Beautiful Onboarding',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="OnboardingGate"
+            component={OnboardingGateScreen}
+            options={{
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+              headerShown: false,
+            }}
+          />
+          <Tab.Screen
+            name="YearMonthlyForecast"
+            component={YearMonthlyForecastScreen}
+            options={{
+              title: t('lunaForecast.homeTitle', {
+                defaultValue: 'Year / Monthly Forecast',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="ShareImage"
+            component={ShareImageScreen}
+            options={{
+              title: t('lunaShare.title', {
+                defaultValue: 'Create Share Image',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="TarotLibrary"
+            component={TarotLibraryScreen}
+            options={{
+              title: t('tarotLibrary.title', {
+                defaultValue: 'Tarot Library',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="SmartNotificationSettings"
-  component={SmartNotificationSettingsScreen}
-  options={{
-    title: t('smartNotifications.title', {
-      defaultValue: 'Smart Push Notifications',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="SmartNotificationSettings"
+            component={SmartNotificationSettingsScreen}
+            options={{
+              title: t('smartNotifications.title', {
+                defaultValue: 'Smart Push Notifications',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
 
-<Tab.Screen
-  name="LoveModeAdvanced"
-  component={LoveModeAdvancedScreen}
-  options={{
-    title: t('loveMode.title', {
-      defaultValue: 'Advanced Love Center',
-    }),
-    tabBarButton: () => null,
-    tabBarItemStyle: styles.hiddenTab,
-  }}
-/>
+          <Tab.Screen
+            name="LoveModeAdvanced"
+            component={LoveModeAdvancedScreen}
+            options={{
+              title: t('loveMode.title', {
+                defaultValue: 'Advanced Love Center',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="MoonDustRewards"
+            component={MoonDustRewardsScreen}
+            options={{
+              title: t('moonDust.title', {
+                defaultValue: 'Moon Dust Rewards',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="ThemeShop"
+            component={ThemeShopScreen}
+            options={{
+              title: t('oracleShop.title', {
+                defaultValue: 'Theme & Card Back Shop',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="AskOracle"
+            component={AskOracleScreen}
+            options={{
+              title: t('askOracle.title', {
+                defaultValue: 'Ask the Oracle',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="WeeklyReport"
+            component={WeeklyReportScreen}
+            options={{
+              title: t('weeklyReport.title', {
+                defaultValue: 'Weekly Report',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="SocialShareTemplates"
+            component={SocialShareTemplatesScreen}
+            options={{
+              title: t('shareTemplates.title', {
+                defaultValue: 'Social Share Templates',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="PremiumDeepReading"
+            component={PremiumDeepReadingScreen}
+            options={{
+              title: t('premiumDeepReading.title', {
+                defaultValue: 'Premium Deep Reading',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="DailyQuest"
+            component={DailyQuestScreen}
+            options={{
+              title: t('dailyQuest.title', {
+                defaultValue: 'Personalized Daily Quest',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="OracleProgress"
+            component={OracleProgressScreen}
+            options={{
+              title: t('oracleLevel.title', {
+                defaultValue: 'Oracle Level',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="UserProgressHub"
+            component={UserProgressHubScreen}
+            options={{
+              title: t('progressHub.title', {
+                defaultValue: 'User Progress Hub',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="OracleJourney"
+            component={OracleJourneyScreen}
+            options={{
+              title: t('journey.title', {
+                defaultValue: '7-Day / 30-Day Journey',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="MoodTracker"
+            component={MoodTrackerScreen}
+            options={{
+              title: t('moodTracker.title', {
+                defaultValue: 'Mood Tracker',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="MonthlyEnergyCalendar"
+            component={MonthlyEnergyCalendarScreen}
+            options={{
+              title: t('monthlyEnergy.title', {
+                defaultValue: 'Monthly Energy Calendar',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="OracleGuides"
+            component={OracleGuidesScreen}
+            options={{
+              title: t('oracleGuides.title', {
+                defaultValue: 'Unlockable Oracle Guides',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="DreamJournal"
+            component={DreamJournalScreen}
+            options={{
+              title: t('dreamJournal.title', {
+                defaultValue: 'Dream Journal',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="RelationshipTimeline"
+            component={RelationshipTimelineScreen}
+            options={{
+              title: t('relationshipTimeline.title', {
+                defaultValue: 'Relationship Timeline',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="PalmReadingIntro"
+            component={PalmReadingIntroScreen as React.ComponentType<any>}
+            options={{
+              title: t('palmReading.title', {
+                defaultValue: 'Palm Reading',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="PalmReadingCamera"
+            component={PalmReadingCameraScreen as React.ComponentType<any>}
+            options={{
+              title: t('palmReading.cameraTitle', {
+                defaultValue: 'Capture your palm',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="PalmReadingResult"
+            component={PalmReadingResultScreen as React.ComponentType<any>}
+            options={{
+              title: t('palmReading.resultTitle', {
+                defaultValue: 'Your Palm Reading',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+
+          <Tab.Screen
+            name="PalmReadingHistory"
+            component={PalmReadingHistoryScreen as React.ComponentType<any>}
+            options={{
+              title: t('palmReading.historyTitle', {
+                defaultValue: 'Palm Reading History',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
+          <Tab.Screen
+            name="PalmReadingLiteAnalysis"
+            component={
+              PalmReadingLiteAnalysisScreen as React.ComponentType<any>
+            }
+            options={{
+              title: t('palmReading.v2.title', {
+                defaultValue: 'Palm Details',
+              }),
+              tabBarButton: () => null,
+              tabBarItemStyle: styles.hiddenTab,
+            }}
+          />
         </Tab.Navigator>
       </View>
     </NavigationContainer>
@@ -931,13 +1013,11 @@ const COLORS = {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor:
-      COLORS.cream,
+    backgroundColor: COLORS.cream,
   },
 
   bottomArea: {
-    backgroundColor:
-      COLORS.paper,
+    backgroundColor: COLORS.paper,
   },
 
   bannerContainer: {
@@ -945,44 +1025,29 @@ const styles = StyleSheet.create({
     minHeight: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:
-      COLORS.paper,
-    borderTopWidth:
-      StyleSheet.hairlineWidth,
-    borderTopColor:
-      COLORS.border,
+    backgroundColor: COLORS.paper,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: COLORS.border,
   },
 
   tabBar: {
-    height:
-      Platform.OS === 'ios'
-        ? 88
-        : 70,
+    height: Platform.OS === 'ios' ? 88 : 70,
 
     paddingTop: 6,
 
-    paddingBottom:
-      Platform.OS === 'ios'
-        ? 22
-        : 8,
+    paddingBottom: Platform.OS === 'ios' ? 22 : 8,
 
-    backgroundColor:
-      COLORS.paper,
+    backgroundColor: COLORS.paper,
 
-    borderTopWidth:
-      StyleSheet.hairlineWidth,
+    borderTopWidth: StyleSheet.hairlineWidth,
 
-    borderTopColor:
-      COLORS.border,
+    borderTopColor: COLORS.border,
 
     elevation: 10,
 
     shadowColor: '#000000',
 
-    shadowOpacity:
-      Platform.OS === 'ios'
-        ? 0.08
-        : 0,
+    shadowOpacity: Platform.OS === 'ios' ? 0.08 : 0,
 
     shadowRadius: 10,
 
@@ -1010,8 +1075,7 @@ const styles = StyleSheet.create({
   },
 
   tabIconWrapActive: {
-    backgroundColor:
-      'rgba(217,183,110,0.16)',
+    backgroundColor: 'rgba(217,183,110,0.16)',
   },
 
   tabIcon: {
@@ -1033,8 +1097,7 @@ const styles = StyleSheet.create({
 
   moreScreen: {
     flex: 1,
-    backgroundColor:
-      COLORS.cream,
+    backgroundColor: COLORS.cream,
   },
 
   moreContent: {
@@ -1076,8 +1139,7 @@ const styles = StyleSheet.create({
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:
-      'rgba(110,77,168,0.12)',
+    backgroundColor: 'rgba(110,77,168,0.12)',
     borderRadius: 16,
   },
 
@@ -1116,8 +1178,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:
-      COLORS.cream,
+    backgroundColor: COLORS.cream,
     padding: 18,
   },
 

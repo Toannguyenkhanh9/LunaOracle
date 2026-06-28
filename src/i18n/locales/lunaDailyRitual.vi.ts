@@ -21,7 +21,7 @@ const lunaDailyRitual = {
     saveErrorTitle: "Không thể lưu",
     saveErrorMessage: "Vui lòng thử lại.",
     notice: "Nghi thức ngày dùng cho chiêm nghiệm và tự nhận thức. Không thay thế lời khuyên chuyên môn.",
-    homeTitle: "Daily Ritual",
+    homeTitle: "Nghi thức hằng ngày",
     homeSubtitle: "Mood, lá bài hôm nay, hành động gợi ý và nhật ký chiêm nghiệm.",
     moods: {
       calm: {

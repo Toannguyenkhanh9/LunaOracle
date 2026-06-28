@@ -32,9 +32,22 @@ import lunaDynamic
   from './lunaShare.en';
   import engagementPack
   from './engagementPack.en';
+  import moonDust
+  from './moonDust.en';
+  import features2_6
+  from './features2_6.en';
+  import dailyQuestLevel
+  from './dailyQuestLevel.en';
+  import retentionFeatures
+  from './retentionFeatures.en';
+  import palmReading
+  from './palmReading.en';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.en';
 const en = {
   
   common: {
+    ok: "OK",
     cancel: "Cancel",
     delete: "Delete",
     reset: "Reset",
@@ -64,7 +77,7 @@ const en = {
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...en,
   ...westernFeatures,
   ...lunaFeatures,
@@ -83,4 +96,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

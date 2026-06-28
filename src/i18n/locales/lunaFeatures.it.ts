@@ -1,18 +1,18 @@
 const lunaFeatures = {
   luna: {
     tarotJournal: {
-      eyebrow: "Tarot",
+      eyebrow: "Tarocchi",
       title: "Diario dei Tarocchi",
-      subtitle: "Save meaningful card pulls and review your patterns over time.",
+      subtitle: "Sblocca, rivedi e condividi la tua esperienza Luna Oracle a modo tuo.",
       empty: "Nessuna lettura salvata",
       emptyHint: "Apri Lettura dei Tarocchi, pesca le carte e salva.",
       deleteTitle: "Eliminare lettura?",
-      deleteMessage: "This saved tarot reading will be removed from your journal.",
+      deleteMessage: "Sblocca, rivedi e condividi la tua esperienza Luna Oracle a modo tuo.",
       delete: "Elimina",
     },
     premium: {
       tarotAdvancedTitle: "Sblocca i Tarocchi avanzati",
-      tarotAdvancedMessage: "Watch one rewarded ad to unlock this Tarot spread for 24 hours. Premium users can open it anytime.",
+      tarotAdvancedMessage: "Sblocca, rivedi e condividi la tua esperienza Luna Oracle a modo tuo.",
     },
   },
 } as const;

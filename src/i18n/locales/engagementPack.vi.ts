@@ -7,7 +7,7 @@ const engagementPack = {
     collection: "Bộ bài",
     dailyRitual: "Ritual ngày",
     tarot: "Rút bài",
-    loveMode: "Love Mode",
+    loveMode: "Chế độ tình yêu",
     shareTitle: "Luna Oracle hôm nay",
     shareSubtitle: "Cho {{name}}",
     greetings: {
@@ -60,7 +60,7 @@ const engagementPack = {
     notice: "Một số phiên bản Android có thể cần quyền exact alarm.",
   },
   loveMode: {
-    eyebrow: "Love Mode",
+    eyebrow: "Chế độ tình yêu",
     title: "Love Center nâng cao",
     subtitle: "Đọc sâu hơn về tình yêu với Venus, Mars, Moon, tarot và gợi ý trò chuyện.",
     homeTitle: "Love Mode nâng cao",

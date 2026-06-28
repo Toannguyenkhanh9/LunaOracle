@@ -21,6 +21,10 @@ import type {
   LunaShareImageParams,
 } from '../types/lunaShare';
 
+import {
+  recordOracleActivity,
+} from '../services/oracleEngagement';
+
 type NavigationLike = {
   navigate: (
     routeName: string,
@@ -55,6 +59,13 @@ export default function LunaShareButton({
         typeof data === 'function'
           ? data()
           : data;
+
+      recordOracleActivity('shareImage').catch(error => {
+        console.warn(
+          'Unable to record share image activity:',
+          error,
+        );
+      });
 
       navigation.navigate(
         'ShareImage',

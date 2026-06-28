@@ -47,7 +47,7 @@ const lunaBirthProfiles = {
     house: "Nhà {{number}}",
     aspects: "Góc chiếu chính",
     noAspects: "Không có góc chiếu chính trong orb đã chọn.",
-    orb: "orb {{value}}°",
+    orb: "góc {{value}}°",
     approximateNotice: "Bản đồ sao này dùng công thức ước tính offline, phù hợp cho chiêm nghiệm. Nếu cần bản chuyên nghiệp, hãy dùng ephemeris chuẩn và nơi sinh chính xác.",
     sun: "Mặt Trời",
     moon: "Mặt Trăng",

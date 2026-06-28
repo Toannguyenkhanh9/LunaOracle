@@ -1,18 +1,18 @@
 const lunaFeatures = {
   luna: {
     tarotJournal: {
-      eyebrow: "Tarot",
+      eyebrow: "タロット",
       title: "タロットジャーナル",
-      subtitle: "Save meaningful card pulls and review your patterns over time.",
+      subtitle: "Luna Oracle の体験を自分らしく解放、確認、共有します。",
       empty: "保存されたリーディングはまだありません",
       emptyHint: "タロットを開き、カードを引いて保存します。",
       deleteTitle: "リーディングを削除？",
-      deleteMessage: "This saved tarot reading will be removed from your journal.",
+      deleteMessage: "Luna Oracle の体験を自分らしく解放、確認、共有します。",
       delete: "削除",
     },
     premium: {
       tarotAdvancedTitle: "高度なタロットを解除",
-      tarotAdvancedMessage: "Watch one rewarded ad to unlock this Tarot spread for 24 hours. Premium users can open it anytime.",
+      tarotAdvancedMessage: "Luna Oracle の体験を自分らしく解放、確認、共有します。",
     },
   },
 } as const;

@@ -1,28 +1,28 @@
 const lunaCompatibility = {
   lunaCompatibility: {
-    summary: "{{firstSymbol}} {{firstSign}} and {{secondSymbol}} {{secondSign}} can build connection through awareness of element, modality, and communication style.",
+    summary: "此占星指南用于反思、娱乐与自我觉察 {{firstSymbol}} {{firstSign}} {{secondSymbol}} {{secondSign}}。",
     elementFlow: {
-      same: "{{firstElement}} + {{secondElement}}: the emotional language is familiar and easy to recognize.",
-      friendly: "{{firstElement}} + {{secondElement}}: the elements can support each other when both people stay honest.",
-      different: "{{firstElement}} + {{secondElement}}: the rhythm is different, so patience and translation matter.",
+      same: "此占星指南用于反思、娱乐与自我觉察 {{firstElement}} {{secondElement}}。",
+      friendly: "此占星指南用于反思、娱乐与自我觉察 {{firstElement}} {{secondElement}}。",
+      different: "此占星指南用于反思、娱乐与自我觉察 {{firstElement}} {{secondElement}}。",
     },
     modalityFlow: {
-      same: "{{firstModality}} + {{secondModality}}: both may approach timing in a similar way, but can also mirror each other’s habits.",
-      different: "{{firstModality}} + {{secondModality}}: the connection benefits from balancing initiative, stability, and flexibility.",
+      same: "此占星指南用于反思、娱乐与自我觉察 {{firstModality}} {{secondModality}}。",
+      different: "此占星指南用于反思、娱乐与自我觉察 {{firstModality}} {{secondModality}}。",
     },
     sections: {
       loveRhythm: {
         title: "爱情节奏",
-        text: "{{firstLoveStyle}} {{secondLoveStyle}} The relationship works best when affection is shown in ways both people can understand.",
+        text: "此占星指南用于反思、娱乐与自我觉察 {{firstLoveStyle}} {{secondLoveStyle}}。",
       },
       communication: {
         title: "沟通",
-        sameElement: "The two signs often understand each other quickly, but they still need direct words instead of assumptions.",
-        differentElement: "Different elements can create attraction, but clear language helps prevent misunderstanding.",
+        sameElement: "此占星指南用于反思、娱乐与自我觉察。",
+        differentElement: "此占星指南用于反思、娱乐与自我觉察。",
       },
       growthLesson: {
         title: "成长课题",
-        text: "Use the score as a reflection tool, not a fixed verdict. Awareness, timing, honesty, and real actions matter more than sign matching.",
+        text: "此占星指南用于反思、娱乐与自我觉察。",
       },
     },
   },

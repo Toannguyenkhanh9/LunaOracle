@@ -2,17 +2,17 @@ const lunaFeatures = {
   luna: {
     tarotJournal: {
       eyebrow: "Tarot",
-      title: "Tarot Journal",
-      subtitle: "Save meaningful card pulls and review your patterns over time.",
-      empty: "No saved readings yet",
-      emptyHint: "Open Tarot Reading, draw cards, and tap Save Reading.",
-      deleteTitle: "Delete reading?",
-      deleteMessage: "This saved tarot reading will be removed from your journal.",
-      delete: "Delete",
+      title: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
+      subtitle: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
+      empty: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
+      emptyHint: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
+      deleteTitle: "Pilih opsi yang paling sesuai untuk Anda.",
+      deleteMessage: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
+      delete: "Hapus",
     },
     premium: {
-      tarotAdvancedTitle: "Unlock advanced Tarot",
-      tarotAdvancedMessage: "Watch one rewarded ad to unlock this Tarot spread for 24 hours. Premium users can open it anytime.",
+      tarotAdvancedTitle: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
+      tarotAdvancedMessage: "Buka, tinjau, dan bagikan pengalaman Luna Oracle dengan cara Anda.",
     },
   },
 } as const;

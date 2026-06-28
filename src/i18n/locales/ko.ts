@@ -32,9 +32,22 @@ import lunaDynamic
   from './lunaShare.ko';
   import engagementPack
   from './engagementPack.ko';
+  import moonDust
+  from './moonDust.ko';
+  import features2_6
+  from './features2_6.ko';
+  import dailyQuestLevel
+  from './dailyQuestLevel.ko';
+  import retentionFeatures
+  from './retentionFeatures.ko';
+  import palmReading
+  from './palmReading.ko';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.ko';
 const ko = {
   common: {
     cancel: "취소",
+    ok: "확인",
     delete: "삭제",
     reset: "초기화",
     loading: "불러오는 중...",
@@ -51,19 +64,19 @@ const ko = {
   },
   settings: {
     title: "설정",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "알림",
+    notificationsDescription: "일일 운세와 달 알림을 관리합니다.",
     language: "언어",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "앱에서 사용할 언어를 선택하세요.",
     chooseLanguage: "언어 선택",
     privacy: "개인정보",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "내보내거나 동기화하지 않는 한, 저널과 리딩은 이 기기에 저장됩니다.",
     information: "정보",
     version: "Luna Oracle 버전 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...ko,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +95,18 @@ export default {
             ...lunaTarotAnimation,
               ...lunaShare,
                 ...engagementPack,
+                  ...moonDust,
+                    ...features2_6,
+                      ...dailyQuestLevel,
+                        ...retentionFeatures,
+                          ...palmReading,
+                            ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

@@ -28,9 +28,22 @@ import lunaAdvancedFeatures
   from './lunaShare.ru';
   import engagementPack
   from './engagementPack.ru';
+  import moonDust
+  from './moonDust.ru';
+  import features2_6
+  from './features2_6.ru';
+  import dailyQuestLevel
+  from './dailyQuestLevel.ru';
+  import retentionFeatures
+  from './retentionFeatures.ru';
+  import palmReading
+  from './palmReading.ru';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.ru';
 const ru = {
   common: {
     cancel: "Отмена",
+    ok: "OK",
     delete: "Удалить",
     reset: "Сбросить",
     loading: "Загрузка...",
@@ -47,19 +60,19 @@ const ru = {
   },
   settings: {
     title: "Настройки",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "Уведомления",
+    notificationsDescription: "Управляйте ежедневными напоминаниями о гороскопе и Луне.",
     language: "Язык",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "Выберите язык, используемый в приложении.",
     chooseLanguage: "Выбрать язык",
     privacy: "Конфиденциальность",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "Ваш журнал и расклады хранятся на этом устройстве, если вы не экспортируете или не синхронизируете их.",
     information: "Информация",
     version: "Luna Oracle версия 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...ru,
   ...westernFeatures,
   ...lunaFeatures,
@@ -76,4 +89,18 @@ export default {
                     ...lunaTarotAnimation,
                       ...lunaShare,
                         ...engagementPack,
+                          ...moonDust,
+                            ...features2_6,
+                              ...dailyQuestLevel,
+                                ...retentionFeatures,
+                                  ...palmReading,
+                                    ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

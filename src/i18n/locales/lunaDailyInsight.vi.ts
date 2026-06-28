@@ -14,7 +14,7 @@ const lunaDailyInsight = {
     noTouchpoints: "Hôm nay không có góc quá cảnh lớn quá sát. Hãy giữ ngày đơn giản và quan sát những tín hiệu tinh tế.",
     suggestedAction: "Hành động gợi ý",
     journalPrompt: "Câu hỏi ghi nhật ký",
-    orb: "orb {{value}}°",
+    orb: "góc {{value}}°",
     notice: "Dự báo hằng ngày dùng cho chiêm nghiệm và tự nhận thức. Không thay thế lời khuyên chuyên môn.",
     focus: {
       love: "Tình yêu",

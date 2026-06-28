@@ -1,28 +1,28 @@
 const lunaCompatibility = {
   lunaCompatibility: {
-    summary: "{{firstSymbol}} {{firstSign}} and {{secondSymbol}} {{secondSign}} can build connection through awareness of element, modality, and communication style.",
+    summary: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstSymbol}} {{firstSign}} {{secondSymbol}} {{secondSign}}。",
     elementFlow: {
-      same: "{{firstElement}} + {{secondElement}}: the emotional language is familiar and easy to recognize.",
-      friendly: "{{firstElement}} + {{secondElement}}: the elements can support each other when both people stay honest.",
-      different: "{{firstElement}} + {{secondElement}}: the rhythm is different, so patience and translation matter.",
+      same: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstElement}} {{secondElement}}。",
+      friendly: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstElement}} {{secondElement}}。",
+      different: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstElement}} {{secondElement}}。",
     },
     modalityFlow: {
-      same: "{{firstModality}} + {{secondModality}}: both may approach timing in a similar way, but can also mirror each other’s habits.",
-      different: "{{firstModality}} + {{secondModality}}: the connection benefits from balancing initiative, stability, and flexibility.",
+      same: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstModality}} {{secondModality}}。",
+      different: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstModality}} {{secondModality}}。",
     },
     sections: {
       loveRhythm: {
         title: "恋愛のリズム",
-        text: "{{firstLoveStyle}} {{secondLoveStyle}} The relationship works best when affection is shown in ways both people can understand.",
+        text: "この占星ガイドは内省、娯楽、自己理解のためのものです {{firstLoveStyle}} {{secondLoveStyle}}。",
       },
       communication: {
         title: "コミュニケーション",
-        sameElement: "The two signs often understand each other quickly, but they still need direct words instead of assumptions.",
-        differentElement: "Different elements can create attraction, but clear language helps prevent misunderstanding.",
+        sameElement: "この占星ガイドは内省、娯楽、自己理解のためのものです。",
+        differentElement: "この占星ガイドは内省、娯楽、自己理解のためのものです。",
       },
       growthLesson: {
         title: "成長の学び",
-        text: "Use the score as a reflection tool, not a fixed verdict. Awareness, timing, honesty, and real actions matter more than sign matching.",
+        text: "この占星ガイドは内省、娯楽、自己理解のためのものです。",
       },
     },
   },

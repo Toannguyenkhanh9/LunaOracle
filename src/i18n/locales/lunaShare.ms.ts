@@ -2,11 +2,11 @@ const lunaShare = {
   lunaShare: {
     eyebrow: "Kongsi",
     title: "Cipta imej kongsi",
-    subtitle: "Preview your Luna Oracle image and share it to social apps.",
+    subtitle: "Buka kunci, semak dan kongsi pengalaman Luna Oracle dengan cara anda.",
     shareButton: "Kongsi imej",
-    errorTitle: "Unable to share",
-    errorMessage: "Please try again.",
-    notice: "Tip: use square or story crop in social apps for best results.",
+    errorTitle: "Buka kunci, semak dan kongsi pengalaman Luna Oracle dengan cara anda.",
+    errorMessage: "Sila cuba lagi.",
+    notice: "Buka kunci, semak dan kongsi pengalaman Luna Oracle dengan cara anda.",
     badges: {
       tarot: "TAROT",
       today: "TODAY",
@@ -14,7 +14,7 @@ const lunaShare = {
       forecast: "FORECAST",
     },
     homeTitle: "Kongsi imej",
-    homeSubtitle: "Create a polished social image from tarot, daily insight, love, or forecast.",
+    homeSubtitle: "Buka kunci, semak dan kongsi pengalaman Luna Oracle dengan cara anda.",
   },
 } as const;
 

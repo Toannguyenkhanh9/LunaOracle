@@ -1,28 +1,28 @@
 const lunaCompatibility = {
   lunaCompatibility: {
-    summary: "{{firstSymbol}} {{firstSign}} and {{secondSymbol}} {{secondSign}} can build connection through awareness of element, modality, and communication style.",
+    summary: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstSymbol}} {{firstSign}} {{secondSymbol}} {{secondSign}}.",
     elementFlow: {
-      same: "{{firstElement}} + {{secondElement}}: the emotional language is familiar and easy to recognize.",
-      friendly: "{{firstElement}} + {{secondElement}}: the elements can support each other when both people stay honest.",
-      different: "{{firstElement}} + {{secondElement}}: the rhythm is different, so patience and translation matter.",
+      same: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstElement}} {{secondElement}}.",
+      friendly: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstElement}} {{secondElement}}.",
+      different: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstElement}} {{secondElement}}.",
     },
     modalityFlow: {
-      same: "{{firstModality}} + {{secondModality}}: both may approach timing in a similar way, but can also mirror each other’s habits.",
-      different: "{{firstModality}} + {{secondModality}}: the connection benefits from balancing initiative, stability, and flexibility.",
+      same: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstModality}} {{secondModality}}.",
+      different: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstModality}} {{secondModality}}.",
     },
     sections: {
       loveRhythm: {
         title: "Liefdesritme",
-        text: "{{firstLoveStyle}} {{secondLoveStyle}} The relationship works best when affection is shown in ways both people can understand.",
+        text: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht {{firstLoveStyle}} {{secondLoveStyle}}.",
       },
       communication: {
         title: "Communicatie",
-        sameElement: "The two signs often understand each other quickly, but they still need direct words instead of assumptions.",
-        differentElement: "Different elements can create attraction, but clear language helps prevent misunderstanding.",
+        sameElement: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht.",
+        differentElement: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht.",
       },
       growthLesson: {
         title: "Groeiles",
-        text: "Use the score as a reflection tool, not a fixed verdict. Awareness, timing, honesty, and real actions matter more than sign matching.",
+        text: "Deze astrologische gids is bedoeld voor reflectie, entertainment en zelfinzicht.",
       },
     },
   },

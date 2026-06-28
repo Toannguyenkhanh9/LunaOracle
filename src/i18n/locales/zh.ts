@@ -32,9 +32,23 @@ import lunaDynamic
   from './lunaShare.zh';
   import engagementPack
   from './engagementPack.zh';
+
+  import moonDust
+  from './moonDust.zh';
+  import features2_6
+  from './features2_6.zh';
+  import dailyQuestLevel
+  from './dailyQuestLevel.zh';
+  import retentionFeatures
+  from './retentionFeatures.zh';
+  import palmReading
+  from './palmReading.zh';
+  import palmReadingV2Lite
+  from './palmReadingV2Lite.zh';
 const zh = {
   common: {
     cancel: "取消",
+    ok: "确定",
     delete: "删除",
     reset: "重置",
     loading: "加载中...",
@@ -51,19 +65,19 @@ const zh = {
   },
   settings: {
     title: "设置",
-    notifications: "Notifications",
-    notificationsDescription: "Manage daily horoscope and moon reminders.",
+    notifications: "通知",
+    notificationsDescription: "管理每日星座运势和月亮提醒。",
     language: "语言",
-    languageDescription: "Choose the language used by the app.",
+    languageDescription: "选择应用使用的语言。",
     chooseLanguage: "选择语言",
     privacy: "隐私",
-    privacyDescription: "Your journal and readings are stored on this device unless you export or sync them.",
+    privacyDescription: "你的日记和解读会存储在此设备上，除非你导出或同步它们。",
     information: "信息",
     version: "Luna Oracle 版本 1.0.0",
   },
 } as const;
 
-export default {
+const __localeBase = {
   ...zh,
   ...westernFeatures,
   ...lunaFeatures,
@@ -82,4 +96,18 @@ export default {
           ...lunaTarotAnimation,
             ...lunaShare,
               ...engagementPack,
+                ...moonDust,
+                  ...features2_6,
+                    ...dailyQuestLevel,
+                      ...retentionFeatures,
+                        ...palmReading,
+                          ...palmReadingV2Lite,
+} as const;
+
+export default {
+  ...__localeBase,
+  palmReading: {
+    ...palmReading.palmReading,
+    ...palmReadingV2Lite.palmReading,
+  },
 } as const;

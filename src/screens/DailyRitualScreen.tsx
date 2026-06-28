@@ -44,12 +44,19 @@ import {
 } from '../services/dailyRitual';
 
 import {
+  claimDailyMoonDust,
+} from '../services/moonDustRewards';
+
+import {
   recordTarotDraws,
 } from '../services/tarotCollection';
 
 import {
   getZodiacSymbol,
 } from '../services/astroBirthChart';
+// import {
+//   recordOracleActivity,
+// } from '../services/oracleEngagement';
 
 type NavigationLike = {
   navigate: (
@@ -170,11 +177,70 @@ export default function DailyRitualScreen() {
         await saveDailyRitualEntry(
           nextEntry,
         );
-
+        
       setEntry(saved);
       setStreak(
         await getDailyRitualStreak(),
       );
+
+      let moonDustMessage = '';
+
+      /**
+       * Chỉ claim Moon Dust khi người dùng bấm
+       * nút Save Check-in thật sự.
+       *
+       * Các autosave khi chọn mood / step dùng
+       * showAlert=false nên không claim thưởng lặp lại.
+       */
+      if (showAlert) {
+        const moonDustResult =
+          await claimDailyMoonDust().catch(error => {
+            console.warn(
+              'Unable to claim Moon Dust:',
+              error,
+            );
+
+            return undefined;
+          });
+
+        if (moonDustResult?.claimed) {
+          const unlockText =
+            moonDustResult.reward.unlocks
+              .map(unlock =>
+                t(
+                  unlock.titleKey,
+                  {
+                    defaultValue:
+                      unlock.titleFallback,
+                  },
+                ),
+              )
+              .join(', ');
+
+          moonDustMessage =
+            unlockText.length > 0
+              ? `\n\n${t(
+                  'moonDust.claimSuccessWithUnlock',
+                  {
+                    amount:
+                      moonDustResult.reward.moonDust,
+                    unlock:
+                      unlockText,
+                    defaultValue:
+                      `You earned ${moonDustResult.reward.moonDust} Moon Dust and unlocked ${unlockText}.`,
+                  },
+                )}`
+              : `\n\n${t(
+                  'moonDust.claimSuccess',
+                  {
+                    amount:
+                      moonDustResult.reward.moonDust,
+                    defaultValue:
+                      `You earned ${moonDustResult.reward.moonDust} Moon Dust.`,
+                  },
+                )}`;
+        }
+      }
 
       if (showAlert) {
         Alert.alert(
@@ -185,13 +251,13 @@ export default function DailyRitualScreen() {
                 'Saved',
             },
           ),
-          t(
+          `${t(
             'lunaDailyRitual.savedMessage',
             {
               defaultValue:
                 'Your daily ritual was saved.',
             },
-          ),
+          )}${moonDustMessage}`,
         );
       }
     } catch (error) {

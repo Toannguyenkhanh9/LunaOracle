@@ -1,28 +1,28 @@
 const lunaCompatibility = {
   lunaCompatibility: {
-    summary: "{{firstSymbol}} {{firstSign}} and {{secondSymbol}} {{secondSign}} can build connection through awareness of element, modality, and communication style.",
+    summary: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstSymbol}} {{firstSign}} {{secondSymbol}} {{secondSign}}.",
     elementFlow: {
-      same: "{{firstElement}} + {{secondElement}}: the emotional language is familiar and easy to recognize.",
-      friendly: "{{firstElement}} + {{secondElement}}: the elements can support each other when both people stay honest.",
-      different: "{{firstElement}} + {{secondElement}}: the rhythm is different, so patience and translation matter.",
+      same: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstElement}} {{secondElement}}.",
+      friendly: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstElement}} {{secondElement}}.",
+      different: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstElement}} {{secondElement}}.",
     },
     modalityFlow: {
-      same: "{{firstModality}} + {{secondModality}}: both may approach timing in a similar way, but can also mirror each other’s habits.",
-      different: "{{firstModality}} + {{secondModality}}: the connection benefits from balancing initiative, stability, and flexibility.",
+      same: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstModality}} {{secondModality}}.",
+      different: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstModality}} {{secondModality}}.",
     },
     sections: {
       loveRhythm: {
         title: "Ritmo amoroso",
-        text: "{{firstLoveStyle}} {{secondLoveStyle}} The relationship works best when affection is shown in ways both people can understand.",
+        text: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento {{firstLoveStyle}} {{secondLoveStyle}}.",
       },
       communication: {
         title: "Comunicação",
-        sameElement: "The two signs often understand each other quickly, but they still need direct words instead of assumptions.",
-        differentElement: "Different elements can create attraction, but clear language helps prevent misunderstanding.",
+        sameElement: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento.",
+        differentElement: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento.",
       },
       growthLesson: {
         title: "Lição de crescimento",
-        text: "Use the score as a reflection tool, not a fixed verdict. Awareness, timing, honesty, and real actions matter more than sign matching.",
+        text: "Este guia astrológico é para reflexão, entretenimento e autoconhecimento.",
       },
     },
   },

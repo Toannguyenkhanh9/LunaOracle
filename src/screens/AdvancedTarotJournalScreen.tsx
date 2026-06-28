@@ -40,6 +40,10 @@ import {
   type TarotJournalTag,
 } from '../services/tarotJournalAdvanced';
 
+import {
+  recordOracleActivity,
+} from '../services/oracleEngagement';
+
 type FilterTag =
   | 'all'
   | TarotJournalTag;
@@ -85,6 +89,13 @@ export default function AdvancedTarotJournalScreen() {
     useCallback(
       () => {
         void load();
+
+        recordOracleActivity('journal').catch(error => {
+          console.warn(
+            'Unable to record journal screen activity:',
+            error,
+          );
+        });
       },
       [load],
     ),

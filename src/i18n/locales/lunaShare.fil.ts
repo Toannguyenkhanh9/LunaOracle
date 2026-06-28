@@ -1,20 +1,20 @@
 const lunaShare = {
   lunaShare: {
-    eyebrow: "Share",
+    eyebrow: "Ibahagi",
     title: "Gumawa ng share image",
-    subtitle: "Preview your Luna Oracle image and share it to social apps.",
-    shareButton: "Share Image",
-    errorTitle: "Unable to share",
-    errorMessage: "Please try again.",
-    notice: "Tip: use square or story crop in social apps for best results.",
+    subtitle: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+    shareButton: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+    errorTitle: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+    errorMessage: "Pakisubukang muli.",
+    notice: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
     badges: {
       tarot: "TAROT",
       today: "TODAY",
       love: "LOVE",
       forecast: "FORECAST",
     },
-    homeTitle: "Share Image",
-    homeSubtitle: "Create a polished social image from tarot, daily insight, love, or forecast.",
+    homeTitle: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
+    homeSubtitle: "I-unlock, balikan, at ibahagi ang karanasan sa Luna Oracle sa sarili mong paraan.",
   },
 } as const;
 

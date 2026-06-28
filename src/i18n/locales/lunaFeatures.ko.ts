@@ -1,18 +1,18 @@
 const lunaFeatures = {
   luna: {
     tarotJournal: {
-      eyebrow: "Tarot",
+      eyebrow: "타로",
       title: "타로 저널",
-      subtitle: "Save meaningful card pulls and review your patterns over time.",
+      subtitle: "나만의 방식으로 Luna Oracle 경험을 잠금 해제하고 확인하며 공유하세요.",
       empty: "저장된 리딩이 아직 없습니다",
       emptyHint: "타로 리딩을 열고 카드를 뽑은 뒤 저장하세요.",
       deleteTitle: "리딩 삭제?",
-      deleteMessage: "This saved tarot reading will be removed from your journal.",
+      deleteMessage: "나만의 방식으로 Luna Oracle 경험을 잠금 해제하고 확인하며 공유하세요.",
       delete: "삭제",
     },
     premium: {
       tarotAdvancedTitle: "고급 타로 잠금 해제",
-      tarotAdvancedMessage: "Watch one rewarded ad to unlock this Tarot spread for 24 hours. Premium users can open it anytime.",
+      tarotAdvancedMessage: "나만의 방식으로 Luna Oracle 경험을 잠금 해제하고 확인하며 공유하세요.",
     },
   },
 } as const;

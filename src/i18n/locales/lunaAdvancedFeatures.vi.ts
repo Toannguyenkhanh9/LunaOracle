@@ -3,7 +3,7 @@ const lunaAdvancedFeatures = {
     common: {
       profile: "Hồ sơ",
       house: "Nhà {{number}}",
-      orb: "orb {{value}}°",
+      orb: "góc {{value}}°",
       notice: "Nội dung chiêm tinh chỉ dùng để chiêm nghiệm và tự nhận thức.",
     },
     points: {
@@ -35,7 +35,7 @@ const lunaAdvancedFeatures = {
     },
     transit: {
       eyebrow: "Quá cảnh",
-      title: "Transit Today",
+      title: "Dịch chuyển hôm nay",
       subtitleFor: "{{name}} • {{date}}",
       moonToday: "Mặt Trăng hôm nay",
       skyNow: "Bầu trời hiện tại",
@@ -112,13 +112,13 @@ const lunaAdvancedFeatures = {
           title: "Trải bài quan hệ",
         },
         celticCross: {
-          title: "Celtic Cross",
+          title: "Thập tự Celtic",
         },
       },
       positions: {
         Situation: "Tình huống",
         Challenge: "Thử thách",
-        "Hidden Influence": "Ảnh hưởng ẩn",
+        "Ảnh hưởng ẩn": "Ảnh hưởng ẩn",
         Advice: "Lời khuyên",
         Outcome: "Kết quả",
         You: "Bạn",
@@ -129,12 +129,12 @@ const lunaAdvancedFeatures = {
         Present: "Hiện tại",
         Crossing: "Điều cản trở",
         Foundation: "Nền tảng",
-        "Recent Past": "Quá khứ gần",
-        "Higher Aim": "Mục tiêu cao hơn",
-        "Near Future": "Tương lai gần",
-        "Inner Self": "Bên trong",
-        "Outer World": "Bên ngoài",
-        "Hopes & Fears": "Hy vọng & nỗi sợ",
+        "Quá khứ gần": "Quá khứ gần",
+        "Mục tiêu cao hơn": "Mục tiêu cao hơn",
+        "Tương lai gần": "Tương lai gần",
+        "Bên trong": "Bên trong",
+        "Bên ngoài": "Bên ngoài",
+        "Hy vọng & nỗi sợ": "Hy vọng & nỗi sợ",
       },
     },
     wheel: {
@@ -147,7 +147,7 @@ const lunaAdvancedFeatures = {
       planetPositions: "Vị trí hành tinh",
     },
     home: {
-      transitToday: "Transit Today",
+      transitToday: "Dịch chuyển hôm nay",
       transitSubtitle: "Xem bầu trời hôm nay chạm vào lá số sinh của bạn thế nào.",
       profileCompatibility: "Tương hợp hồ sơ",
       profileCompatibilitySubtitle: "So sánh hai hồ sơ sinh đã lưu.",
